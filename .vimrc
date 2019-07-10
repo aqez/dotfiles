@@ -4,6 +4,7 @@ set relativenumber
 set tabstop=3
 set shiftwidth=3
 set expandtab
+set clipboard^=unnamed,unnamedplus
 
 "Disable arrow keys in Normal and insert modes
 no <up> <Nop>
