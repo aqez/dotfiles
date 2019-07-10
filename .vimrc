@@ -14,13 +14,17 @@ ino <down> <Nop>
 ino <left> <Nop>
 ino <right> <Nop>
 
-let g:netrw_banner = 0 "Hide file browser header
-let g:netrw_liststyle = 3 "File tree mode
-let g:netrw_browse_split = 4 "Open in previous window
-let g:netrw_winsize = 25
-let g:netrw_altv = 1 
+if empty(glob('~/.vim/autoload/plug.vim'))
+   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-augroup ProjectDrawer
-   autocmd!
-   autocmd VimEnter * :Lexplore
-augroup END
+call plug#begin('~/.vim/plugged')
+   Plug 'scrooloose/nerdtree'
+call plug#end()
+
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+nmap <F1> :NERDTreeToggle<CR>
