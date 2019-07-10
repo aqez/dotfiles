@@ -27,9 +27,6 @@ call plug#begin('~/.vim/plugged')
    Plug 'kien/ctrlp.vim'
 call plug#end()
 
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-
 nmap <F1> :NERDTreeToggle<CR>
 
 let g:rustfmt_autosave = 1 
