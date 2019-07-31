@@ -39,10 +39,9 @@ let g:deoplete#enable_at_startup = 1
 "Remove the preview scratch window
 set completeopt-=preview
 
-"F2 for go to definition
-nnoremap <F2> <C-]>
-"Backspace to navigate backwards
-nnoremap <BACKSPACE> <C-t>
+"Rename in GO
+nnoremap <F2> :GoRename<Enter>
+
 "Build in GO
 nnoremap <C-B> :w<ENTER>:GoBuild<ENTER>
 "Run in GO
