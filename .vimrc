@@ -1,6 +1,5 @@
 "Default vim settings
 set number
-set relativenumber
 set tabstop=3
 set shiftwidth=3
 set expandtab
@@ -34,7 +33,18 @@ call plug#begin('~/.config/nvim/plugs')
    Plug 'deoplete-plugins/deoplete-go', { 'do': 'make' }
 call plug#end()
 
+"Set up deoplete to automatically start
 let g:deoplete#enable_at_startup = 1
+
+"Remove the preview scratch window
+set completeopt-=preview
+
+"F2 for go to definition
+nnoremap <F2> <C-]>
+nnoremap <BACKSPACE> <C-t>
+
+" <TAB>: completion
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "Set up NerdTree hotkey
 nmap <F1> :NERDTreeToggle<CR>
