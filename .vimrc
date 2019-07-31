@@ -41,7 +41,12 @@ set completeopt-=preview
 
 "F2 for go to definition
 nnoremap <F2> <C-]>
+"Backspace to navigate backwards
 nnoremap <BACKSPACE> <C-t>
+"Build in GO
+nnoremap <C-B> :w<ENTER>:GoBuild<ENTER>
+"Run in GO
+nnoremap <F5> :GoRun<ENTER>
 
 " <TAB>: completion
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
