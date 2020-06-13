@@ -58,6 +58,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'w0rp/ale'
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'OmniSharp/omnisharp-vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 colorscheme gruvbox
 
