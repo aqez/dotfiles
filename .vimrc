@@ -20,7 +20,7 @@ set showmatch
 set foldcolumn=1
 set relativenumber
 set laststatus=2
-inoremap <expr> <Tab> pumvisible() ? '<C-n>' ?
+inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
             \ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
 
 " NetRW
