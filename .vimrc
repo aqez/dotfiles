@@ -3,6 +3,7 @@ filetype plugin on
 filetype indent on
 set autoread
 let mapleader = " "
+set clipboard=unnamedplus
 
 " UI
 syntax on
@@ -17,14 +18,15 @@ set nohlsearch
 set magic
 set showmatch
 set foldcolumn=1
-set number
+set relativenumber
 set laststatus=2
-"inoremap <expr> <Tab> pumvisible() ? '<C-n>' ?
-"            \ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : <Tab>
+inoremap <expr> <Tab> pumvisible() ? '<C-n>' ?
+            \ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
 
 " NetRW
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
+let g:netrw_list_hide = 'bin/,obj/,[Dd]ebug/,[Rr]elease/'
 nnoremap <Leader>t :Lex<CR>
 
 "Files, backups and undo
@@ -73,6 +75,7 @@ nmap <Leader>p :Files<CR>
 
 " OmniSharp
 let g:OmniSharp_server_stdio = 1
+"let g:OmniSharp_server_stdio_quickload = 1
 set previewheight=10
 let g:OmniSharp_timeout = 5
 let g:omnicomplete_fetch_full_documentation = 1
@@ -99,4 +102,5 @@ augroup omnisharp_commands
     autocmd FileType cs nnoremap <buffer> <Leader>ss :OmniSharpStartServer<CR>
     autocmd FileType cs nnoremap <buffer> <Leader>sp :OmniSharpStopServer<CR>
 
+    autocmd BufWritePre *.cs call OmniSharp#CodeFormat()
 augroup END
