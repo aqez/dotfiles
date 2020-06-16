@@ -71,6 +71,7 @@ nmap <Leader>p :Files<CR>
 " NerdTree
 let g:NERDTreeIgnore = ['bin', 'obj']
 let g:NERDTreeQuitOnOpen = 1
+nnoremap <Leader>t :NERDTreeToggle<CR>
 
 " OmniSharp
 let g:OmniSharp_server_stdio = 1
