@@ -69,7 +69,7 @@ nmap <Leader><Tab> <Plug>(fzf-maps-n)
 nmap <Leader>p :Files<CR>
 
 " NerdTree
-let g:NERDTreeIgnore = ['bin/', 'obj/']
+let g:NERDTreeIgnore = ['bin', 'obj']
 let g:NERDTreeQuitOnOpen = 1
 
 " OmniSharp
@@ -103,6 +103,3 @@ augroup omnisharp_commands
 
     autocmd BufWritePre *.cs call OmniSharp#CodeFormat()
 augroup END
-
-
-
