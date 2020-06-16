@@ -23,12 +23,6 @@ set laststatus=2
 inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
             \ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
 
-" NetRW
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
-let g:netrw_list_hide = 'bin/,obj/,[Dd]ebug/,[Rr]elease/'
-nnoremap <Leader>t :Lex<CR>
-
 "Files, backups and undo
 set nobackup
 set nowb
@@ -63,6 +57,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'preservim/nerdtree'
 call plug#end()
 colorscheme gruvbox
 
@@ -72,6 +67,10 @@ let g:ale_linters = { 'cs' : ['OmniSharp'] }
 " FZF
 nmap <Leader><Tab> <Plug>(fzf-maps-n)
 nmap <Leader>p :Files<CR>
+
+" NerdTree
+let g:NERDTreeIgnore = ['bin/', 'obj/']
+let g:NERDTreeQuitOnOpen = 1
 
 " OmniSharp
 let g:OmniSharp_server_stdio = 1
@@ -104,3 +103,6 @@ augroup omnisharp_commands
 
     autocmd BufWritePre *.cs call OmniSharp#CodeFormat()
 augroup END
+
+
+
