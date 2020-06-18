@@ -18,7 +18,10 @@ set nohlsearch
 set magic
 set showmatch
 set foldcolumn=1
+set number
 set relativenumber
+set completeopt=longest,menuone,preview
+set previewheight=10
 set laststatus=2
 inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
             \ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
@@ -69,20 +72,17 @@ nmap <Leader><Tab> <Plug>(fzf-maps-n)
 nmap <Leader>p :Files<CR>
 
 " NerdTree
+nnoremap <Leader>t :NERDTreeToggle<CR>
 let g:NERDTreeIgnore = ['bin', 'obj']
 let g:NERDTreeQuitOnOpen = 1
-nnoremap <Leader>t :NERDTreeToggle<CR>
 
 " OmniSharp
 let g:OmniSharp_server_stdio = 1
-"let g:OmniSharp_server_stdio_quickload = 1
-set previewheight=10
 let g:OmniSharp_timeout = 5
 let g:omnicomplete_fetch_full_documentation = 1
 let g:OmniSharp_highlight_types = 3
 let g:OmniSharp_autoselect_existing_sln = 1
 let g:OmniSharp_popup_position = 'peek'
-set completeopt=longest,menuone,preview
 
 augroup omnisharp_commands
     autocmd!
@@ -101,6 +101,9 @@ augroup omnisharp_commands
 
     autocmd FileType cs nnoremap <buffer> <Leader>ss :OmniSharpStartServer<CR>
     autocmd FileType cs nnoremap <buffer> <Leader>sp :OmniSharpStopServer<CR>
+
+    autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
+    autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
 
     autocmd BufWritePre *.cs call OmniSharp#CodeFormat()
 augroup END
