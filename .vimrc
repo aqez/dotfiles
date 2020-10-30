@@ -4,6 +4,7 @@ filetype indent on
 set autoread
 let mapleader = " "
 set clipboard=unnamedplus
+set runtimepath^=~/notes
 
 " UI
 syntax on
@@ -23,6 +24,8 @@ set relativenumber
 set completeopt=longest,menuone,preview
 set previewheight=10
 set laststatus=2
+inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
+            \ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
 
 "Files, backups and undo
 set nobackup
@@ -53,11 +56,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'morhetz/gruvbox'
     Plug 'w0rp/ale'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'OmniSharp/omnisharp-vim'
     Plug 'tpope/vim-fugitive'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'preservim/nerdtree'
-    Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
+    Plug 'dracula/vim', { 'as' : 'dracula' }
+    Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 colorscheme gruvbox
 
@@ -74,25 +80,37 @@ nnoremap <Leader>t :NERDTreeToggle<CR>
 let g:NERDTreeIgnore = ['bin', 'obj']
 let g:NERDTreeQuitOnOpen = 1
 
+" vim-better-whitespace
+let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
+
 " OmniSharp
-let g:OmniSharp_server_stdio = 1
 let g:OmniSharp_timeout = 5
+let g:OmniSharp_server_path = 'C:\omnisharp_stdio\OmniSharp.exe'
 let g:omnicomplete_fetch_full_documentation = 1
-let g:OmniSharp_highlight_types = 3
 let g:OmniSharp_autoselect_existing_sln = 1
 let g:OmniSharp_popup_position = 'peek'
+let g:OmniSharp_highlighting = 2
+let g:OmniSharp_diagnostic_exclude_paths = [ 'Temp\\', 'obj\\', '\.nuget\\' ]
 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-nmap gd <Plug>(coc-definition)
-nmap <Leader>fr <Plug>(coc-references)
-nmap <F2> <Plug>(coc-rename)
+augroup omnisharp_commands
+    autocmd!
+    autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader><Space> :OmniSharpGetCodeActions<CR>
+    autocmd FileType cs xnoremap <buffer> <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
+    autocmd FileType cs nnoremap <buffer> <F2> :OmniSharpRename<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>cf :OmniSharpCodeFormat<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>cc :OmniSharpGlobalCodeCheck<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>rt :OmniSharpRunTest<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>rT :OmniSharpRunTestsInFile<CR>
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+    autocmd FileType cs nnoremap <buffer> <Leader>ss :OmniSharpStartServer<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>sp :OmniSharpStopServer<CR>
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+    autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
+    autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
+augroup END
