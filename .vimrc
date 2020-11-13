@@ -70,6 +70,8 @@ colorscheme gruvbox
 " ALE
 let g:ale_linters = { 'cs' : ['OmniSharp'] }
 let g:ale_sign_column_always = 1
+let g:ale_virtualtext_cursor = 1
+let g:ale_echo_cursor = 0
 
 " FZF
 nmap <Leader><Tab> <Plug>(fzf-maps-n)
@@ -89,7 +91,7 @@ let g:OmniSharp_timeout = 5
 let g:omnicomplete_fetch_full_documentation = 1
 let g:OmniSharp_autoselect_existing_sln = 1
 let g:OmniSharp_popup_position = 'peek'
-let g:OmniSharp_highlighting = 2
+let g:OmniSharp_highlighting = 3
 let g:OmniSharp_diagnostic_exclude_paths = [ 'Temp\\', 'obj\\', '\.nuget\\' ]
 
 
@@ -113,6 +115,4 @@ augroup omnisharp_commands
     autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
     autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
     autocmd BufWritePre *.cs :OmniSharpCodeFormat
-    autocmd BufWritePre *.cs %s/^\n\+/\r/g
-    autocmd BufWritePre *.cs %s/\n\n\+\(\s\+\)}/\r\1}/g
 augroup END
