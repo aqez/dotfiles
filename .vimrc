@@ -64,8 +64,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdtree'
     Plug 'dracula/vim', { 'as' : 'dracula' }
     Plug 'ntpeters/vim-better-whitespace'
+    Plug 'puremourning/vimspector'
 call plug#end()
 colorscheme gruvbox
+
+" Vimspector
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 
 " ALE
 let g:ale_linters = { 'cs' : ['OmniSharp'] }
