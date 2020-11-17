@@ -76,6 +76,8 @@ let g:ale_linters = { 'cs' : ['OmniSharp'] }
 let g:ale_sign_column_always = 1
 let g:ale_virtualtext_cursor = 1
 let g:ale_echo_cursor = 0
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
 
 " FZF
 nmap <Leader><Tab> <Plug>(fzf-maps-n)
@@ -97,26 +99,27 @@ let g:OmniSharp_autoselect_existing_sln = 1
 let g:OmniSharp_popup_position = 'peek'
 let g:OmniSharp_highlighting = 3
 let g:OmniSharp_diagnostic_exclude_paths = [ 'Temp\\', 'obj\\', '\.nuget\\' ]
+let g:OmniSharp_selector_ui = ''
 
 
 
 augroup omnisharp_commands
     autocmd!
-    autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader><Space> :OmniSharpGetCodeActions<CR>
-    autocmd FileType cs xnoremap <buffer> <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
-    autocmd FileType cs nnoremap <buffer> <F2> :OmniSharpRename<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>cf :OmniSharpCodeFormat<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>cc :OmniSharpGlobalCodeCheck<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>rt :OmniSharpRunTest<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>rT :OmniSharpRunTestsInFile<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>ss :OmniSharpStartServer<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>sp :OmniSharpStopServer<CR>
-    autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
-    autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
+    autocmd FileType cs nmap <buffer> gd <Plug>(omnisharp_go_to_definition)
+    autocmd FileType cs nmap <buffer> <Leader><Space> <Plug>(omnisharp_code_actions)
+    autocmd FileType cs xmap <buffer> <Leader><Space> <Plug>(omnisharp_code_actions)
+    autocmd FileType cs nmap <buffer> <F2> :call <Plug>(omnisharp_rename)
+    autocmd FileType cs nmap <buffer> <Leader>cf <Plug>(omnisharp_code_format)
+    autocmd FileType cs nmap <buffer> <Leader>fi <Plug>(omnisharp_find_implementations)
+    autocmd FileType cs nmap <buffer> <Leader>fs <Plug>(omnisharp_find_symbol)
+    autocmd FileType cs nmap <buffer> <Leader>fu <Plug>(omnisharp_find_usages)
+    autocmd FileType cs nmap <buffer> <Leader>dc <Plug>(omnisharp_documentation)
+    autocmd FileType cs nmap <buffer> <Leader>cc <Plug>(omnisharp_global_code_check)
+    autocmd FileType cs nmap <buffer> <Leader>rt <Plug>(omnisharp_run_test)
+    autocmd FileType cs nmap <buffer> <Leader>rT <Plug>(omnisharp_run_tests_in_file)
+    autocmd FileType cs nmap <buffer> <Leader>ss <Plug>(omnisharp_start_server)
+    autocmd FileType cs nmap <buffer> <Leader>sp <Plug>(omnisharp_stop_server)
+    autocmd FileType cs nmap <buffer> <C-\> <Plug>(omnisharp_signature_help)
+    autocmd FileType cs imap <buffer> <C-\> <Plug>(omnisharp_signature_help)
     autocmd BufWritePre *.cs :OmniSharpCodeFormat
 augroup END
