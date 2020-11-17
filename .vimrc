@@ -88,9 +88,6 @@ nnoremap <Leader>t :NERDTreeToggle<CR>
 let g:NERDTreeIgnore = ['bin', 'obj']
 let g:NERDTreeQuitOnOpen = 1
 
-" vim-better-whitespace
-let g:strip_whitespace_on_save = 1
-let g:strip_whitespace_confirm = 0
 
 " OmniSharp
 let g:OmniSharp_timeout = 5
@@ -99,11 +96,10 @@ let g:OmniSharp_autoselect_existing_sln = 1
 let g:OmniSharp_popup_position = 'peek'
 let g:OmniSharp_highlighting = 3
 let g:OmniSharp_diagnostic_exclude_paths = [ 'Temp\\', 'obj\\', '\.nuget\\' ]
-let g:OmniSharp_selector_ui = ''
+"let g:OmniSharp_selector_ui = ''
+let g:OmniSharp_fzf_options = { 'down': '10' }
 
-
-
-augroup omnisharp_commands
+augroup csharp_commands
     autocmd!
     autocmd FileType cs nmap <buffer> gd <Plug>(omnisharp_go_to_definition)
     autocmd FileType cs nmap <buffer> <Leader><Space> <Plug>(omnisharp_code_actions)
@@ -122,4 +118,8 @@ augroup omnisharp_commands
     autocmd FileType cs nmap <buffer> <C-\> <Plug>(omnisharp_signature_help)
     autocmd FileType cs imap <buffer> <C-\> <Plug>(omnisharp_signature_help)
     autocmd BufWritePre *.cs :OmniSharpCodeFormat
+
+    " vim-better-whitespace
+    autocmd FileType cs let g:strip_whitespace_on_save = 1
+    autocmd FileType cs let g:strip_whitespace_confirm = 0
 augroup END
