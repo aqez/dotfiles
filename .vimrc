@@ -24,8 +24,6 @@ set relativenumber
 set completeopt=longest,menuone,preview
 set previewheight=10
 set laststatus=2
-inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
-            \ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
 
 "Files, backups and undo
 set nobackup
@@ -70,6 +68,12 @@ colorscheme gruvbox
 
 " Vimspector
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+
+" Asyncomplete
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
 
 " ALE
 let g:ale_linters = { 'cs' : ['OmniSharp'] }
