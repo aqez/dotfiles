@@ -24,8 +24,6 @@ set relativenumber
 set completeopt=longest,menuone,preview
 set previewheight=10
 set laststatus=2
-inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
-            \ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
 
 "Files, backups and undo
 set nobackup
@@ -72,6 +70,12 @@ colorscheme gruvbox
 " Vimspector
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 
+" Asyncomplete
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+
 " ALE
 let g:ale_linters = { 'cs' : ['OmniSharp'] }
 let g:ale_sign_column_always = 1
@@ -102,7 +106,7 @@ augroup csharp_commands
     autocmd FileType cs nmap <buffer> gd <Plug>(omnisharp_go_to_definition)
     autocmd FileType cs nmap <buffer> <Leader><Space> <Plug>(omnisharp_code_actions)
     autocmd FileType cs xmap <buffer> <Leader><Space> <Plug>(omnisharp_code_actions)
-    autocmd FileType cs nmap <buffer> <F2> :call <Plug>(omnisharp_rename)
+    autocmd FileType cs nmap <buffer> <F2> <Plug>(omnisharp_rename)
     autocmd FileType cs nmap <buffer> <Leader>cf <Plug>(omnisharp_code_format)
     autocmd FileType cs nmap <buffer> <Leader>fi <Plug>(omnisharp_find_implementations)
     autocmd FileType cs nmap <buffer> <Leader>fs <Plug>(omnisharp_find_symbol)
