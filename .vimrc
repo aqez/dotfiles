@@ -31,6 +31,7 @@ inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
 set nobackup
 set nowb
 set noswapfile
+set hidden
 nnoremap <Leader>h <C-w>h
 nnoremap <Leader>j <C-w>j
 nnoremap <Leader>k <C-w>k
@@ -88,15 +89,12 @@ nnoremap <Leader>t :NERDTreeToggle<CR>
 let g:NERDTreeIgnore = ['bin', 'obj']
 let g:NERDTreeQuitOnOpen = 1
 
-
 " OmniSharp
-let g:OmniSharp_timeout = 5
 let g:omnicomplete_fetch_full_documentation = 1
 let g:OmniSharp_autoselect_existing_sln = 1
 let g:OmniSharp_popup_position = 'peek'
 let g:OmniSharp_highlighting = 3
 let g:OmniSharp_diagnostic_exclude_paths = [ 'Temp\\', 'obj\\', '\.nuget\\' ]
-"let g:OmniSharp_selector_ui = ''
 let g:OmniSharp_fzf_options = { 'down': '10' }
 
 augroup csharp_commands
