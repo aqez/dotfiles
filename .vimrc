@@ -99,7 +99,7 @@ let g:omnicomplete_fetch_full_documentation = 1
 let g:OmniSharp_autoselect_existing_sln = 1
 let g:OmniSharp_popup_position = 'peek'
 let g:OmniSharp_highlighting = 3
-let g:OmniSharp_diagnostic_exclude_paths = [ 'Temp/', 'obj/', '\.nuget/' ]
+let g:OmniSharp_diagnostic_exclude_paths = [ 'Temp[/\\]', 'obj[/\\]', '\.nuget[/\\]' ]
 let g:OmniSharp_fzf_options = { 'down': '10' }
 
 augroup csharp_commands
