@@ -67,6 +67,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'puremourning/vimspector'
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-lua/completion-nvim'
+    Plug 'w0rp/ale'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
 colorscheme gruvbox
 hi! Normal guibg=NONE ctermbg=NONE
@@ -95,6 +98,7 @@ lua << EOF
  --local omnisharp_bin = "/home/aqez/omnisharp/run"
  --nvim_lsp.omnisharp.setup({ cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) } })
  nvim_lsp.rust_analyzer.setup({ on_attach = on_attach })
+ nvim_lsp.clangd.setup({ on_attach = on_attach })
 
 EOF
 

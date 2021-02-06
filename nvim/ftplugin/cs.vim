@@ -1,13 +1,6 @@
 
 nnoremap <ESC> :echo "HELLO"<CR>
 
-" Plugins
-call plug#begin('~/.vim/plugged')
-    Plug 'w0rp/ale'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'OmniSharp/omnisharp-vim'
-call plug#end()
-
 " ALE
 let g:ale_linters = { 'cs' : ['OmniSharp'] }
 let g:ale_sign_column_always = 1
