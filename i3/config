@@ -195,4 +195,4 @@ bindsym $mod+r mode "resize"
 exec feh --bg-fill --randomize ~/Pictures/backgrounds
 exec --no-startup-id polybar --reload example &
 exec --no-startup-id compton &
-exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 600 '/home/aqez/scripts/lock.sh' ''
+exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 600 '~/.config/i32/lock.sh' ''
