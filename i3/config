@@ -8,17 +8,21 @@
 gaps inner 0
 gaps outer 0
 
-#client.focused #ff0000 #555555 #ffffff #2e9ef4 #CC0000
-#for_window [class="^.*"] border pixel 0
-for_window [class="^.*"] border pixel 1
+# All Windows
+for_window [class=".*"] border pixel 1
 for_window [class=".*"] split toggle
+
+# All popups
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
-for_window [title="Steam Guard - Computer Authorization Required"] floating enable
+
+# Steam
+for_window [class="^Steam$"] floating enable
+for_window [class="^Steam$" title="^Steam$"] floating disable
 
 bindsym $mod+space exec feh --bg-fill --randomize ~/Pictures/backgrounds/
 
