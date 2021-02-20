@@ -218,6 +218,8 @@ full-at = 98
 format-charging = <label-charging>
 format-discharging = <label-discharging>
 
+format-charging-prefix = "BAT "
+format-charging-prefix-foreground = ${colors.foreground-alt}
 format-charging-underline = #55ff55
 
 format-discharging-prefix = "BAT "

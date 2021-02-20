@@ -24,6 +24,10 @@ for_window [window_type="menu"] floating enable
 for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$" title="^Steam$"] floating disable
 
+
+# Blender
+for_window [title="^Blender Preferences$"] floating enable
+
 bindsym $mod+space exec feh --bg-fill --randomize ~/Pictures/backgrounds/
 
 # i3 config file (v4)
@@ -60,6 +64,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+# take a screenshot
+bindsym Print exec scrot
 
 # start a terminal
 bindsym $mod+Return exec alacritty
