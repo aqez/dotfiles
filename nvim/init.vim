@@ -106,4 +106,5 @@ nnoremap gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>fi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>cf <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <leader><space> <cmd>lua vim.lsp.buf.code_action()<CR>
+vnoremap <leader><space> :lua vim.lsp.buf.range_code_action()<CR>
 nnoremap <F2> <cmd>lua vim.lsp.buf.rename()<CR>

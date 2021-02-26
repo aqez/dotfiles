@@ -5,8 +5,8 @@
 # this file and re-run i3-config-wizard(1).
 #
 
-gaps inner 0
-gaps outer 0
+gaps inner 5
+gaps outer 10
 
 # All Windows
 for_window [class=".*"] border pixel 1
