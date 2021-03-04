@@ -179,7 +179,7 @@ battery = BAT0
 adapter = ADP1
 full-at = 98
 
-format-charging = <ramp-capacity>  <label-charging>
+format-charging = %{F#00FF00}<ramp-capacity>%{F-}  <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-full = <ramp-capacity> <label-full>
 
@@ -187,7 +187,7 @@ format-charging-prefix-foreground = ${colors.green}
 format-discharging-prefix-foreground = ${colors.foreground-alt}
 format-full-prefix-foreground = ${colors.foreground-alt}
 
-ramp-capacity-foreground = ${colors.green}
+;ramp-capacity-foreground = ${colors.white}
 ramp-capacity-0 = %{F#FF0000}%{F-}
 ramp-capacity-1 = 
 ramp-capacity-2 = 
