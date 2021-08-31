@@ -58,23 +58,24 @@ map <C-k> :cp<CR>
 
 " Vim Plug
 call plug#begin('~/.vim/plugged')
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
     Plug 'morhetz/gruvbox'
     Plug 'tpope/vim-fugitive'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'preservim/nerdtree'
-    Plug 'dracula/vim', { 'as' : 'dracula' }
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'puremourning/vimspector'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzy-native.nvim'
     Plug 'neovim/nvim-lspconfig'
-    Plug 'nvim-lua/completion-nvim'
-    Plug 'w0rp/ale'
-    Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'kabouzeid/nvim-lspinstall'
     Plug 'sonph/onehalf', { 'rtp' : 'vim' }
-    Plug 'ojroques/nvim-lspfuzzy'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/vim-vsnip'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-nvim-lsp'
 call plug#end()
 
 colorscheme onehalfdark
@@ -86,41 +87,81 @@ set background=light
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 nnoremap <leader>vr :VimspectorReset<CR>
 
-" FZF
+" Telescope
 let $FZF_DEFAULT_COMMAND = 'rg --files'
-nmap <Leader><Tab> <Plug>(fzf-maps-n)
-nmap <Leader>p :Files<CR>
+nmap <Leader>p :Telescope find_files<CR>
 
 " NerdTree
 nnoremap <Leader>t :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
 
+" Treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = true,
+  },
+}
+EOF
+
 
 " LSP
 lua << EOF
- local nvim_lsp = require('lspconfig')
 
- local on_attach = function(client, bufferNumber)
-    require('completion').on_attach(client)
- end
+ require('telescope').setup {
+     defaults = {
+         file_sorter = require('telescope.sorters').get_fzy_sorter,
+         mappings = {
+             i = {
+                 ["<C-k>"] = require('telescope.actions').move_selection_previous,
+                 ["<C-j>"] = require('telescope.actions').move_selection_next,
+             }
+         }
+     },
+     extensions = {
+         fzy_native = {
+             override_generic_sorter = false,
+             override_file_sorter = true
+         }
+     }
+ }
+ require('telescope').load_extension('fzy_native')
 
- local pid = vim.fn.getpid()
- local omnisharp_bin = "/home/aqez/omnisharp/run"
- nvim_lsp.omnisharp.setup({ cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) }, on_attach = on_attach })
- nvim_lsp.rust_analyzer.setup({ on_attach = on_attach })
- nvim_lsp.clangd.setup({ on_attach = on_attach })
- nvim_lsp.tsserver.setup({ on_attach = on_attach })
- nvim_lsp.cssls.setup({ on_attach = on_attach })
- nvim_lsp.html.setup({ on_attach = on_attach })
+ local cmp = require'cmp'
+  cmp.setup{
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "buffer" }
+    }
+  }
 
- require('lspfuzzy').setup{}
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+  local nvim_lsp = require('lspconfig')
+  local pid = vim.fn.getpid()
+  local omnisharp_bin = "/home/aqez/omnisharp/run"
+  nvim_lsp.omnisharp.setup{ cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) }, capabilities = capabilities }
+  nvim_lsp.rust_analyzer.setup{ capabilities = capabilities }
+  nvim_lsp.clangd.setup{ capabilities = capabilities }
+  nvim_lsp.tsserver.setup{ capabilities = capabilities }
+  nvim_lsp.cssls.setup{ capabilities = capabilities }
+  nvim_lsp.html.setup{ capabilities = capabilities }
 EOF
 
-nnoremap gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap gD <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <Leader>fi <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <Leader>fu <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap gd :Telescope lsp_definitions<CR>
+nnoremap <Leader>fi :Telescope lsp_implementations<CR>
+nnoremap <Leader>fu :Telescope lsp_references<CR>
 nnoremap <leader>cf <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <leader><space> <cmd>lua vim.lsp.buf.code_action()<CR>
-vnoremap <leader><space> :lua vim.lsp.buf.range_code_action()<CR>
+nnoremap <leader><space> :Telescope lsp_code_actions<CR>
+vnoremap <leader><space> :Telescope lsp_range_code_actions<CR>
 nnoremap <F2> <cmd>lua vim.lsp.buf.rename()<CR>
+
+nnoremap <leader>gs :Telescope git_status<CR>
