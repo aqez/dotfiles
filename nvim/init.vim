@@ -76,6 +76,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/vim-vsnip'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'aqez/vim-test'
 call plug#end()
 
 colorscheme onehalfdark
@@ -138,6 +139,7 @@ lua << EOF
     },
     sources = {
         { name = "nvim_lsp" },
+        { name = "vsnip" },
         { name = "buffer" }
     }
   }
@@ -147,7 +149,7 @@ lua << EOF
 
   local nvim_lsp = require('lspconfig')
   local pid = vim.fn.getpid()
-  local omnisharp_bin = "/home/aqez/omnisharp/run"
+  local omnisharp_bin = "omnisharp"
   nvim_lsp.omnisharp.setup{ cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) }, capabilities = capabilities }
   nvim_lsp.rust_analyzer.setup{ capabilities = capabilities }
   nvim_lsp.clangd.setup{ capabilities = capabilities }
@@ -165,3 +167,12 @@ vnoremap <leader><space> :Telescope lsp_range_code_actions<CR>
 nnoremap <F2> <cmd>lua vim.lsp.buf.rename()<CR>
 
 nnoremap <leader>gs :Telescope git_status<CR>
+nnoremap <leader>gb :Telescope git_branches<CR>
+nnoremap <leader>gc :Telescope git_commits<CR>
+nnoremap K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+
+nnoremap <leader>gr :Telescope live_grep<CR>
+
+
+nnoremap <leader>rt :TestNearest<CR>
