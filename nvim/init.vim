@@ -27,10 +27,6 @@ set previewheight=10
 set laststatus=2
 set scrolloff=10
 set signcolumn=yes
-"colorscheme gruvbox
-"let g:airline_theme = 'gruvbox'
-"set background=dark
-hi! Normal guibg=NONE ctermbg=NONE
 
 "Files, backups and undo
 set nobackup
@@ -75,13 +71,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'hrsh7th/cmp-buffer'
-    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug '~/repos/cmp-nvim-lsp'
+    "Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'aqez/vim-test'
 call plug#end()
 
 colorscheme onehalfdark
 let g:airline_theme = 'onehalfdark'
-set background=light
+set background=dark
+hi! Normal guibg=NONE ctermbg=NONE
 
 
 " Vimspector
@@ -131,7 +129,7 @@ lua << EOF
  require('telescope').load_extension('fzy_native')
 
  local cmp = require'cmp'
-  cmp.setup{
+  cmp.setup({
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
@@ -142,7 +140,7 @@ lua << EOF
         { name = "vsnip" },
         { name = "buffer" }
     }
-  }
+  })
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
