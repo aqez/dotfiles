@@ -4,8 +4,6 @@ filetype indent on
 set autoread
 let mapleader = " "
 set clipboard=unnamedplus
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " UI
 syntax on
@@ -65,21 +63,24 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzy-native.nvim'
     Plug 'neovim/nvim-lspconfig'
-    Plug 'kabouzeid/nvim-lspinstall'
+    Plug 'williamboman/nvim-lsp-installer'
     Plug 'sonph/onehalf', { 'rtp' : 'vim' }
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'hrsh7th/cmp-buffer'
-    Plug '~/repos/cmp-nvim-lsp'
-    "Plug 'hrsh7th/cmp-nvim-lsp'
+    "Plug '~/repos/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'aqez/vim-test'
+    Plug 'vlime/vlime', { 'rtp' : 'vim/' }
+    Plug 'p00f/nvim-ts-rainbow'
 call plug#end()
 
 colorscheme onehalfdark
 let g:airline_theme = 'onehalfdark'
 set background=dark
 hi! Normal guibg=NONE ctermbg=NONE
+hi! LineNr guibg=NONE ctermbg=NONE
 
 
 " Vimspector
@@ -102,13 +103,15 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     additional_vim_regex_highlighting = true,
   },
+  rainbow = {
+    enable = true
+  }
 }
 EOF
 
 
 " LSP
 lua << EOF
-
  require('telescope').setup {
      defaults = {
          file_sorter = require('telescope.sorters').get_fzy_sorter,
@@ -127,6 +130,10 @@ lua << EOF
      }
  }
  require('telescope').load_extension('fzy_native')
+ local has_words_before = function()
+   local cursor = vim.api.nvim_win_get_cursor(0)
+   return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s') 
+ end
 
  local cmp = require'cmp'
   cmp.setup({
@@ -134,6 +141,26 @@ lua << EOF
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
       end,
+    },
+    mapping = {
+        ['<Tab>'] = cmp.mapping(function(fallback)
+           if cmp.visible() then
+               cmp.select_next_item()
+           elseif vim.fn["vsnip#available"](1) == 1 then
+               feedkey("<plug>(vsnip-expand-or-jump)", "")
+           elseif has_words_before() then
+               cmp.complete()
+           else
+               fallback()
+           end
+        end),
+        ['<S-Tab>'] = cmp.mapping(function()
+           if cmp.visible() then
+               cmp.select_prev_item()
+           elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+               feedkey("<Plug>(vsnip-jump-prev)", "")
+           end
+        end)
     },
     sources = {
         { name = "nvim_lsp" },
@@ -145,15 +172,13 @@ lua << EOF
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-  local nvim_lsp = require('lspconfig')
-  local pid = vim.fn.getpid()
-  local omnisharp_bin = "omnisharp"
-  nvim_lsp.omnisharp.setup{ cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) }, capabilities = capabilities }
-  nvim_lsp.rust_analyzer.setup{ capabilities = capabilities }
-  nvim_lsp.clangd.setup{ capabilities = capabilities }
-  nvim_lsp.tsserver.setup{ capabilities = capabilities }
-  nvim_lsp.cssls.setup{ capabilities = capabilities }
-  nvim_lsp.html.setup{ capabilities = capabilities }
+  local lsp_installer = require("nvim-lsp-installer")
+
+  lsp_installer.on_server_ready(function(server)
+     local opts = {}
+
+     server:setup(opts)
+  end)
 EOF
 
 nnoremap gd :Telescope lsp_definitions<CR>
@@ -164,6 +189,7 @@ nnoremap <leader><space> :Telescope lsp_code_actions<CR>
 vnoremap <leader><space> :Telescope lsp_range_code_actions<CR>
 nnoremap <F2> <cmd>lua vim.lsp.buf.rename()<CR>
 
+nnoremap <leader>bs :Telescope buffers<CR>
 nnoremap <leader>gs :Telescope git_status<CR>
 nnoremap <leader>gb :Telescope git_branches<CR>
 nnoremap <leader>gc :Telescope git_commits<CR>
