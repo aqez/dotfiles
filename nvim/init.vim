@@ -89,7 +89,7 @@ nnoremap <leader>vr :VimspectorReset<CR>
 
 " Telescope
 let $FZF_DEFAULT_COMMAND = 'rg --files'
-nmap <Leader>p :Telescope find_files<CR>
+nmap <Leader>p :Telescope find_files find_command=rg,--files<CR>
 
 " NerdTree
 nnoremap <Leader>t :NERDTreeToggle<CR>
@@ -137,6 +137,7 @@ lua << EOF
 
  local cmp = require'cmp'
   cmp.setup({
+    confirmation = { completeopt = 'menu,menuone,noinsert' },
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
