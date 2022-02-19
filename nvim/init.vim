@@ -89,7 +89,7 @@ nnoremap <leader>vr :VimspectorReset<CR>
 
 " Telescope
 let $FZF_DEFAULT_COMMAND = 'rg --files'
-nmap <Leader>p :Telescope find_files find_command=rg,--files<CR>
+nmap <Leader>p :Telescope find_files find_command=rg,--ignore,--files<CR>
 
 " NerdTree
 nnoremap <Leader>t :NERDTreeToggle<CR>
