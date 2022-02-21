@@ -94,6 +94,7 @@ nmap <Leader>p :Telescope find_files find_command=rg,--ignore,--files<CR>
 " NerdTree
 nnoremap <Leader>t :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
+let NERDTreeIgnore=['bin', 'obj']
 
 " Treesitter
 lua <<EOF
@@ -137,7 +138,7 @@ lua << EOF
 
  local cmp = require'cmp'
   cmp.setup({
-    confirmation = { completeopt = 'menu,menuone,noinsert' },
+    confirmation = { completeopt = 'longest,menuone,noinsert' },
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
