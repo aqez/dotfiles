@@ -94,6 +94,7 @@ nmap <Leader>p :Telescope find_files find_command=rg,--ignore,--files<CR>
 " NerdTree
 nnoremap <Leader>t :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
+let NERDTreeIgnore=['bin', 'obj']
 
 " Treesitter
 lua <<EOF
@@ -131,19 +132,20 @@ lua << EOF
  }
  require('telescope').load_extension('fzy_native')
  local has_words_before = function()
-   local cursor = vim.api.nvim_win_get_cursor(0)
-   return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s') 
+   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
  end
 
  local cmp = require'cmp'
   cmp.setup({
-    confirmation = { completeopt = 'menu,menuone,noinsert' },
+    confirmation = { completeopt = 'longest,menuone,noinsert' },
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
       end,
     },
     mapping = {
+        ['<C-j>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
         ['<Tab>'] = cmp.mapping(function(fallback)
            if cmp.visible() then
                cmp.select_next_item()
