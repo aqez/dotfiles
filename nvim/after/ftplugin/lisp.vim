@@ -9,3 +9,4 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 nmap gd <LocalLeader>xd
+nmap K <Localleader>da
