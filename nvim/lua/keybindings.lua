@@ -16,8 +16,8 @@ vim.api.nvim_set_keymap("n", "<Leader>vr", ":VimspectorReset<CR>", opts)
 -- Telescope
 vim.api.nvim_set_keymap("n", "<Leader>p", ":Telescope find_files find_command=rg,--ignore,--files<CR>", opts)
 
--- NERDTree
-vim.api.nvim_set_keymap("n", "<Leader>t", ":NERDTreeToggle<CR>", opts)
+-- nvim-tree
+vim.api.nvim_set_keymap("n", "<Leader>t", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope / LSP
 vim.api.nvim_set_keymap("n", "gd", ":Telescope lsp_definitions<CR>", opts)

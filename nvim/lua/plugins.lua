@@ -6,7 +6,8 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'preservim/nerdtree'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'puremourning/vimspector'
 Plug 'nvim-lua/plenary.nvim'
@@ -19,7 +20,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-buffer'
-"Plug '~/repos/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'aqez/vim-test'
 Plug 'vlime/vlime', { 'rtp' : 'vim/' }
@@ -34,14 +34,12 @@ vim.opt.background = "dark"
 vim.cmd "hi! Normal guibg=NONE ctermbg=NONE"
 vim.cmd "hi! LineNr guibg=NONE ctermbg=NONE"
 
+-- nvim-tree
+local nvim_tree = require("nvim-tree")
+nvim_tree.setup()
 
 -- Vimspector
 vim.g.vimspector_enable_mappings = "VISUAL_STUDIO"
-
--- NERDTree
-vim.g.NERDTreeQuitOnOpen = 1
-vim.g.NERDTreeIgnore = { "bin", "obj" }
-
 
 -- Treesitter
 local treesitter = require('nvim-treesitter.configs')
