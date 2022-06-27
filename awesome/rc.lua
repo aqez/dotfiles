@@ -54,6 +54,8 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "nord/theme.lua")
+beautiful.font = "Play 13"
+beautiful.wallpaper = "/home/aqez/Pictures/backgrounds/background.png"
 -- beautiful.init("~/repos/dotfiles/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
@@ -227,7 +229,8 @@ awful.screen.connect_for_each_screen(function(s)
         },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            require("battery-widget")({}),
+            wibox.widget.textbox("   |   "),
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
