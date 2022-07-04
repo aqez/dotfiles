@@ -54,6 +54,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "nord/theme.lua")
+beautiful.titlebar_bg_focused = '#FFFFFF'
 beautiful.font = "Play 13"
 beautiful.wallpaper = "/home/aqez/Pictures/backgrounds/background.png"
 -- beautiful.init("~/repos/dotfiles/awesome/theme.lua")
@@ -215,6 +216,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
+    local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -238,6 +241,8 @@ awful.screen.connect_for_each_screen(function(s)
                 },
                 widget_font = "FiraCode Nerd Font 14",
             }),
+            wibox.widget.textbox("   |   "),
+            volume_widget({ widget_type = 'arc' }),
             wibox.widget.textbox("   |   "),
             wibox.widget.systray(),
             mytextclock,
