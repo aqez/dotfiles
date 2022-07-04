@@ -229,7 +229,15 @@ awful.screen.connect_for_each_screen(function(s)
         },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            require("battery-widget")({}),
+            require("battery-widget")({
+                battery_prefix = {
+                    { 25, "  " },
+                    { 50, "  " },
+                    { 75, "  " },
+                    { 999, "  " }
+                },
+                widget_font = "FiraCode Nerd Font 14",
+            }),
             wibox.widget.textbox("   |   "),
             wibox.widget.systray(),
             mytextclock,
