@@ -601,4 +601,5 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 awful.spawn.with_shell("sleep 1s && xset 60 && xss-lock -- /home/aqez/repos/dotfiles/awesome/lock.sh")
+awful.spawn.with_shell("picom")
 beautiful.useless_gap = 6
