@@ -24,6 +24,7 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'aqez/vim-test'
 Plug 'vlime/vlime', { 'rtp' : 'vim/' }
 Plug 'p00f/nvim-ts-rainbow'
+Plug 'nvim-telescope/telescope-ui-select.nvim'
 call plug#end()
 ]]
 
@@ -70,10 +71,12 @@ telescope.setup({
         fzy_native = {
             override_generic_sorter = false,
             override_file_sorter = true
-        }
+        },
+        ["ui-select"] = { }
     }
 })
 telescope.load_extension('fzy_native')
+telescope.load_extension('ui-select')
 
 -- nvim-cmp
 local has_words_before = function()
