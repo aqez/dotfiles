@@ -16,6 +16,9 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 
+-- Screenshots
+local screenshot = require("awesomewm-screenshot.screenshot")
+
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -312,8 +315,6 @@ local globalkeys = gears.table.join(
         { description = "open a terminal", group = "launcher" }),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
         { description = "reload awesome", group = "awesome" }),
-    awful.key({ modkey, "Shift" }, "q", awesome.quit,
-        { description = "quit awesome", group = "awesome" }),
 
     awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
         { description = "increase master width factor", group = "layout" }),
@@ -360,7 +361,16 @@ local globalkeys = gears.table.join(
         { description = "lua execute prompt", group = "awesome" }),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-        { description = "show the menubar", group = "launcher" })
+        { description = "show the menubar", group = "launcher" }),
+
+    -- Screenshots
+    awful.key({}, "Print", scrot_full, { description = "Take a screenshot of entire screen", group = "screenshot" }),
+    awful.key({ modkey, }, "Print", scrot_selection,
+        { description = "Take a screenshot of selection", group = "screenshot" }),
+    awful.key({ "Shift" }, "Print", scrot_window,
+        { description = "Take a screenshot of focused window", group = "screenshot" }),
+    awful.key({ "Ctrl" }, "Print", scrot_delay, { description = "Take a screenshot of delay", group = "screenshot" })
+
 )
 
 local clientkeys = gears.table.join(

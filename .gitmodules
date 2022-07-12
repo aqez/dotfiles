@@ -4,3 +4,6 @@
 [submodule "awesome/awesome-wm-widgets"]
 	path = awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets
+[submodule "awesome/awesomewm-screenshot"]
+	path = awesome/awesomewm-screenshot
+	url = https://github.com/denisoster/awesomewm-screenshot.git
