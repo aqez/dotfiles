@@ -38,4 +38,6 @@ vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>
 vim.api.nvim_set_keymap("n", "<leader>gr", ":Telescope live_grep<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>rt", ":TestNearest<CR>", opts)
 
+vim.api.nvim_set_keymap("n", "<leader>df", ":lua vim.diagnostic.open_float()<CR>", opts)
+
 
