@@ -9,7 +9,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'puremourning/vimspector'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
@@ -21,10 +20,15 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
 Plug 'aqez/vim-test'
 Plug 'vlime/vlime', { 'rtp' : 'vim/' }
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'nvim-telescope/telescope-ui-select.nvim'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 ]]
 
@@ -39,13 +43,10 @@ vim.cmd "hi! LineNr guibg=NONE ctermbg=NONE"
 local nvim_tree = require("nvim-tree")
 nvim_tree.setup()
 
--- Vimspector
-vim.g.vimspector_enable_mappings = "VISUAL_STUDIO"
-
 -- Treesitter
 local treesitter = require('nvim-treesitter.configs')
 treesitter.setup({
-    ensure_installed = "all",
+    ensure_installed = { "c_sharp", "lua", "rust", "c", "javascript"},
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = true,
@@ -86,7 +87,7 @@ end
 
 local cmp = require('cmp')
 cmp.setup({
-    confirmation = { completeopt = 'menuone,noinsert,noselect' },
+    confirmation = { completeopt = 'menu,menuone,noselect' },
     snippet = {
         expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)

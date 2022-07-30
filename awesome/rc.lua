@@ -475,7 +475,10 @@ awful.rules.rules = {
             placement = awful.placement.no_overlap + awful.placement.no_offscreen
         }
     },
-
+    {
+        rule = { name = "undaunted" },
+        properties = { floating = true }
+    },
     -- Floating clients.
     { rule_any = {
         instance = {

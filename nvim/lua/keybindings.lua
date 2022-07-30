@@ -1,43 +1,53 @@
 local opts = { noremap = true, silent = true }
 
 -- Windows
-vim.api.nvim_set_keymap("n", "<Leader>h", "<C-w>h", opts)
-vim.api.nvim_set_keymap("n", "<Leader>j", "<C-w>j", opts)
-vim.api.nvim_set_keymap("n", "<Leader>k", "<C-w>k", opts)
-vim.api.nvim_set_keymap("n", "<Leader>l", "<C-w>l", opts)
+vim.keymap.set("n", "<Leader>h", "<C-w>h", opts)
+vim.keymap.set("n", "<Leader>j", "<C-w>j", opts)
+vim.keymap.set("n", "<Leader>k", "<C-w>k", opts)
+vim.keymap.set("n", "<Leader>l", "<C-w>l", opts)
 
 -- Quick fix
-vim.api.nvim_set_keymap("n", "<C-j>", ":cn<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-k>", ":cp<CR>", opts)
+vim.keymap.set("n", "<C-j>", ":cn<CR>", opts)
+vim.keymap.set("n", "<C-k>", ":cp<CR>", opts)
 
--- Vimspector
-vim.api.nvim_set_keymap("n", "<Leader>vr", ":VimspectorReset<CR>", opts)
+-- Debugging
+local dap = require('dap')
+local set_conditional_breakpoint = function()
+    dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end
+vim.keymap.set("n", "<F5>", dap.continue)
+vim.keymap.set("n", "<F10>", dap.step_over)
+vim.keymap.set("n", "<F11>", dap.step_into)
+vim.keymap.set("n", "<F12>", dap.step_out)
+vim.keymap.set("n", "<F9>", dap.toggle_breakpoint)
+vim.keymap.set("n", "<Leader>B", set_conditional_breakpoint)
 
 -- Telescope
-vim.api.nvim_set_keymap("n", "<Leader>p", ":Telescope find_files find_command=rg,--ignore,--files<CR>", opts)
+vim.keymap.set("n", "<Leader>p", ":Telescope find_files find_command=rg,--ignore,--files<CR>", opts)
 
 -- nvim-tree
-vim.api.nvim_set_keymap("n", "<Leader>t", ":NvimTreeToggle<CR>", opts)
+vim.keymap.set("n", "<Leader>t", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope / LSP
-vim.api.nvim_set_keymap("n", "gd", ":Telescope lsp_definitions<CR>", opts)
-vim.api.nvim_set_keymap("n", "<Leader>fi", ":Telescope lsp_implementations<CR>", opts)
-vim.api.nvim_set_keymap("n", "<Leader>fu", ":Telescope lsp_references<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader><space>", ":lua vim.lsp.buf.code_action()<CR>", opts)
-vim.api.nvim_set_keymap("v", "<leader><space>", ":lua vim.lsp.buf.range_code_action()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
+vim.keymap.set("n", "<Leader>fi", ":Telescope lsp_implementations<CR>", opts)
+vim.keymap.set("n", "<Leader>fu", ":Telescope lsp_references<CR>", opts)
+vim.keymap.set("n", "<leader>cf", vim.lsp.buf.formatting, opts)
+vim.keymap.set("n", "<leader><space>", vim.lsp.buf.code_action, opts)
+vim.keymap.set("v", "<leader><space>", vim.lsp.buf.range_code_action, opts)
+vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
 
-vim.api.nvim_set_keymap("n", "<leader>bs", ":Telescope buffers<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>gs", ":Telescope git_status<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>gb", ":Telescope git_branches<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>gc", ":Telescope git_commits<CR>", opts)
-vim.api.nvim_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+vim.keymap.set("n", "<leader>bs", ":Telescope buffers<CR>", opts)
+vim.keymap.set("n", "<leader>gs", ":Telescope git_status<CR>", opts)
+vim.keymap.set("n", "<leader>gb", ":Telescope git_branches<CR>", opts)
+vim.keymap.set("n", "<leader>gc", ":Telescope git_commits<CR>", opts)
+vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 
-vim.api.nvim_set_keymap("n", "<leader>gr", ":Telescope live_grep<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>rt", ":TestNearest<CR>", opts)
+vim.keymap.set("n", "<leader>gr", ":Telescope live_grep<CR>", opts)
+vim.keymap.set("n", "<leader>rt", ":TestNearest<CR>", opts)
 
-vim.api.nvim_set_keymap("n", "<leader>df", ":lua vim.diagnostic.open_float()<CR>", opts)
+vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, opts)
 
 
+vim.keymap.set("n", "<C-b>", ":make")

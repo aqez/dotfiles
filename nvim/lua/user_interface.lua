@@ -11,7 +11,7 @@ vim.opt.showmatch = true
 vim.opt.foldcolumn = "1"
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.completeopt = "menuone,noinsert,noselect"
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append("c")
 vim.opt.previewheight = 10
 vim.opt.laststatus = 2
