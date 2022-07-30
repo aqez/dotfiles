@@ -52,4 +52,4 @@ vim.keymap.set("n", "<leader>rt", ":TestNearest<CR>", opts)
 vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, opts)
 
 
-vim.keymap.set("n", "<C-b>", ":make")
+vim.keymap.set("n", "<C-b>", ":make<CR>")
