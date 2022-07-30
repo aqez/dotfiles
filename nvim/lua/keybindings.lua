@@ -24,6 +24,7 @@ vim.keymap.set("n", "<Leader>B", set_conditional_breakpoint)
 
 -- Telescope
 vim.keymap.set("n", "<Leader>p", ":Telescope find_files find_command=rg,--ignore,--files<CR>", opts)
+vim.keymap.set("n", "<Leader>bf", ":Telescope current_buffer_fuzzy_find<CR>", opts)
 
 -- nvim-tree
 vim.keymap.set("n", "<Leader>t", ":NvimTreeToggle<CR>", opts)
