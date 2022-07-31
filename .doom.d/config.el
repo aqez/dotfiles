@@ -76,6 +76,8 @@
 ;; they are implemented.
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
+(setq dap-auto-configure-mode t)
+(require 'dap-cpptools)
 
 (map! :leader
       (:desc "Go to left window" "h" #'evil-window-left
