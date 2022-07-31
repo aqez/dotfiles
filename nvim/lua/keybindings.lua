@@ -1,4 +1,4 @@
-local opts = { noremap = true, silent = true }
+local opts = { remap = false, silent = true }
 
 -- Windows
 vim.keymap.set("n", "<Leader>h", "<C-w>h", opts)
