@@ -120,7 +120,7 @@ lsp_installer.on_server_ready(function(server)
 end)
 
 -- Lua Line
-require('lualine').setup {
+require('lualine').setup({
   options = {
     icons_enabled = true,
     theme = 'auto',
@@ -159,4 +159,4 @@ require('lualine').setup {
   winbar = {},
   inactive_winbar = {},
   extensions = {}
-}
+})
