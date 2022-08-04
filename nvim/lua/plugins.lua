@@ -32,9 +32,9 @@ Plug 'shaunsingh/nord.nvim'
 call plug#end()
 ]]
 
+vim.g.nord_disable_background = true
 vim.g.nord_borders = true
 require('nord').set();
-vim.opt.background = "dark"
 
 -- nvim-tree
 local nvim_tree = require("nvim-tree")
@@ -123,7 +123,7 @@ end)
 require('lualine').setup({
     options = {
         icons_enabled = true,
-        theme = 'auto',
+        theme = 'nord',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {

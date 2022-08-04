@@ -7,3 +7,6 @@
 [submodule "awesome/awesomewm-screenshot"]
 	path = awesome/awesomewm-screenshot
 	url = https://github.com/denisoster/awesomewm-screenshot.git
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
