@@ -76,6 +76,8 @@
 ;; they are implemented.
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
+(after! projectile (setq projectile-project-search-path '("~/repos")))
+
 (setq dap-auto-configure-mode t)
 (require 'dap-cpptools)
 
