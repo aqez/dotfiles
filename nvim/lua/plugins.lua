@@ -4,8 +4,7 @@ vim.cmd [[
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'ntpeters/vim-better-whitespace'
@@ -29,15 +28,13 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'rust-lang/rust.vim'
+Plug 'shaunsingh/nord.nvim'
 call plug#end()
 ]]
 
-vim.cmd "colorscheme onehalfdark"
-vim.g.airline_theme = "onehalfdark"
+vim.g.nord_borders = true
+require('nord').set();
 vim.opt.background = "dark"
-
-vim.cmd "hi! Normal guibg=NONE ctermbg=NONE"
-vim.cmd "hi! LineNr guibg=NONE ctermbg=NONE"
 
 -- nvim-tree
 local nvim_tree = require("nvim-tree")
@@ -121,3 +118,45 @@ lsp_installer.on_server_ready(function(server)
 
     server:setup(opts)
 end)
+
+-- Lua Line
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
