@@ -78,6 +78,14 @@
 (after! projectile (setq projectile-project-search-path '("~/repos")))
 (after! neotree (setq neo-smart-open t))
 
+(after! org
+  (setq org-agenda-files '("~/org/Agenda.org"))
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t))
+
+(better-jumper-mode +1)
+
 (setq dap-auto-configure-mode t)
 (require 'dap-cpptools)
 
