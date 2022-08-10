@@ -8,6 +8,7 @@ vim.opt.lazyredraw = true
 vim.opt.hlsearch = false
 vim.opt.magic = true
 vim.opt.showmatch = true
+vim.opt.cursorline = true
 vim.opt.foldcolumn = "1"
 vim.opt.number = true
 vim.opt.relativenumber = true
