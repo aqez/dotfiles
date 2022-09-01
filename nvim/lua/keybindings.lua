@@ -44,11 +44,12 @@ vim.keymap.set("n", "<leader>gs", ":Telescope git_status<CR>", opts)
 vim.keymap.set("n", "<leader>gb", ":Telescope git_branches<CR>", opts)
 vim.keymap.set("n", "<leader>gc", ":Telescope git_commits<CR>", opts)
 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 
 vim.keymap.set("n", "<leader>gr", ":Telescope live_grep<CR>", opts)
 vim.keymap.set("n", "<leader>rt", ":TestNearest<CR>", opts)
 
 vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, opts)
+vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, opts)
 
 vim.keymap.set("n", "<C-b>", ":make<CR>", opts)

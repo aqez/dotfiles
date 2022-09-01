@@ -20,7 +20,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-path'
-Plug 'aqez/vim-test'
+Plug 'vim-test/vim-test'
 Plug 'vlime/vlime', { 'rtp' : 'vim/' }
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'nvim-telescope/telescope-ui-select.nvim'
@@ -29,6 +29,7 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'rust-lang/rust.vim'
 Plug 'shaunsingh/nord.nvim'
+Plug 'f-person/git-blame.nvim'
 call plug#end()
 ]]
 

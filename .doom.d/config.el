@@ -89,6 +89,11 @@
 (setq dap-auto-configure-mode t)
 (require 'dap-cpptools)
 
+(defun my-thing ()
+  "This is a thing that does a thing"
+  (interactive)
+  (print "HELLO!"))
+
 (map! :leader
       (:desc "Go to left window" "h" #'evil-window-left
        :desc "Go to right window" "l" #'evil-window-right
