@@ -13,6 +13,3 @@
 [submodule "awesome/awesome.brightness-widget"]
 	path = awesome/awesome.brightness-widget
 	url = https://github.com/velovix/awesome.brightness-widget
-[submodule "awesome/brightness-widget"]
-	path = awesome/brightness-widget
-	url = https://github.com/velovix/awesome.brightness-widget

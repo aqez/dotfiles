@@ -19,9 +19,6 @@ local beautiful = require("beautiful")
 -- Screenshots
 local screenshot = require("awesomewm-screenshot.screenshot")
 
--- Brightness
-local brightness_widget = require("brightness-widget.brightness-widget")
-local brightness = brightness_widget:new({})
 
 -- Notification library
 local naughty = require("naughty")
@@ -247,8 +244,8 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 local globalkeys = gears.table.join(
-    awful.key({}, "XF86MonBrightnessDown", function() brightness:down() end),
-    awful.key({}, "XF86MonBrightnessUp", function() brightness:up() end),
+    awful.key({}, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl s 10%-") end, { description = "Decrease brightness", group = "custom"}),
+    awful.key({}, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl s 10%+") end, { description = "Increase brightness", group = "custom"}),
     awful.key({ modkey, }, "s", hotkeys_popup.show_help,
         { description = "show help", group = "awesome" }),
     awful.key({ modkey, }, "Left", awful.tag.viewprev,
