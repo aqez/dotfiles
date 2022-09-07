@@ -41,7 +41,6 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
-
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -88,11 +87,34 @@
 
 (setq dap-auto-configure-mode t)
 (require 'dap-cpptools)
+(require 'dap-netcore)
 
-(defun my-thing ()
-  "This is a thing that does a thing"
+(defun current-line-empty-p ()
+  "Determines if the current line at point is empty"
+  (string-match-p "\\`\\s-*$" (thing-at-point 'line)))
+
+(defun single-lines-only ()
+  "replace multiple blank lines with a single one and then go back to the initial point"
   (interactive)
-  (print "HELLO!"))
+  (let ((initial-point (point)))
+    (goto-char (point-min))
+    (while (not (eobp))
+      (if (current-line-empty-p)
+          (progn
+            (forward-char 1)
+            (while (current-line-empty-p)
+              (kill-whole-line)))
+        (forward-char 1)))
+    (goto-char initial-point)))
+
+(defun file-cleanup()
+  (single-lines-only)
+  (lsp-format-buffer))
+
+(add-hook 'csharp-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+(add-hook '+web-react-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+
+(add-hook 'html-mode-hook (lambda () (setq truncate-lines nil)))
 
 (map! :leader
       (:desc "Go to left window" "h" #'evil-window-left

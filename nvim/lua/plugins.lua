@@ -30,6 +30,7 @@ Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'rust-lang/rust.vim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'f-person/git-blame.nvim'
+Plug 'folke/which-key.nvim'
 call plug#end()
 ]]
 
@@ -161,3 +162,6 @@ require('lualine').setup({
     inactive_winbar = {},
     extensions = {}
 })
+
+-- which-key
+require("which-key").setup({})
