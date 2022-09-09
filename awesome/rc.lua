@@ -246,6 +246,8 @@ root.buttons(gears.table.join(
 local globalkeys = gears.table.join(
     awful.key({}, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl s 10%-") end, { description = "Decrease brightness", group = "custom"}),
     awful.key({}, "XF86MonBrightnessUp", function() awful.spawn.with_shell("brightnessctl s 10%+") end, { description = "Increase brightness", group = "custom"}),
+    awful.key({}, "XF86AudioLowerVolume", function() awful.spawn.with_shell("amixer sset Master 10%-") end, { description = "Decrease volume", group = "custom" }),
+    awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("amixer sset Master 10%+") end, { description = "Increase volume", group = "custom" }),
     awful.key({ modkey, }, "s", hotkeys_popup.show_help,
         { description = "show help", group = "awesome" }),
     awful.key({ modkey, }, "Left", awful.tag.viewprev,
