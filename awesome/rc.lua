@@ -16,10 +16,6 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 
--- Screenshots
-local screenshot = require("awesomewm-screenshot.screenshot")
-
-
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -344,13 +340,8 @@ local globalkeys = gears.table.join(
         { description = "show the menubar", group = "launcher" }),
 
     -- Screenshots
-    awful.key({}, "Print", scrot_full, { description = "Take a screenshot of entire screen", group = "screenshot" }),
-    awful.key({ modkey, }, "Print", scrot_selection,
-        { description = "Take a screenshot of selection", group = "screenshot" }),
-    awful.key({ "Shift" }, "Print", scrot_window,
-        { description = "Take a screenshot of focused window", group = "screenshot" }),
-    awful.key({ "Ctrl" }, "Print", scrot_delay, { description = "Take a screenshot of delay", group = "screenshot" })
-
+    awful.key({}, "Print", function() awful.spawn.with_shell("flameshot screen -c") end, { description = "Take a screenshot of entire screen", group = "screenshot" }),
+    awful.key({ modkey, }, "Print", function() awful.spawn.with_shell("flameshot gui -c") end, { description = "Take a screenshot of selection", group = "screenshot" })
 )
 
 local clientkeys = gears.table.join(

@@ -4,12 +4,6 @@
 [submodule "awesome/awesome-wm-widgets"]
 	path = awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets
-[submodule "awesome/awesomewm-screenshot"]
-	path = awesome/awesomewm-screenshot
-	url = https://github.com/denisoster/awesomewm-screenshot.git
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "awesome/awesome.brightness-widget"]
-	path = awesome/awesome.brightness-widget
-	url = https://github.com/velovix/awesome.brightness-widget
