@@ -113,8 +113,9 @@
 
 (add-hook 'csharp-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
 (add-hook '+web-react-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
-
 (add-hook 'html-mode-hook (lambda () (setq truncate-lines nil)))
+
+(setq scroll-margin 10)
 
 (map! :leader
       (:desc "Go to left window" "h" #'evil-window-left

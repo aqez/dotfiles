@@ -472,8 +472,8 @@ awful.rules.rules = {
         }
     },
     {
-        rule = { name = "undaunted" },
-        properties = { floating = true }
+        rule = { name = "Undaunted Online" },
+        properties = { floating = true, tag = "9" }
     },
     -- Floating clients.
     { rule_any = {
