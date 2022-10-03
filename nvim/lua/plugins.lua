@@ -21,8 +21,6 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-path'
 Plug 'vim-test/vim-test'
-Plug 'vlime/vlime', { 'rtp' : 'vim/' }
-Plug 'p00f/nvim-ts-rainbow'
 Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
