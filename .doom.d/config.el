@@ -54,13 +54,17 @@
 (add-hook 'html-mode-hook (lambda () (setq truncate-lines nil)))
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
+(setq lsp-lens-enable nil)
 
 (setq dap-auto-configure-mode t)
 (require 'dap-cpptools)
 (require 'dap-netcore)
 
 (map! (:desc "Toggle breakpoint" "<f9>" #'dap-breakpoint-toggle
-       :desc "Debug" "<f5>" #'dap-debug))
+       :desc "Debug" "<f5>" #'dap-debug
+       :desc "Step Over" "<f10>" #'dap-next
+       :desc "Step Into" "<f11>" #'dap-step-in
+       :desc "Step Out" "<f12>" #'dap-step-out))
 
 (map! :leader
       (:desc "Go to left window" "h" #'evil-window-left

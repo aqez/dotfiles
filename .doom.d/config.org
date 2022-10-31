@@ -139,6 +139,7 @@ they are implemented.
 * Language Server Protocol
 #+BEGIN_SRC emacs-lisp
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
+(setq lsp-lens-enable nil)
 #+END_SRC
 
 * Debug Adapter Protocol
@@ -148,7 +149,10 @@ they are implemented.
 (require 'dap-netcore)
 
 (map! (:desc "Toggle breakpoint" "<f9>" #'dap-breakpoint-toggle
-       :desc "Debug" "<f5>" #'dap-debug))
+       :desc "Debug" "<f5>" #'dap-debug
+       :desc "Step Over" "<f10>" #'dap-next
+       :desc "Step Into" "<f11>" #'dap-step-in
+       :desc "Step Out" "<f12>" #'dap-step-out))
 #+END_SRC
 
 * Evil Mode
