@@ -40,7 +40,7 @@
       (if (current-line-empty-p)
           (progn
             (forward-char 1)
-            (while (current-line-empty-p)
+            (while (and (not (eobp)) (current-line-empty-p))
               (kill-whole-line)))
         (forward-char 1)))
     (goto-char initial-point)))
@@ -72,3 +72,17 @@
        :desc "Go to upper window" "k" #'evil-window-up
        :desc "Go to below window" "j" #'evil-window-down
        :desc "Toggle neotree" "t" #'neotree-toggle))
+
+(defun aqez/open-pull-request-for-current-branch ()
+  "Opens a PR for the current branch/remote on GitHub"
+  (interactive)
+  (let* ((branch-name (magit-get-current-branch))
+         (remote-name (magit-get-current-remote))
+         (remote-url (magit-get "remote" remote-name "url"))
+         (remote-path (second (split-string remote-url ":")))
+         (remote-path-name (first (split-string remote-path "\\.")))
+         (full-url (concat "https://github.com/" remote-path-name "/compare/" branch-name "?expand=1")))
+    (browse-url full-url)))
+
+(map! :mode 'magit
+    (:desc "Create pull request" ";" #'aqez/open-pull-request-for-current-branch))
