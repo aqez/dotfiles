@@ -34,3 +34,8 @@ dap.configurations.rust = {
         program = "${workspaceFolder}/target/debug/${workspaceFolderBasename}";
     },
 }
+
+dap.configurations.cs = {
+    type = "server",
+    host = "127.0.0.1"
+}

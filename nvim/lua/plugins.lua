@@ -27,8 +27,8 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'rust-lang/rust.vim'
 Plug 'shaunsingh/nord.nvim'
-Plug 'f-person/git-blame.nvim'
-Plug 'folke/which-key.nvim'
+"Plug 'f-person/git-blame.nvim'
+"Plug 'folke/which-key.nvim'
 call plug#end()
 ]]
 
@@ -162,4 +162,4 @@ require('lualine').setup({
 })
 
 -- which-key
-require("which-key").setup({})
+-- require("which-key").setup({})
