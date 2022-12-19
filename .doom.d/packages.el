@@ -48,3 +48,8 @@
 ;(unpin! t)
 
 (unpin! org-roam company-org-roam)
+
+(package! keycast)
+
+(package! copilot
+  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
