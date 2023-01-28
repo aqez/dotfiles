@@ -48,8 +48,9 @@
 ;(unpin! t)
 
 (unpin! org-roam company-org-roam)
+(unpin! tree-sitter-langs tree-sitter)
 
 (package! keycast)
 
-(package! copilot
-  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+(package! tree-sitter)
+(package! tree-sitter-langs)

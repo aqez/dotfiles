@@ -23,7 +23,7 @@ vim.keymap.set("n", "<F9>", dap.toggle_breakpoint)
 vim.keymap.set("n", "<Leader>B", set_conditional_breakpoint)
 
 -- Telescope
-vim.keymap.set("n", "<Leader>p", ":Telescope find_files find_command=rg,--ignore,--files<CR>", opts)
+vim.keymap.set("n", "<Leader>p", ":Telescope find_files theme=dropdown previewer=false find_command=rg,--ignore,--files<CR>", opts)
 vim.keymap.set("n", "<Leader>bf", ":Telescope current_buffer_fuzzy_find<CR>", opts)
 vim.keymap.set("n", "<Leader>H", ":Telescope help_tags<CR>", opts)
 
@@ -31,19 +31,18 @@ vim.keymap.set("n", "<Leader>H", ":Telescope help_tags<CR>", opts)
 vim.keymap.set("n", "<Leader>t", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope / LSP
-vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
-vim.keymap.set("n", "<Leader>fi", ":Telescope lsp_implementations<CR>", opts)
-vim.keymap.set("n", "<Leader>fu", ":Telescope lsp_references<CR>", opts)
-vim.keymap.set("n", "gD", ":Telescope lsp_references<CR>", opts)
+vim.keymap.set("n", "gd", ":Telescope lsp_definitions theme=ivy<CR>", opts)
+vim.keymap.set("n", "<Leader>fi", ":Telescope lsp_implementations theme=ivy<CR>", opts)
+vim.keymap.set("n", "gD", ":Telescope lsp_references theme=ivy<CR>", opts)
 vim.keymap.set("n", "<leader>cf", function() vim.lsp.buf.format { async = true } end, opts)
 vim.keymap.set("n", "<leader><space>", vim.lsp.buf.code_action, opts)
-vim.keymap.set("v", "<leader><space>", vim.lsp.buf.range_code_action, opts)
+vim.keymap.set("v", "<leader><space>", vim.lsp.buf.code_action, opts)
 vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
 
-vim.keymap.set("n", "<leader>bs", ":Telescope buffers<CR>", opts)
-vim.keymap.set("n", "<leader>gs", ":Telescope git_status<CR>", opts)
-vim.keymap.set("n", "<leader>gb", ":Telescope git_branches<CR>", opts)
-vim.keymap.set("n", "<leader>gc", ":Telescope git_commits<CR>", opts)
+vim.keymap.set("n", "<leader>bs", ":Telescope buffers theme=ivy<CR>", opts)
+vim.keymap.set("n", "<leader>gs", ":Telescope git_status theme=ivy<CR>", opts)
+vim.keymap.set("n", "<leader>gb", ":Telescope git_branches theme=ivy<CR>", opts)
+vim.keymap.set("n", "<leader>gc", ":Telescope git_commits theme=ivy<CR>", opts)
 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
 vim.keymap.set("n", "<leader>gr", ":Telescope live_grep<CR>", opts)

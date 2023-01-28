@@ -35,7 +35,27 @@ dap.configurations.rust = {
     },
 }
 
+dap.adapters.coreclr = {
+    type = 'executable',
+    command = '/usr/bin/netcoredbg',
+    args = { '--interpreter=vscode'}
+}
+
 dap.configurations.cs = {
-    type = "server",
-    host = "127.0.0.1"
+    {
+        type = "coreclr",
+        name = "launch - netcoredbg",
+        request = "launch",
+        program = function()
+            return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/debug/", 'file')
+        end,
+    },
+    {
+        type = "coreclr",
+        name = "attach - netcoredbg",
+        request = "attach",
+        processId = function()
+            return vim.fn.input("Process Id")
+        end
+    }
 }

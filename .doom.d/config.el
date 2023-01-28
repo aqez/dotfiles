@@ -31,6 +31,10 @@
   "Determines if the current line at point is empty"
   (string-match-p "\\`\\s-*$" (thing-at-point 'line)))
 
+(defun yoyoy ()
+  (interactive)
+  (print "hello robert"))
+
 (defun single-lines-only ()
   "replace multiple blank lines with a single one and then go back to the initial point"
   (interactive)
@@ -86,12 +90,3 @@
 
 (map! :mode 'magit
     (:desc "Create pull request" ";" #'aqez/open-pull-request-for-current-branch))
-
-;; accept completion from copilot and fallback to company
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
-         ("C-<tab>" . 'copilot-accept-completion-by-word)
-         :map copilot-completion-map
-         ("<tab>" . 'copilot-accept-completion)
-         ("TAB" . 'copilot-accept-completion)))

@@ -27,6 +27,7 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'rust-lang/rust.vim'
 Plug 'shaunsingh/nord.nvim'
+Plug 'github/copilot.vim'
 "Plug 'f-person/git-blame.nvim'
 "Plug 'folke/which-key.nvim'
 call plug#end()
@@ -62,6 +63,9 @@ telescope.setup({
             i = {
                 ["<C-k>"] = require('telescope.actions').move_selection_previous,
                 ["<C-j>"] = require('telescope.actions').move_selection_next,
+            },
+            n = {
+                ["<C-d>"] = require('telescope.actions').delete_buffer
             }
         }
     },
