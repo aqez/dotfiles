@@ -325,16 +325,16 @@ local globalkeys = gears.table.join(
     awful.key({ modkey }, "r", function() awful.spawn.with_shell("rofi -show drun") end,
         { description = "run prompt", group = "launcher" }),
 
-    awful.key({ modkey }, "x",
-        function()
-            awful.prompt.run {
-                prompt       = "Run Lua code: ",
-                textbox      = awful.screen.focused().mypromptbox.widget,
-                exe_callback = awful.util.eval,
-                history_path = awful.util.get_cache_dir() .. "/history_eval"
-            }
-        end,
-        { description = "lua execute prompt", group = "awesome" }),
+--    awful.key({ modkey }, "x",
+--        function()
+--            awful.prompt.run {
+--                prompt       = "Run Lua code: ",
+--                textbox      = awful.screen.focused().mypromptbox.widget,
+--                exe_callback = awful.util.eval,
+--                history_path = awful.util.get_cache_dir() .. "/history_eval"
+--            }
+--        end,
+--        { description = "lua execute prompt", group = "awesome" }),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
         { description = "show the menubar", group = "launcher" }),
@@ -589,3 +589,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("sleep 1s && xset 60 && xss-lock -- /home/aqez/repos/dotfiles/awesome/lock.sh")
 awful.spawn.with_shell("picom")
 beautiful.useless_gap = 6
+
+os.execute("xset r rate 170 25")
