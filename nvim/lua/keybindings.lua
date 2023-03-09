@@ -23,7 +23,7 @@ vim.keymap.set("n", "<F9>", dap.toggle_breakpoint)
 vim.keymap.set("n", "<Leader>B", set_conditional_breakpoint)
 
 -- Telescope
-vim.keymap.set("n", "<Leader>p", ":Telescope find_files theme=dropdown previewer=false find_command=rg,--ignore,--files<CR>", opts)
+vim.keymap.set("n", "<Leader>p", ":Telescope find_files theme=ivy find_command=rg,--ignore,--files<CR>", opts)
 vim.keymap.set("n", "<Leader>bf", ":Telescope current_buffer_fuzzy_find<CR>", opts)
 vim.keymap.set("n", "<Leader>H", ":Telescope help_tags<CR>", opts)
 
@@ -51,5 +51,8 @@ vim.keymap.set("n", "<leader>rt", ":TestNearest<CR>", opts)
 vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, opts)
+
+vim.cmd[[imap <silent><script><expr> <C-q> copilot#Accept('')]]
+vim.g.copilot_no_tab_map = 1
 
 vim.keymap.set("n", "<C-b>", ":make<CR>", opts)

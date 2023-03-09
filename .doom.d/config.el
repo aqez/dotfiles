@@ -31,10 +31,6 @@
   "Determines if the current line at point is empty"
   (string-match-p "\\`\\s-*$" (thing-at-point 'line)))
 
-(defun yoyoy ()
-  (interactive)
-  (print "hello robert"))
-
 (defun single-lines-only ()
   "replace multiple blank lines with a single one and then go back to the initial point"
   (interactive)
@@ -90,3 +86,5 @@
 
 (map! :mode 'magit
     (:desc "Create pull request" ";" #'aqez/open-pull-request-for-current-branch))
+
+(setq projectile-project-search-path '("~/repos"))
