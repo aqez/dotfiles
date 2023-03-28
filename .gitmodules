@@ -7,3 +7,6 @@
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "awesome/nord"]
+	path = awesome/nord
+	url = https://github.com/hmix/awesome-wm-nord-theme.git

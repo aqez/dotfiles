@@ -27,6 +27,10 @@
 (setq scroll-margin 10)
 (better-jumper-mode +1)
 
+(setq inhibit-startup-screen t)
+(setq initial-scratch-message nil)
+(setq inhibit-startup-message t)
+
 (defun current-line-empty-p ()
   "Determines if the current line at point is empty"
   (string-match-p "\\`\\s-*$" (thing-at-point 'line)))
@@ -50,7 +54,7 @@
   (lsp-format-buffer))
 
 (add-hook 'csharp-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
-(add-hook '+web-react-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+(add-hook 'web-react-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
 (add-hook 'html-mode-hook (lambda () (setq truncate-lines nil)))
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
@@ -88,3 +92,9 @@
     (:desc "Create pull request" ";" #'aqez/open-pull-request-for-current-branch))
 
 (setq projectile-project-search-path '("~/repos"))
+
+;; accept completion from copilot and fallback to company
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+         ("C-q" . 'copilot-accept-completion)))

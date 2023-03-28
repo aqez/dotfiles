@@ -187,3 +187,12 @@ Set up projectile search path
 #+BEGIN_SRC emacs-lisp
 (setq projectile-project-search-path '("~/repos"))
 #+END_SRC
+
+* Copilot
+Set up copilot
+#+BEGIN_SRC emacs-lisp
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+         ("C-q" . 'copilot-accept-completion)))
+#+END_SRC
