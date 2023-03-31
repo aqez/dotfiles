@@ -56,6 +56,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "nord/theme.lua")
 beautiful.titlebar_bg_focused = '#FFFFFF'
 beautiful.font = "Play 13"
+beautiful.useless_gap = 6
 beautiful.wallpaper = "/home/aqez/Pictures/backgrounds/background.png"
 -- beautiful.init("~/repos/dotfiles/awesome/theme.lua")
 
@@ -88,7 +89,19 @@ local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+
+local cw = calendar_widget({
+    theme = 'nord',
+    placement = 'top_right',
+    radius = 10
+})
+
 local mytextclock = wibox.widget.textclock("  %a %b %d, %I:%M %p ")
+mytextclock:connect_signal("button::press",
+    function(_, _, _, button)
+        if button == 1 then cw.toggle() end
+    end)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -181,6 +194,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
+    local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
     local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 
     -- Add widgets to the wibox
@@ -206,16 +220,17 @@ awful.screen.connect_for_each_screen(function(s)
                 },
                 widget_font = "FiraCode Nerd Font 14",
             }),
+            wibox.widget.textbox("   |   mem"),
+            ram_widget(),
             wibox.widget.textbox("   |   "),
             volume_widget({ widget_type = 'arc' }),
             wibox.widget.textbox("   |   "),
             wibox.widget.systray(),
             mytextclock,
-            s.mylayoutbox,
+            s.mylayoutbox
         },
     }
 end)
--- }}}
 
 local globalkeys = gears.table.join(
     awful.key({}, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl s 10%-") end, { description = "Decrease brightness", group = "custom"}),
@@ -243,10 +258,10 @@ local globalkeys = gears.table.join(
     -- Layout manipulation
     awful.key({ modkey, "Shift" }, "j", function() awful.client.swap.byidx(1) end, { description = "swap with next client by index", group = "client" }),
     awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end, { description = "swap with previous client by index", group = "client" }),
-    awful.key({ modkey, "Control" }, "j", function() awful.screen.focus_relative(1) end, { description = "focus the next screen", group = "screen" }),
-    awful.key({ modkey, "Control" }, "k", function() awful.screen.focus_relative(-1) end, { description = "focus the previous screen", group = "screen" }),
+    awful.key({ modkey, "Control" }, "l", function() awful.screen.focus_relative(1) end, { description = "focus the next screen", group = "screen" }),
+    awful.key({ modkey, "Control" }, "h", function() awful.screen.focus_relative(-1) end, { description = "focus the previous screen", group = "screen" }),
     awful.key({ modkey, }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
-    awful.key({ modkey, }, "Tab",
+    awful.key({ "Mod1" }, "Tab",
         function()
             awful.client.focus.history.previous()
             if client.focus then
@@ -485,7 +500,6 @@ client.connect_signal("manage", function(c)
     end
 end)
 
-
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", { raise = false })
@@ -496,6 +510,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 awful.spawn.with_shell("(sleep 1s && xset 60 && xss-lock -- /home/aqez/repos/dotfiles/awesome/lock.sh)&")
 awful.spawn.with_shell("picom --daemon")
-beautiful.useless_gap = 6
 
-os.execute("(sleep 5s && xset r rate 170 100)&")
+os.execute("(sleep 2s && xset r rate 170 100 && setxkbmap -option caps:escaape)&")
+
