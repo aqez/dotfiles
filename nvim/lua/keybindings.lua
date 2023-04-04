@@ -66,3 +66,9 @@ vim.api.nvim_create_autocmd("FileType", {
     command = [[nnoremap <buffer> <leader>gp :G push<CR>]],
     group = fugitive_group
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "fugitive",
+    command = [[nnoremap <buffer> q :q<CR>]],
+    group = fugitive_group
+})
