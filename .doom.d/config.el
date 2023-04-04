@@ -19,17 +19,11 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t))
 
-;;  (after! PACKAGE
-;;    (setq x y))
-
 (after! projectile (setq projectile-project-search-path '("~/repos")))
 (after! neotree (setq neo-smart-open t))
 (setq scroll-margin 10)
+(setq vterm-shell "/usr/bin/fish")
 (better-jumper-mode +1)
-
-(setq inhibit-startup-screen t)
-(setq initial-scratch-message nil)
-(setq inhibit-startup-message t)
 
 (defun current-line-empty-p ()
   "Determines if the current line at point is empty"
@@ -54,7 +48,7 @@
   (lsp-format-buffer))
 
 (add-hook 'csharp-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
-(add-hook 'web-react-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+(add-hook '+web-react-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
 (add-hook 'html-mode-hook (lambda () (setq truncate-lines nil)))
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
