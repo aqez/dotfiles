@@ -19,11 +19,17 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t))
 
+(map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
+
 (after! projectile (setq projectile-project-search-path '("~/repos")))
 (after! neotree (setq neo-smart-open t))
 (setq scroll-margin 10)
-(setq vterm-shell "/usr/bin/fish")
 (better-jumper-mode +1)
+
+(defun tangle-and-reload ()
+    (interactive)
+    (org-babel-tangle)
+    (doom/reload))
 
 (defun current-line-empty-p ()
   "Determines if the current line at point is empty"
@@ -47,9 +53,9 @@
   (single-lines-only)
   (lsp-format-buffer))
 
-(add-hook 'csharp-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
-(add-hook '+web-react-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
-(add-hook 'html-mode-hook (lambda () (setq truncate-lines nil)))
+;;(add-hook 'csharp-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+;;(add-hook '+web-react-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+;;(add-hook 'html-mode-hook (lambda () (setq truncate-lines nil)))
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
 (setq lsp-lens-enable nil)
