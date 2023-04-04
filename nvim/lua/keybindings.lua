@@ -56,3 +56,13 @@ vim.cmd[[imap <silent><script><expr> <C-q> copilot#Accept('')]]
 vim.g.copilot_no_tab_map = 1
 
 vim.keymap.set("n", "<C-b>", ":make<CR>", opts)
+
+-- vim.fugitive
+vim.keymap.set("n", "<leader>gg", ":G<CR>");
+
+local fugitive_group = vim.api.nvim_create_augroup("fugitive-keybinds", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "fugitive",
+    command = [[nnoremap <buffer> <leader>gp :G push<CR>]],
+    group = fugitive_group
+})
