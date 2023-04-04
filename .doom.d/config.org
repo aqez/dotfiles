@@ -71,6 +71,7 @@ change `org-directory'. It must be set before org loads!
 * Editor / Misc
 #+BEGIN_SRC emacs-lisp
 (map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
+(setq vterm-shell "/usr/bin/fish")
 
 (after! projectile (setq projectile-project-search-path '("~/repos")))
 (after! neotree (setq neo-smart-open t))

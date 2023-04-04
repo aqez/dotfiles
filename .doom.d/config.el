@@ -20,6 +20,7 @@
   (setq org-log-into-drawer t))
 
 (map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
+(setq vterm-shell "/usr/bin/fish")
 
 (after! projectile (setq projectile-project-search-path '("~/repos")))
 (after! neotree (setq neo-smart-open t))
