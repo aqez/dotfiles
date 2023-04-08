@@ -3,4 +3,6 @@ if status is-interactive
     set PATH $PATH ~/.cargo/bin/
 
     zoxide init fish | source
+
+    fish_config prompt choose arrow
 end
