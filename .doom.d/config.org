@@ -70,7 +70,6 @@ change `org-directory'. It must be set before org loads!
 
 * Editor / Misc
 #+BEGIN_SRC emacs-lisp
-(map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
 (setq vterm-shell "/usr/bin/fish")
 
 (after! projectile (setq projectile-project-search-path '("~/repos")))
@@ -160,6 +159,7 @@ change `org-directory'. It must be set before org loads!
 Set up projectile search path
 #+BEGIN_SRC emacs-lisp
 (setq projectile-project-search-path '("~/repos"))
+(map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
 #+END_SRC
 
 * Copilot

@@ -19,7 +19,6 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t))
 
-(map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
 (setq vterm-shell "/usr/bin/fish")
 
 (after! projectile (setq projectile-project-search-path '("~/repos")))
@@ -93,6 +92,7 @@
     (:desc "Create pull request" ";" #'aqez/open-pull-request-for-current-branch))
 
 (setq projectile-project-search-path '("~/repos"))
+(map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
 
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
