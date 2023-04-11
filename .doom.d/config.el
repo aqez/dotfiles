@@ -27,9 +27,9 @@
 (better-jumper-mode +1)
 
 (defun tangle-and-reload ()
-    (interactive)
-    (org-babel-tangle)
-    (doom/reload))
+  (interactive)
+  (org-babel-tangle)
+  (doom/reload))
 
 (defun current-line-empty-p ()
   "Determines if the current line at point is empty"
@@ -49,6 +49,7 @@
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
 (setq lsp-lens-enable nil)
+(setq company-idle-delay nil)
 
 (setq dap-auto-configure-mode t)
 (require 'dap-cpptools)

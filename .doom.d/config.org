@@ -78,9 +78,9 @@ change `org-directory'. It must be set before org loads!
 (better-jumper-mode +1)
 
 (defun tangle-and-reload ()
-    (interactive)
-    (org-babel-tangle)
-    (doom/reload))
+  (interactive)
+  (org-babel-tangle)
+  (doom/reload))
 
 (defun current-line-empty-p ()
   "Determines if the current line at point is empty"
@@ -103,6 +103,7 @@ change `org-directory'. It must be set before org loads!
 #+BEGIN_SRC emacs-lisp
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
 (setq lsp-lens-enable nil)
+(setq company-idle-delay nil)
 #+END_SRC
 
 * Debug Adapter Protocol
