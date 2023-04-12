@@ -11,10 +11,11 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
-Plug 'sonph/onehalf', { 'rtp' : 'vim' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'sonph/onehalf', { 'rtp' : 'vim' }
+Plug 'williamboman/mason.nvim', { 'do': ':MasonUpdate' }
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-buffer'
@@ -115,13 +116,25 @@ cmp.setup({
 require('cmp_nvim_lsp').default_capabilities()
 
 -- LSP
-local lsp_installer = require("nvim-lsp-installer")
+require("mason").setup()
+require("mason-lspconfig").setup({
+    automatic_installation = true
+})
 
-lsp_installer.on_server_ready(function(server)
-    local opts = {}
 
-    server:setup(opts)
-end)
+require("mason-lspconfig").setup_handlers {
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function (server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup {}
+    end,
+    -- Next, you can provide a dedicated handler for specific servers.
+    -- For example, a handler override for the `rust_analyzer`:
+    --["rust_analyzer"] = function ()
+        --require("rust-tools").setup {}
+    --end
+}
 
 -- Lua Line
 require('lualine').setup({
