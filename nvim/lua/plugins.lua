@@ -29,6 +29,7 @@ Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'rust-lang/rust.vim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'github/copilot.vim'
+Plug 'madox2/vim-ai', { 'do': './install.sh' }
 "Plug 'f-person/git-blame.nvim'
 "Plug 'folke/which-key.nvim'
 call plug#end()
@@ -178,5 +179,25 @@ require('lualine').setup({
     extensions = {}
 })
 
--- which-key
--- require("which-key").setup({})
+-- AI
+vim.cmd [[
+let g:vim_ai_complete = {
+\  "engine": "complete",
+\  "options": {
+\    "model": "text-ada-001",
+\    "max_tokens": 2000,
+\    "temperature": 0.1,
+\    "request_timeout": 20,
+\  },
+\}
+
+let g:vim_ai_edit = {
+\  "engine": "complete",
+\  "options": {
+\    "model": "text-ada-001",
+\    "max_tokens": 2000,
+\    "temperature": 0.1,
+\    "request_timeout": 20,
+\  },
+\}
+]]

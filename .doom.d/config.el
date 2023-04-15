@@ -35,26 +35,16 @@
   "Determines if the current line at point is empty"
   (string-match-p "\\`\\s-*$" (thing-at-point 'line)))
 
-(defun single-lines-only ()
-  "replace multiple blank lines with a single one and then go back to the initial point"
-  (interactive)
-  (let ((initial-point (point)))
-    (goto-char (point-min))
-    (while (not (eobp))
-      (if (current-line-empty-p)
-          (progn
-            (forward-char 1)
-            (while (and (not (eobp)) (current-line-empty-p))
-              (kill-whole-line)))
-        (forward-char 1)))
-    (goto-char initial-point)))
-
 (defun file-cleanup()
-  (single-lines-only)
+  (print "YO YO YO")
+  (delete-blank-lines)
   (lsp-format-buffer))
 
+(add-hook 'prog-mode-hook '(lambda () (print "YO YO YO1") (add-hook 'before-save-hook 'file-cleanup)))
+;; 
 ;;(add-hook 'csharp-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
 ;;(add-hook '+web-react-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+;;(add-hook 'typescript-tsx-mode '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
 ;;(add-hook 'html-mode-hook (lambda () (setq truncate-lines nil)))
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
@@ -108,3 +98,7 @@
   :hook (tree-sitter-after-on . tree-sitter-hl-mode)
   :config
   (require 'tree-sitter-langs))
+
+(use-package! gptel
+  :config
+  (setq! gptel-api-key "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"))

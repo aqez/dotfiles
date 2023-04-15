@@ -23,7 +23,7 @@ vim.keymap.set("n", "<F9>", dap.toggle_breakpoint)
 vim.keymap.set("n", "<Leader>B", set_conditional_breakpoint)
 
 -- Telescope
-vim.keymap.set("n", "<Leader>p", ":Telescope find_files theme=ivy find_command=rg,--ignore,--files<CR>", opts)
+vim.keymap.set("n", "<Leader><space>", ":Telescope find_files theme=ivy find_command=rg,--ignore,--files<CR>", opts)
 vim.keymap.set("n", "<Leader>bf", ":Telescope current_buffer_fuzzy_find<CR>", opts)
 vim.keymap.set("n", "<Leader>H", ":Telescope help_tags<CR>", opts)
 
@@ -32,11 +32,11 @@ vim.keymap.set("n", "<Leader>t", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope / LSP
 vim.keymap.set("n", "gd", ":Telescope lsp_definitions theme=ivy<CR>", opts)
-vim.keymap.set("n", "<Leader>fi", ":Telescope lsp_implementations theme=ivy<CR>", opts)
+vim.keymap.set("n", "<Leader>ci", ":Telescope lsp_implementations theme=ivy<CR>", opts)
 vim.keymap.set("n", "gD", ":Telescope lsp_references theme=ivy<CR>", opts)
 vim.keymap.set("n", "<leader>cf", function() vim.lsp.buf.format { async = true } end, opts)
-vim.keymap.set("n", "<leader><space>", vim.lsp.buf.code_action, opts)
-vim.keymap.set("v", "<leader><space>", vim.lsp.buf.code_action, opts)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+vim.keymap.set("v", "<leader>ca", vim.lsp.buf.code_action, opts)
 vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
 
 vim.keymap.set("n", "<leader>bs", ":Telescope buffers theme=ivy<CR>", opts)
