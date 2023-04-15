@@ -36,7 +36,6 @@
   (string-match-p "\\`\\s-*$" (thing-at-point 'line)))
 
 (defun file-cleanup()
-  (print "YO YO YO")
   (delete-blank-lines)
   (lsp-format-buffer))
 
