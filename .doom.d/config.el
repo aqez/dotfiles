@@ -102,4 +102,6 @@
 
 (use-package! gptel
   :config
-  (setq! gptel-api-key "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"))
+  (with-temp-buffer
+    (insert-file-contents "/home/aqez/.config/openai.token")
+    (setq! gptel-api-key (buffer-string))))
