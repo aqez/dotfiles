@@ -554,7 +554,7 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 awful.spawn.with_shell("(sleep 1s && xset 60 && xss-lock -- /home/aqez/repos/dotfiles/awesome/lock.sh)&")
-awful.spawn.with_shell("picom --daemon")
+awful.spawn.with_shell("picom --daemon --inactive-opacity 1.0")
 
 os.execute("(sleep 2s && xset r rate 170 100 && setxkbmap -option caps:escaape)&")
 
