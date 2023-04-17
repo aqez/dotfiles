@@ -35,21 +35,25 @@
   "Determines if the current line at point is empty"
   (string-match-p "\\`\\s-*$" (thing-at-point 'line)))
 
+
+
 (defun aqez/single-lines-only ()
   "replace multiple blank lines with a single one and then go back to the initial point"
   (interactive)
   (let ((initial-point (point)))
     (goto-char (point-min))
     (while (not (eobp))
-      (if (current-line-empty-p)
+      (if (aqez/current-line-empty-p)
           (progn
             (forward-char 1)
-            (while (and (not (eobp)) (current-line-empty-p))
+            (while (and (not (eobp)) (aqez/current-line-empty-p))
               (kill-whole-line)))
         (forward-char 1)))
     (goto-char initial-point)))
 
+
 (defun file-cleanup()
+  (interactive)
   (aqez/single-lines-only)
   (+format/buffer))
 
