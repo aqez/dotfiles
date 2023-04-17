@@ -26,16 +26,9 @@
 (setq scroll-margin 10)
 (better-jumper-mode +1)
 
-(defun tangle-and-reload ()
-  (interactive)
-  (org-babel-tangle)
-  (doom/reload))
-
 (defun aqez/current-line-empty-p ()
   "Determines if the current line at point is empty"
   (string-match-p "\\`\\s-*$" (thing-at-point 'line)))
-
-
 
 (defun aqez/single-lines-only ()
   "replace multiple blank lines with a single one and then go back to the initial point"
@@ -50,7 +43,6 @@
               (kill-whole-line)))
         (forward-char 1)))
     (goto-char initial-point)))
-
 
 (defun file-cleanup()
   (interactive)
