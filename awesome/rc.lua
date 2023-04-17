@@ -57,11 +57,12 @@ beautiful.init("/home/aqez/repos/dotfiles/awesome/nord/theme.lua")
 beautiful.titlebar_bg_focused = '#FFFFFF'
 beautiful.font = "Play 18"
 beautiful.wallpaper = "/home/aqez/Pictures/backgrounds/background.png"
-beautiful.useless_gap = 5
+beautiful.useless_gap = 0
+beautiful.border_width = 0
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "alacritty"
-local editor = os.getenv("EDITOR") or "nvim"
+local editor = os.getenv("EDITOR") or "emacs"
 local editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
