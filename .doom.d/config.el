@@ -4,7 +4,7 @@
       user-mail-address "tony@undauntedonline.com")
 
 (setq doom-font (font-spec :family "Fira Code" :size 20 :weight 'normal))
-(setq doom-theme 'doom-monokai-ristretto)
+(setq doom-theme 'doom-nord-aurora)
 (setq display-line-numbers-type 'relative)
 (set-frame-parameter (selected-frame) 'alpha 85)
 (add-to-list 'default-frame-alist '(alpha . 85))
