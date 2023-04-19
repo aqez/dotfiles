@@ -435,6 +435,10 @@ awful.rules.rules = {
         }
     },
     {
+        rule = { name = "Steam - News" },
+        properties = { floating = true }
+    },
+    {
         rule = { name = "Undaunted Online" },
         properties = { floating = true, tag = "9" }
     },
