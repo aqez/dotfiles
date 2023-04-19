@@ -15,6 +15,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi;
 
 -- Notification library
 local naughty = require("naughty")
@@ -57,7 +58,7 @@ beautiful.init("/home/aqez/repos/dotfiles/awesome/nord/theme.lua")
 beautiful.titlebar_bg_focused = '#FFFFFF'
 beautiful.font = "Play 18"
 beautiful.wallpaper = "/home/aqez/Pictures/backgrounds/lights-cartoon.jpg"
-beautiful.useless_gap = 20
+beautiful.useless_gap = dpi(20)
 beautiful.border_width = 0
 
 -- This is used later as the default terminal and editor to run.
