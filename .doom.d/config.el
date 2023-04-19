@@ -4,11 +4,10 @@
       user-mail-address "tony@undauntedonline.com")
 
 (setq doom-font (font-spec :family "Fira Code" :size 20 :weight 'normal))
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-
 (setq doom-theme 'doom-nord)
-
 (setq display-line-numbers-type 'relative)
+(set-frame-parameter (selected-frame) 'alpha 85)
+(add-to-list 'default-frame-alist '(alpha . 85))
 
 (setq org-directory "~/org/")
 (setq org-roam-directory "~/org/roam")

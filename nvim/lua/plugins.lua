@@ -185,7 +185,7 @@ let g:vim_ai_complete = {
 \  "engine": "complete",
 \  "options": {
 \    "model": "text-ada-001",
-\    "max_tokens": 2000,
+\    "max_tokens": 1000,
 \    "temperature": 0.1,
 \    "request_timeout": 20,
 \  },
@@ -195,7 +195,7 @@ let g:vim_ai_edit = {
 \  "engine": "complete",
 \  "options": {
 \    "model": "text-ada-001",
-\    "max_tokens": 2000,
+\    "max_tokens": 1000,
 \    "temperature": 0.1,
 \    "request_timeout": 20,
 \  },

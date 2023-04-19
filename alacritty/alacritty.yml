@@ -1,5 +1,5 @@
 window:
-  opacity: 1.0
+  opacity: .85
 font:
     size: 13
     normal:
