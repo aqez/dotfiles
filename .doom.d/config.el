@@ -82,7 +82,7 @@
   (aqez/remove-blank-lines-near-curly-braces)
   (+format/buffer))
 
-(add-hook 'prog-mode-hook '#(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+(add-hook 'prog-mode-hook #'(lambda () (add-hook 'before-save-hook 'file-cleanup)))
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
 (setq lsp-lens-enable nil)

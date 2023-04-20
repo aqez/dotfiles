@@ -104,7 +104,7 @@ change `org-directory'. It must be set before org loads!
   (aqez/remove-blank-lines-near-curly-braces)
   (+format/buffer))
 
-(add-hook 'prog-mode-hook '#(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+(add-hook 'prog-mode-hook #'(lambda () (add-hook 'before-save-hook 'file-cleanup)))
 #+END_SRC
 
 * Language Server Protocol
