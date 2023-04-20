@@ -36,7 +36,8 @@
   (string-match-p "\\`\\s-*$" (aqez/get-line-string)))
 
 (defun aqez/remove-duplicate-blank-lines ()
-  "Replace multiple blank lines with a single one and then go back to the initial point"
+  "Replace multiple blank lines with a single one and then go back to the
+   initial point"
   (let ((initial-point (point)))
     (goto-char (point-min))
     (while (not (eobp))
@@ -53,7 +54,8 @@
   (string-match-p "{$" (aqez/get-line-string)))
 
 (defun aqez/remove-blank-lines-near-curly-braces ()
-  "Remove blank lines that immediately folow a line ending with an opening curly brace or blank lines that are immediately followed by a closing curly brace."
+  "Remove blank lines that immediately folow a line ending with an opening curly
+   brace or blank lines that are immediately followed by a closing curly brace."
   (let ((initial-point (point)))
     (print "moving to beginning")
     (goto-char (point-min))
@@ -80,7 +82,7 @@
   (aqez/remove-blank-lines-near-curly-braces)
   (+format/buffer))
 
-(add-hook 'prog-mode-hook '(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+(add-hook 'prog-mode-hook '#(lambda () (add-hook 'before-save-hook 'file-cleanup)))
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
 (setq lsp-lens-enable nil)
