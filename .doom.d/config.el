@@ -13,7 +13,7 @@
 (setq org-roam-directory "~/org/roam")
 
 (after! org
-  (setq org-agenda-files '("~/org/Agenda.org"))
+  (setq org-agenda-files '("~/org/Agenda.org" "~/org/roam/"))
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t))
