@@ -75,6 +75,7 @@
     (goto-char initial-point)))
 
 (defun file-cleanup ()
+  "Clean up the file by removing unnecessary spaces and formatting it"
   (aqez/remove-duplicate-blank-lines)
   (aqez/remove-blank-lines-near-curly-braces)
   (+format/buffer))
