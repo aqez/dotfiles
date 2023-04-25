@@ -49,10 +49,6 @@
         (forward-char 1)))
     (goto-char initial-point)))
 
-(defun aqez/current-line-ends-with-curly ()
-  "Determines if the current line ends with an opening curly brace"
-  (string-match-p "{$" (aqez/get-line-string)))
-
 (defun aqez/remove-blank-lines-near-curly-braces ()
   "Remove blank lines that immediately folow a line ending with an opening curly
    brace or blank lines that are immediately followed by a closing curly brace."
