@@ -60,7 +60,6 @@
     (print "moving to beginning")
     (goto-char (point-min))
     (while (not (eobp))
-      (print (format "checking line: %s" (aqez/get-line-string)))
       (cond ((string-match-p "{$" (aqez/get-line-string))
              (forward-line 1)
              (while (and (not (eobp)) (aqez/current-line-empty-p))
@@ -69,7 +68,6 @@
              (forward-line -1)
              (if (aqez/current-line-empty-p)
                  (progn
-                   (print "Killing line")
                    (kill-whole-line)
                    (forward-line -1))
                (forward-line 1))))
@@ -87,6 +85,7 @@
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
 (setq lsp-lens-enable nil)
 (setq company-idle-delay nil)
+(setq flycheck-check-syntax-automatically '(save mode-enabled))
 
 (setq dap-auto-configure-mode t)
 (require 'dap-cpptools)
@@ -125,11 +124,9 @@
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
-  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
-         ("C-<tab>" . 'copilot-accept-completion-by-word)
+  :bind (("C-Q" . 'copilot-accept-completion-by-word)
          :map copilot-completion-map
-         ("<tab>" . 'copilot-accept-completion)
-         ("TAB" . 'copilot-accept-completion)))
+         ("C-Q" . 'copilot-accept-completion)))
 
 (use-package! tree-sitter
   :hook (prog-mode . turn-on-tree-sitter-mode)
