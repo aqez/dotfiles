@@ -80,8 +80,8 @@
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
 (setq lsp-lens-enable nil)
-(setq company-idle-delay nil)
 (setq flycheck-check-syntax-automatically '(save mode-enabled))
+(setq company-idle-delay 0.2)
 
 (setq dap-auto-configure-mode t)
 (require 'dap-cpptools)
