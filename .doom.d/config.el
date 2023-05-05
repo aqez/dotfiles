@@ -6,8 +6,8 @@
 (setq doom-font (font-spec :family "Fira Code" :size 20 :weight 'normal))
 (setq doom-theme 'doom-nord-aurora)
 (setq display-line-numbers-type 'relative)
-(set-frame-parameter (selected-frame) 'alpha-background 85)
-(add-to-list 'default-frame-alist '(alpha-background . 85))
+(set-frame-parameter (selected-frame) 'alpha-background 97)
+(add-to-list 'default-frame-alist '(alpha-background . 97))
 
 (setq org-directory "~/org/")
 (setq org-roam-directory "~/org/roam")
@@ -117,6 +117,35 @@
 (setq projectile-project-search-path '("~/repos"))
 (map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
 
+(defun open-vterms-in-project ()
+  "Opens vterms in all of the 'runnable' project directories (those with Program.cs or package.json)
+   and runs all of the commands that are needed to start those projects."
+  (interactive)
+  (let ((project-root (projectile-project-root))
+        (opened-buffer nil)
+        (current-buffer (current-buffer))
+        (display-buffer-alist '(("\\*vterm.*" display-buffer-same-window))))
+    (when project-root
+      (dolist (dir (directory-files project-root nil directory-files-no-dot-files-regexp))
+        (let ((default-directory (concat project-root dir))
+              (has-program-cs (file-exists-p (concat project-root dir "/Program.cs")))
+              (has-package-json (file-exists-p (concat project-root dir "/package.json"))))
+          (when (and (file-directory-p default-directory)
+                     (or has-program-cs has-package-json))
+            (let* ((buffer-name (concat "*vterm: " dir " *"))
+                   (vterm-buffer (vterm buffer-name)))
+              (setf opened-buffer t)
+              (message (concat "Opening buffer " buffer-name))
+              (persp-add-buffer vterm-buffer)
+              (with-current-buffer vterm-buffer
+                (if has-program-cs
+                    (vterm-send-string "dotnet watch run")
+                  (vterm-send-string "npm start"))
+                (vterm-send-return)))))))
+    (when opened-buffer
+      (message "Opened some buffers, so restoring the original buffer")
+      (switch-to-buffer current-buffer))))
+
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
@@ -124,6 +153,8 @@
          :map copilot-completion-map
          ("C-Q" . 'copilot-accept-completion)))
 
+(add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-ts-mode))
+(add-hook 'csharp-ts-mode-hook 'lsp-mode)
 ;; (use-package! tree-sitter
 ;;   :hook (prog-mode . turn-on-tree-sitter-mode)
 ;;   :hook (tree-sitter-after-on . tree-sitter-hl-mode)
