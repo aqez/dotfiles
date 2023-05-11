@@ -155,6 +155,25 @@ Set up projectile search path
 (setq projectile-project-search-path '("~/repos"))
 (map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
 
+(after! projectile
+  (setq projectile-globally-ignored-directories
+        '(".idea"
+          ".vscode"
+          ".ensime_cache"
+          ".eunit"
+          ".git"
+          ".hg"
+          ".fslckout"
+          "_FOSSIL_"
+          ".bzr"
+          "_darcs"
+          ".tox"
+          ".svn"
+          ".stack-work"
+          ".ccls-cache"
+          ".cache"
+          ".clangd")))
+
 (defun open-vterms-in-project ()
   "Opens vterms in all of the 'runnable' project directories (those with Program.cs or package.json)
    and runs all of the commands that are needed to start those projects."
