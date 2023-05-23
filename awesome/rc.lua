@@ -552,15 +552,12 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", { raise = false })
-end)
+--
+-- client.connect_signal("mouse::enter", function(c)
+--     c:emit_signal("request::activate", "mouse_enter", { raise = false })
+-- end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-awful.spawn.with_shell("(sleep 1s && xset 60 && xss-lock -- /home/aqez/repos/dotfiles/awesome/lock.sh)&")
-awful.spawn.with_shell("picom --daemon --inactive-opacity 1.0 --corner-radius 5")
-
-os.execute("(sleep 2s && xset r rate 170 100 && setxkbmap -option caps:escaape)&")
-
+awful.spawn.with_shell("/home/aqez/repos/dotfiles/awesome/startup.sh")

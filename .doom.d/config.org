@@ -18,11 +18,13 @@ clients, file templates and snippets. It is optional.
 
 * Appearance
 #+BEGIN_SRC emacs-lisp
-(setq doom-font (font-spec :family "Fira Code" :size 20 :weight 'normal))
+(setq aqez/alpha-background 95)
+
+(setq doom-font (font-spec :family "Noto Sans Mono" :size 20 :weight 'normal))
 (setq doom-theme 'doom-nord-aurora)
 (setq display-line-numbers-type 'relative)
-(set-frame-parameter (selected-frame) 'alpha-background 97)
-(add-to-list 'default-frame-alist '(alpha-background . 97))
+(set-frame-parameter (selected-frame) 'alpha-background aqez/alpha-background)
+(add-to-list 'default-frame-alist '(alpha-background . aqez/alpha-background))
 #+END_SRC
 * Org Mode
 If you use `org' and don't want your org files in the default location below,
@@ -130,7 +132,6 @@ change `org-directory'. It must be set before org loads!
        :desc "Go to upper window" "k" #'evil-window-up
        :desc "Go to below window" "j" #'evil-window-down
        :desc "Toggle neotree" "t" #'neotree-toggle))
-
 #+END_SRC
 * Magit
 #+BEGIN_SRC emacs-lisp
@@ -214,6 +215,21 @@ Set up copilot
          :map copilot-completion-map
          ("C-Q" . 'copilot-accept-completion)))
 #+END_SRC
+* Slide Mode
+#+begin_src elisp
+(defun aqez/org-tree-slide-mode-hook (&rest args)
+  (if org-tree-slide-mode
+      (progn
+        (display-line-numbers-mode -1)
+        (set-frame-parameter (selected-frame) 'alpha-background 100)
+        (add-to-list 'default-frame-alist '(alpha-background . 100)))
+    (progn
+      (display-line-numbers-mode 1)
+      (set-frame-parameter (selected-frame) 'alpha-background aqez/alpha-background)
+      (add-to-list 'default-frame-alist '(alpha-background . aqez/alpha-background)))))
+
+(advice-add 'org-tree-slide-mode :after #'aqez/org-tree-slide-mode-hook)
+#+end_src
 * Tree-sitter
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-ts-mode))
