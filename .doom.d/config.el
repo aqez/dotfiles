@@ -3,13 +3,11 @@
 (setq user-full-name "Tony Dwire"
       user-mail-address "tony@undauntedonline.com")
 
-(setq aqez/alpha-background 95)
-
 (setq doom-font (font-spec :family "Noto Sans Mono" :size 20 :weight 'normal))
 (setq doom-theme 'doom-nord-aurora)
 (setq display-line-numbers-type 'relative)
-(set-frame-parameter (selected-frame) 'alpha-background aqez/alpha-background)
-(add-to-list 'default-frame-alist '(alpha-background . aqez/alpha-background))
+(set-frame-parameter (selected-frame) 'alpha-background 95)
+(add-to-list 'default-frame-alist '(alpha-background . 95))
 
 (setq org-directory "~/org/")
 (setq org-roam-directory "~/org/roam")
@@ -168,11 +166,11 @@
       (switch-to-buffer current-buffer))))
 
 ;; accept completion from copilot and fallback to company
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (("C-Q" . 'copilot-accept-completion-by-word)
-         :map copilot-completion-map
-         ("C-Q" . 'copilot-accept-completion)))
+;(use-package! copilot
+  ;:hook (prog-mode . copilot-mode)
+  ;:bind (("C-Q" . 'copilot-accept-completion-by-word)
+         ;:map copilot-completion-map
+         ;("C-Q" . 'copilot-accept-completion)))
 
 (defun aqez/org-tree-slide-mode-hook (&rest args)
   (if org-tree-slide-mode
@@ -182,8 +180,8 @@
         (add-to-list 'default-frame-alist '(alpha-background . 100)))
     (progn
       (display-line-numbers-mode 1)
-      (set-frame-parameter (selected-frame) 'alpha-background aqez/alpha-background)
-      (add-to-list 'default-frame-alist '(alpha-background . aqez/alpha-background)))))
+      (set-frame-parameter (selected-frame) 'alpha-background 95)
+      (add-to-list 'default-frame-alist '(alpha-background . 95)))))
 
 (advice-add 'org-tree-slide-mode :after #'aqez/org-tree-slide-mode-hook)
 
@@ -195,8 +193,8 @@
 ;;   :config
 ;;   (require 'tree-sitter-langs))
 
-(use-package! gptel
-  :config
-  (with-temp-buffer
-    (insert-file-contents "/home/aqez/.config/openai.token")
-    (setq! gptel-api-key (buffer-string))))
+;(use-package! gptel
+;:config
+;(with-temp-buffer
+;(insert-file-contents "/home/aqez/.config/openai.token")
+;(setq! gptel-api-key (buffer-string))))

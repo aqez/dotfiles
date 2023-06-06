@@ -18,13 +18,11 @@ clients, file templates and snippets. It is optional.
 
 * Appearance
 #+BEGIN_SRC emacs-lisp
-(setq aqez/alpha-background 95)
-
 (setq doom-font (font-spec :family "Noto Sans Mono" :size 20 :weight 'normal))
 (setq doom-theme 'doom-nord-aurora)
 (setq display-line-numbers-type 'relative)
-(set-frame-parameter (selected-frame) 'alpha-background aqez/alpha-background)
-(add-to-list 'default-frame-alist '(alpha-background . aqez/alpha-background))
+(set-frame-parameter (selected-frame) 'alpha-background 95)
+(add-to-list 'default-frame-alist '(alpha-background . 95))
 #+END_SRC
 * Org Mode
 If you use `org' and don't want your org files in the default location below,
@@ -209,11 +207,11 @@ Set up projectile search path
 Set up copilot
 #+BEGIN_SRC emacs-lisp
 ;; accept completion from copilot and fallback to company
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (("C-Q" . 'copilot-accept-completion-by-word)
-         :map copilot-completion-map
-         ("C-Q" . 'copilot-accept-completion)))
+;(use-package! copilot
+  ;:hook (prog-mode . copilot-mode)
+  ;:bind (("C-Q" . 'copilot-accept-completion-by-word)
+         ;:map copilot-completion-map
+         ;("C-Q" . 'copilot-accept-completion)))
 #+END_SRC
 * Slide Mode
 #+begin_src elisp
@@ -225,8 +223,8 @@ Set up copilot
         (add-to-list 'default-frame-alist '(alpha-background . 100)))
     (progn
       (display-line-numbers-mode 1)
-      (set-frame-parameter (selected-frame) 'alpha-background aqez/alpha-background)
-      (add-to-list 'default-frame-alist '(alpha-background . aqez/alpha-background)))))
+      (set-frame-parameter (selected-frame) 'alpha-background 95)
+      (add-to-list 'default-frame-alist '(alpha-background . 95)))))
 
 (advice-add 'org-tree-slide-mode :after #'aqez/org-tree-slide-mode-hook)
 #+end_src
@@ -243,9 +241,9 @@ Set up copilot
 
 * Open AI
 #+BEGIN_SRC elisp
-(use-package! gptel
-  :config
-  (with-temp-buffer
-    (insert-file-contents "/home/aqez/.config/openai.token")
-    (setq! gptel-api-key (buffer-string))))
+                                        ;(use-package! gptel
+                                        ;:config
+                                        ;(with-temp-buffer
+                                        ;(insert-file-contents "/home/aqez/.config/openai.token")
+                                        ;(setq! gptel-api-key (buffer-string))))
 #+END_SRC
