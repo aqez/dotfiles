@@ -62,7 +62,7 @@ beautiful.useless_gap = dpi(20)
 beautiful.border_width = 0
 
 -- This is used later as the default terminal and editor to run.
-local terminal = "alacritty"
+local terminal = "kitty"
 local editor = os.getenv("EDITOR") or "nvim"
 local editor_cmd = terminal .. " -e " .. editor
 
