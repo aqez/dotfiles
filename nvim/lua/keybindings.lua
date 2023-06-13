@@ -1,4 +1,9 @@
+local terminals = require("open_terminals")
+
 local opts = { remap = false, silent = true }
+
+-- Open Terminals in project
+vim.keymap.set('n', '<leader>ot', terminals.open_terminals_in_project, { noremap = true })
 
 -- Windows
 vim.keymap.set("n", "<Leader>h", "<C-w>h", opts)
@@ -72,3 +77,4 @@ vim.api.nvim_create_autocmd("FileType", {
     command = [[nnoremap <buffer> q :q<CR>]],
     group = fugitive_group
 })
+

@@ -130,9 +130,21 @@ require("mason-lspconfig").setup_handlers {
 
     ["omnisharp"] = function ()
         require("lspconfig")["omnisharp"].setup {
-            on_attach = function(client, bufnr)
+            on_attach = function(client)
                 client.server_capabilities.semanticTokensProvider = nil
             end
+        }
+    end,
+
+    ["lua_ls"] = function ()
+        require("lspconfig")["lua_ls"].setup {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { "vim" }
+                    }
+                }
+            }
         }
     end
 }
