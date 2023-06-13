@@ -166,11 +166,11 @@
       (switch-to-buffer current-buffer))))
 
 ;; accept completion from copilot and fallback to company
-;(use-package! copilot
-  ;:hook (prog-mode . copilot-mode)
-  ;:bind (("C-Q" . 'copilot-accept-completion-by-word)
-         ;:map copilot-completion-map
-         ;("C-Q" . 'copilot-accept-completion)))
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (("C-Q" . 'copilot-accept-completion-by-word)
+         :map copilot-completion-map
+         ("C-Q" . 'copilot-accept-completion)))
 
 (defun aqez/org-tree-slide-mode-hook (&rest args)
   (if org-tree-slide-mode
@@ -185,16 +185,16 @@
 
 (advice-add 'org-tree-slide-mode :after #'aqez/org-tree-slide-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-ts-mode))
-(add-hook 'csharp-ts-mode-hook 'lsp-mode)
+;(add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-ts-mode))
+                                        ;(add-hook 'csharp-ts-mode-hook 'lsp-mode)
 ;; (use-package! tree-sitter
 ;;   :hook (prog-mode . turn-on-tree-sitter-mode)
 ;;   :hook (tree-sitter-after-on . tree-sitter-hl-mode)
 ;;   :config
 ;;   (require 'tree-sitter-langs))
 
-;(use-package! gptel
-;:config
-;(with-temp-buffer
-;(insert-file-contents "/home/aqez/.config/openai.token")
-;(setq! gptel-api-key (buffer-string))))
+(use-package! gptel
+  :config
+  (with-temp-buffer
+    (insert-file-contents "/home/aqez/.config/openai.token")
+    (setq! gptel-api-key (buffer-string))))
