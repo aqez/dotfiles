@@ -104,7 +104,7 @@ change `org-directory'. It must be set before org loads!
 * Language Server Protocol
 #+BEGIN_SRC emacs-lisp
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
-(setq lsp-lens-enable nil)
+(setq lsp-lens-enable t)
 (setq flycheck-check-syntax-automatically '(save mode-enabled))
 (setq company-idle-delay 0.2)
 #+END_SRC

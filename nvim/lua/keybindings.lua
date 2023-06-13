@@ -45,7 +45,7 @@ vim.keymap.set("n", "<leader>gb", ":Telescope git_branches theme=ivy<CR>", opts)
 vim.keymap.set("n", "<leader>gc", ":Telescope git_commits theme=ivy<CR>", opts)
 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
-vim.keymap.set("n", "<leader>gr", ":Telescope live_grep<CR>", opts)
+vim.keymap.set("n", "<leader>rg", ":Telescope live_grep<CR>", opts)
 vim.keymap.set("n", "<leader>rt", ":TestNearest<CR>", opts)
 
 vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, opts)

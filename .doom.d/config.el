@@ -79,7 +79,7 @@
 (add-hook 'prog-mode-hook #'(lambda () (add-hook 'before-save-hook 'file-cleanup)))
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
-(setq lsp-lens-enable nil)
+(setq lsp-lens-enable t)
 (setq flycheck-check-syntax-automatically '(save mode-enabled))
 (setq company-idle-delay 0.2)
 
