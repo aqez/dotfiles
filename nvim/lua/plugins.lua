@@ -35,9 +35,9 @@ Plug 'madox2/vim-ai', { 'do': './install.sh' }
 call plug#end()
 ]]
 
---vim.g.nord_disable_background = true
---vim.g.nord_borders = true
---require('nord').set();
+vim.g.nord_disable_background = true
+vim.g.nord_borders = true
+require('nord').set();
 
 -- nvim-tree
 local nvim_tree = require("nvim-tree")
