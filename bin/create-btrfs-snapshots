@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+echo "Creating root snapshot.."
+sudo btrfs subvolume snapshot -r / /.snapshots/$(date +"%Y-%-m-%d")-root
+echo "Creating home snapshot.."
+sudo btrfs subvolume snapshot -r /home /.snapshots/$(date +"%Y-%-m-%d")-home
+echo "Done"
+
