@@ -29,9 +29,8 @@ Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'rust-lang/rust.vim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'github/copilot.vim'
-Plug 'madox2/vim-ai', { 'do': './install.sh' }
-"Plug 'f-person/git-blame.nvim'
-"Plug 'folke/which-key.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'jackMort/ChatGPT.nvim'
 call plug#end()
 ]]
 
@@ -191,25 +190,22 @@ require('lualine').setup({
     extensions = {}
 })
 
--- AI
-vim.cmd [[
-let g:vim_ai_complete = {
-\  "engine": "complete",
-\  "options": {
-\    "model": "text-ada-001",
-\    "max_tokens": 1000,
-\    "temperature": 0.1,
-\    "request_timeout": 20,
-\  },
-\}
-
-let g:vim_ai_edit = {
-\  "engine": "complete",
-\  "options": {
-\    "model": "text-ada-001",
-\    "max_tokens": 1000,
-\    "temperature": 0.1,
-\    "request_timeout": 20,
-\  },
-\}
-]]
+-- ChatGPT.nvim
+require("chatgpt").setup({
+    api_key_cmd = "cat /home/aqez/.config/openai.token",
+    openai_params = {
+        model = "gpt-3.5-turbo-16k",
+        frequency_penalty = 0,
+        presence_penalty = 0,
+        max_tokens = 300,
+        temperature = 0,
+        top_p = 1,
+        n = 1,
+    },
+    openai_edit_params = {
+        model = "code-davinci-edit-001",
+        temperature = 0,
+        top_p = 1,
+        n = 1,
+    },
+})

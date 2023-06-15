@@ -57,7 +57,7 @@ end
 beautiful.init("/home/aqez/repos/dotfiles/awesome/nord/theme.lua")
 beautiful.titlebar_bg_focused = '#FFFFFF'
 beautiful.font = "Play 18"
-beautiful.wallpaper = "/home/aqez/Pictures/backgrounds/background.png"
+beautiful.wallpaper = "/home/aqez/Pictures/backgrounds/car.jpg"
 beautiful.useless_gap = dpi(20)
 beautiful.border_width = 0
 
