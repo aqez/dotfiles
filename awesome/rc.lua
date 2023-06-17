@@ -57,7 +57,14 @@ end
 beautiful.init("/home/aqez/repos/dotfiles/awesome/nord/theme.lua")
 beautiful.titlebar_bg_focused = '#FFFFFF'
 beautiful.font = "Play 18"
-beautiful.wallpaper = "/home/aqez/Pictures/backgrounds/car.jpg"
+
+local background_directory = "/home/aqez/Pictures/backgrounds/"
+if gears.filesystem.file_readable(background_directory .. "background.png") then
+    beautiful.wallpaper = background_directory .. "background.png"
+else
+    beautiful.wallpaper = background_directory .. "background.jpg"
+end
+
 beautiful.useless_gap = dpi(20)
 beautiful.border_width = 0
 
