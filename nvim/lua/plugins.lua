@@ -31,6 +31,8 @@ Plug 'shaunsingh/nord.nvim'
 Plug 'github/copilot.vim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'jackMort/ChatGPT.nvim'
+Plug 'tpope/vim-repeat'
+Plug 'ggandor/leap.nvim'
 call plug#end()
 ]]
 
@@ -209,3 +211,7 @@ require("chatgpt").setup({
         n = 1,
     },
 })
+
+
+-- leap.nvim
+require("leap").add_default_mappings()
