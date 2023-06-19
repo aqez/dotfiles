@@ -54,7 +54,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/aqez/repos/dotfiles/awesome/nord/theme.lua")
+beautiful.init(gears.filesystem.get_themes_dir() .. "nord/theme.lua")
 beautiful.titlebar_bg_focused = '#FFFFFF'
 beautiful.font = "Play 18"
 
