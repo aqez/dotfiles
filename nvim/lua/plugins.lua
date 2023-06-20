@@ -33,6 +33,7 @@ Plug 'MunifTanjim/nui.nvim'
 Plug 'jackMort/ChatGPT.nvim'
 Plug 'tpope/vim-repeat'
 Plug 'ggandor/leap.nvim'
+Plug 'elkowar/yuck.vim'
 call plug#end()
 ]]
 
@@ -206,7 +207,7 @@ require("chatgpt").setup({
     },
     openai_edit_params = {
         model = "code-davinci-edit-001",
-        temperature = 0,
+        temperature = 0.3,
         top_p = 1,
         n = 1,
     },

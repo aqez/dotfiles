@@ -1,0 +1,30 @@
+$darkest: #2e3440;
+$dark: #3b4252;
+$light: #434c5e;
+$lightest: #4c566a;
+
+.bar {
+    background-color: $dark;
+    //color: $light;
+}
+
+.workspace-entry {
+    color: white;
+
+    &.current {
+        background-color: $lightest;
+    }
+
+    &.occupied {
+        background-color: $light;
+
+        &.current {
+            background-color: $lightest;
+        }
+    }
+}
+
+.test {
+    color: blue;
+    font-weight: bold;
+}
