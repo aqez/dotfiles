@@ -233,6 +233,13 @@ require("packer").startup(function(use)
 
     use "elkowar/yuck.vim"
 
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup {}
+        end
+    }
+
     if packer_bootstrap then
         require("packer").sync()
     end
