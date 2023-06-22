@@ -15,18 +15,6 @@ vim.keymap.set("n", "<Leader>l", "<C-w>l", opts)
 vim.keymap.set("n", "<C-j>", ":cn<CR>", opts)
 vim.keymap.set("n", "<C-k>", ":cp<CR>", opts)
 
--- Debugging
-local dap = require('dap')
-local set_conditional_breakpoint = function()
-    dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-end
-vim.keymap.set("n", "<F5>", dap.continue)
-vim.keymap.set("n", "<F10>", dap.step_over)
-vim.keymap.set("n", "<F11>", dap.step_into)
-vim.keymap.set("n", "<F12>", dap.step_out)
-vim.keymap.set("n", "<F9>", dap.toggle_breakpoint)
-vim.keymap.set("n", "<Leader>B", set_conditional_breakpoint)
-
 -- Telescope
 vim.keymap.set("n", "<Leader><space>", ":Telescope smart_open theme=ivy<CR>", opts)
 --vim.keymap.set("n", "<Leader><space>", ":Telescope find_files theme=ivy find_command=rg,--ignore,--files<CR>", opts)
