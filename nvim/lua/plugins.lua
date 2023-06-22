@@ -34,6 +34,8 @@ Plug 'jackMort/ChatGPT.nvim'
 Plug 'tpope/vim-repeat'
 Plug 'ggandor/leap.nvim'
 Plug 'elkowar/yuck.vim'
+Plug 'kkharji/sqlite.lua'
+Plug 'danielfalk/smart-open.nvim'
 call plug#end()
 ]]
 
@@ -83,6 +85,7 @@ telescope.setup({
 })
 telescope.load_extension('fzy_native')
 telescope.load_extension('ui-select')
+telescope.load_extension('smart_open')
 
 -- nvim-cmp
 local cmp = require('cmp')

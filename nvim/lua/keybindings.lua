@@ -28,7 +28,8 @@ vim.keymap.set("n", "<F9>", dap.toggle_breakpoint)
 vim.keymap.set("n", "<Leader>B", set_conditional_breakpoint)
 
 -- Telescope
-vim.keymap.set("n", "<Leader><space>", ":Telescope find_files theme=ivy find_command=rg,--ignore,--files<CR>", opts)
+vim.keymap.set("n", "<Leader><space>", ":Telescope smart_open theme=ivy<CR>", opts)
+--vim.keymap.set("n", "<Leader><space>", ":Telescope find_files theme=ivy find_command=rg,--ignore,--files<CR>", opts)
 vim.keymap.set("n", "<Leader>bf", ":Telescope current_buffer_fuzzy_find<CR>", opts)
 vim.keymap.set("n", "<Leader>H", ":Telescope help_tags<CR>", opts)
 

@@ -8,8 +8,13 @@
 (defwidget bar_layout []
   (box :class "bar"
        :orientation "h"
-       :width 80
-    (workspaces)))
+    (workspaces)
+    (clock)))
+
+(deflisten time :initial "bash date +'%H:%M'" "bash date +'%H:%M'")
+
+(defwidget clock []
+  (label :text "${time}"))
 
 (deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
@@ -18,6 +23,7 @@
   (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}"
             :class "workspaces-widget"
     (box :space-evenly false
+         :width 80
       (for workspace in workspaces
         (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
                   :width 30
