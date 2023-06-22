@@ -27,7 +27,6 @@ require("packer").startup(function(use)
         "nvim-tree/nvim-tree.lua",
         requires = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            --require("nvim-web-devicons").setup()
             local nvim_tree = require("nvim-tree")
             nvim_tree.setup()
         end
