@@ -9,12 +9,26 @@
   (box :class "bar"
        :orientation "h"
     (workspaces)
-    (clock)))
+    (box :space-evenly false
+         :halign "end"
+      (battery)
+      (clock))))
 
-(deflisten time :initial "bash date +'%H:%M'" "bash date +'%H:%M'")
+(defpoll time 
+  :interval "5s" 
+  :initial `bash -c "date +'%H:%M'"` `bash -c "date +'%H:%M'"`)
+
+(defpoll battery-status 
+  :interval "5s" 
+  :initial `bash ~/.config/eww/scripts/getbatpercent` "bash ~/.config/eww/scripts/getbatpercent")
 
 (defwidget clock []
-  (label :text "${time}"))
+  (box :space-evenly false :halign "end" :class "clock" "${time}"))
+
+(defwidget battery []
+  (box :space-evenly false :halign "end" :class "battery"
+    (label :text "${battery-status}")))
+
 
 (deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")

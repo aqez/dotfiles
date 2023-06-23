@@ -3,15 +3,28 @@ $dark: #3b4252;
 $light: #434c5e;
 $lightest: #4c566a;
 
+* {
+    font-family: 'Fira Code', monospace;
+    font-weight: bold;
+}
+
 .bar {
     background-color: $dark;
     //color: $light;
 }
 
+.clock {
+    color: white;
+    padding-right: 10px;
+    margin-left: 15px;
+}
+
+.battery {
+    color: white;
+}
+
 .workspace-entry {
     color: white;
-    font-weight: bold;
-    font-family: 'Fira Code', monospace;
 
     &.current {
         background-color: $lightest;

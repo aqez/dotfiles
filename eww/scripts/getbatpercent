@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#      ${battery-status}%
+
+#acpi | grep -oP "\d+%" | awk -F'%' '{print$1}'
+
+CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
+[ $CAPACITY -ge 0 ] && [ $CAPACITY -lt 10 ] && CHARGE= 
+[ $CAPACITY -ge 10 ] && [ $CAPACITY -lt 20 ] && CHARGE= 
+[ $CAPACITY -ge 20 ] && [ $CAPACITY -lt 40 ] && CHARGE= 
+[ $CAPACITY -ge 40 ] && [ $CAPACITY -lt 60 ] && CHARGE= 
+[ $CAPACITY -ge 60 ] && [ $CAPACITY -lt 80 ] && CHARGE= 
+[ $CAPACITY -ge 80 ] && [ $CAPACITY -lt 90 ] && CHARGE= 
+[ $CAPACITY -ge 90 ] && [ $CAPACITY -lt 100 ] && CHARGE= 
+UPOWER=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state" | awk '{ print $NF }') 
+[ "$UPOWER" = "charging" ] || [ "$UPOWER" = "fully-charged" ] && CHARGE= 
+BATTERY="$CHARGE $CAPACITY%"    
+
+echo "$BATTERY"
