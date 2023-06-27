@@ -45,18 +45,22 @@ require("packer").startup(function(use)
         config = function()
             local telescope = require('telescope')
             telescope.setup({
-                defaults = {
-                    file_sorter = require('telescope.sorters').get_fzy_sorter,
-                    mappings = {
-                        i = {
-                            ["<C-k>"] = require('telescope.actions').move_selection_previous,
-                            ["<C-j>"] = require('telescope.actions').move_selection_next,
-                        },
-                        n = {
-                            ["<C-d>"] = require('telescope.actions').delete_buffer
+                defaults = vim.tbl_extend(
+                    "force",
+                    require('telescope.themes').get_ivy(),
+                    {
+                        file_sorter = require('telescope.sorters').get_fzy_sorter,
+                        mappings = {
+                            i = {
+                                ["<C-k>"] = require('telescope.actions').move_selection_previous,
+                                ["<C-j>"] = require('telescope.actions').move_selection_next,
+                            },
+                            n = {
+                                ["<C-d>"] = require('telescope.actions').delete_buffer
+                            }
                         }
-                    }
-                },
+                    })
+                ,
                 extensions = {
                     fzy_native = {
                         override_generic_sorter = false,
@@ -236,6 +240,16 @@ require("packer").startup(function(use)
         "folke/which-key.nvim",
         config = function()
             require("which-key").setup {}
+        end
+    }
+
+    use {
+        'TimUntersberger/neogit',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+        config = function()
+            require('neogit').setup {}
         end
     }
 
