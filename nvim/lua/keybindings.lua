@@ -33,6 +33,7 @@ wk.register({
         },
         g = {
             name = "Git",
+            g = { require("neogit").open, "Open Neogit" },
             s = { builtin.git_status, "Git status" },
             b = { builtin.git_branches, "Git branches" },
             c = { builtin.git_commits, "Git commits" },
