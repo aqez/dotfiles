@@ -7,8 +7,8 @@ CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
 [ $CAPACITY -ge 75 ] && CHARGE=
 [ $CAPACITY -ge 90 ] && CHARGE=
 
- UPOWER=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state" | awk '{ print $NF }') 
-[ "$UPOWER" = "charging" ] || [ "$UPOWER" = "fully-charged" ] && CHARGE=
-BATTERY="$CHARGE  $CAPACITY%"    
+UPOWER=$(cat /sys/class/power_supply/BAT0/status) 
+[ "$UPOWER" = "Charging" ] || [ "$UPOWER" = "Fully-charged" ] && CHARGE=
+BATTERY="$CHARGE   $CAPACITY%"    
 
 echo "$BATTERY"

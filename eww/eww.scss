@@ -4,23 +4,16 @@ $light: #434c5e;
 $lightest: #4c566a;
 
 * {
-    font-family: 'Fira Code', monospace;
-    font-weight: bold;
+    font-family: 'Fira Code';
 }
 
 .bar {
     background-color: $dark;
-    //color: $light;
 }
 
-.clock {
-    color: white;
-    padding-right: 10px;
-    margin-left: 15px;
-}
-
-.battery {
-    color: white;
+.big {
+    font-size: 15px;
+    margin-right: 10px;
 }
 
 .workspace-entry {
@@ -39,7 +32,9 @@ $lightest: #4c566a;
     }
 }
 
-.test {
-    color: blue;
-    font-weight: bold;
+.stat {
+    color: white;
+    border-bottom: 3px solid white;
+    margin-left: 5px;
+    margin-right: 5px;
 }

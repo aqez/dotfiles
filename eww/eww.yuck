@@ -11,6 +11,8 @@
     (workspaces)
     (box :space-evenly false
          :halign "end"
+      (cpu)
+      (memory)
       (battery)
       (clock))))
 
@@ -22,11 +24,23 @@
   :interval "5s" 
   :initial `bash ~/.config/eww/scripts/getbatpercent` "bash ~/.config/eww/scripts/getbatpercent")
 
+(defwidget memory []
+  (box :space-evenly false 
+       :halign "end" 
+       :class "stat" "   ${round(EWW_RAM.used_mem_perc, 0)}%"))
+
+(defwidget cpu []
+  (box :space-evenly false 
+       :halign "end" 
+       :class "stat" 
+       (box :class "big" "")
+       "${EWW_CPU.avg < 10 ? "00" : EWW_CPU.avg == 100 ? "" : "00"}${round(EWW_CPU.avg, 0)}%"))
+
 (defwidget clock []
-  (box :space-evenly false :halign "end" :class "clock" "${time}"))
+  (box :space-evenly false :halign "end" :class "stat" "${time}"))
 
 (defwidget battery []
-  (box :space-evenly false :halign "end" :class "battery"
+  (box :space-evenly false :halign "end" :class "stat"
     (label :text "${battery-status}")))
 
 
