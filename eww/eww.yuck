@@ -34,7 +34,7 @@
        :halign "end" 
        :class "stat" 
        (box :class "big" "")
-       "${EWW_CPU.avg < 10 ? "00" : EWW_CPU.avg == 100 ? "" : "00"}${round(EWW_CPU.avg, 0)}%"))
+       "${EWW_CPU.avg >= 100 ? "" : EWW_CPU.avg > 10 ? "0" : "00"}${round(EWW_CPU.avg, 0)}%"))
 
 (defwidget clock []
   (box :space-evenly false :halign "end" :class "stat" "${time}"))
