@@ -18,7 +18,7 @@ vim.opt.previewheight = 10
 vim.opt.laststatus = 2
 vim.opt.scrolloff = 5
 vim.opt.signcolumn = "yes"
-vim.opt.background = "dark"
+--vim.opt.termguicolors = true
 
 -- Text/Indent
 vim.opt.expandtab = true

@@ -184,14 +184,14 @@ require("packer").startup(function(use)
 
     use "rust-lang/rust.vim"
 
-    use {
-        "shaunsingh/nord.nvim",
-        config = function()
-            vim.g.nord_disable_background = true
-            vim.g.nord_borders = true
-            require('nord').set();
-        end
-    }
+    --use {
+    --    "shaunsingh/nord.nvim",
+    --    config = function()
+    --        vim.g.nord_disable_background = true
+    --        vim.g.nord_borders = true
+    --        require('nord').set();
+    --    end
+    --}
 
     use "github/copilot.vim"
 
@@ -255,7 +255,17 @@ require("packer").startup(function(use)
 
     use "f-person/git-blame.nvim"
 
-    use { "catppuccin/nvim", as = "catppuccin" }
+    use {
+        "mcchrish/zenbones.nvim",
+        -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+        -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+        -- In Vim, compat mode is turned on as Lush only works in Neovim.
+        requires = "rktjmp/lush.nvim",
+        config = function ()
+            vim.cmd.colorscheme("zenbones")
+        end
+
+    }
 
     if packer_bootstrap then
         require("packer").sync()
