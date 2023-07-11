@@ -19,18 +19,41 @@ require("packer").startup(function(use)
         "nvim-lualine/lualine.nvim",
         requires = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            require('lualine').setup()
+            local colors = {
+                black = "#000000",
+                white = "#FFFFFF",
+                grey = "#444444",
+            }
+            require('lualine').setup({
+                options = {
+                    theme = {
+                        normal = {
+                            a = { fg = colors.white, bg = colors.black },
+                            b = { fg = colors.white, bg = colors.black },
+                            c = { fg = colors.white, bg = colors.black },
+                        },
+                    }
+                }
+            })
         end
     }
 
     use {
-        "nvim-tree/nvim-tree.lua",
-        requires = { "nvim-tree/nvim-web-devicons" },
+        "nvim-telescope/telescope-file-browser.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
         config = function()
-            local nvim_tree = require("nvim-tree")
-            nvim_tree.setup()
+            require("telescope").load_extension("file_browser")
         end
     }
+
+    --use {
+    --    "nvim-tree/nvim-tree.lua",
+    --    requires = { "nvim-tree/nvim-web-devicons" },
+    --    config = function()
+    --        local nvim_tree = require("nvim-tree")
+    --        nvim_tree.setup()
+    --    end
+    --}
 
     use {
         "nvim-telescope/telescope.nvim",
@@ -46,20 +69,20 @@ require("packer").startup(function(use)
             local telescope = require('telescope')
             telescope.setup({
                 defaults = vim.tbl_extend(
-                    "force",
-                    require('telescope.themes').get_ivy(),
-                    {
-                        file_sorter = require('telescope.sorters').get_fzy_sorter,
-                        mappings = {
-                            i = {
-                                ["<C-k>"] = require('telescope.actions').move_selection_previous,
-                                ["<C-j>"] = require('telescope.actions').move_selection_next,
-                            },
-                            n = {
-                                ["<C-d>"] = require('telescope.actions').delete_buffer
-                            }
+                "force",
+                require('telescope.themes').get_ivy(),
+                {
+                    file_sorter = require('telescope.sorters').get_fzy_sorter,
+                    mappings = {
+                        i = {
+                            ["<C-k>"] = require('telescope.actions').move_selection_previous,
+                            ["<C-j>"] = require('telescope.actions').move_selection_next,
+                        },
+                        n = {
+                            ["<C-d>"] = require('telescope.actions').delete_buffer
                         }
-                    })
+                    }
+                })
                 ,
                 extensions = {
                     fzy_native = {
@@ -256,15 +279,12 @@ require("packer").startup(function(use)
     use "f-person/git-blame.nvim"
 
     use {
-        "mcchrish/zenbones.nvim",
-        -- Optionally install Lush. Allows for more configuration or extending the colorscheme
-        -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
-        -- In Vim, compat mode is turned on as Lush only works in Neovim.
-        requires = "rktjmp/lush.nvim",
-        config = function ()
-            vim.cmd.colorscheme("zenbones")
+        "pbrisbin/vim-colors-off",
+        config = function()
+            vim.cmd [[
+            colorscheme off
+            ]]
         end
-
     }
 
     if packer_bootstrap then

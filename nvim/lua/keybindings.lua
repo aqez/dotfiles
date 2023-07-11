@@ -18,7 +18,7 @@ wk.register({
         H = { ":Telescope help_tags<CR>", "Search help tags" },
         ["<space>"] = { function () telescope.extensions.smart_open.smart_open({ cwd_only = true}) end, "Smart open" },
         --["<space>"] = { ":Telescope smart_open theme=ivy<CR>", "Open Telescope" },
-        t = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
+        t = { function() telescope.extensions.file_browser.file_browser() end, "Open telescope file browser" },
         b = {
             name = "Buffers",
             s = { builtin.buffers, "Search buffers" },

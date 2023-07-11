@@ -18,7 +18,8 @@ vim.opt.previewheight = 10
 vim.opt.laststatus = 2
 vim.opt.scrolloff = 5
 vim.opt.signcolumn = "yes"
---vim.opt.termguicolors = true
+vim.opt.termguicolors = true
+vim.opt.background = "light"
 
 -- Text/Indent
 vim.opt.expandtab = true
@@ -28,4 +29,4 @@ vim.opt.tabstop = 4
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
-vim.opt.fillchars = { eob = " ", vert = "|", fold = " ", msgsep = "‾" }
+vim.opt.fillchars = { eob = " " }
