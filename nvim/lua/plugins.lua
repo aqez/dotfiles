@@ -69,21 +69,20 @@ require("packer").startup(function(use)
             local telescope = require('telescope')
             telescope.setup({
                 defaults = vim.tbl_extend(
-                "force",
-                require('telescope.themes').get_ivy(),
-                {
-                    file_sorter = require('telescope.sorters').get_fzy_sorter,
-                    mappings = {
-                        i = {
-                            ["<C-k>"] = require('telescope.actions').move_selection_previous,
-                            ["<C-j>"] = require('telescope.actions').move_selection_next,
-                        },
-                        n = {
-                            ["<C-d>"] = require('telescope.actions').delete_buffer
+                    "force",
+                    require('telescope.themes').get_ivy(),
+                    {
+                        file_sorter = require('telescope.sorters').get_fzy_sorter,
+                        mappings = {
+                            i = {
+                                ["<C-k>"] = require('telescope.actions').move_selection_previous,
+                                ["<C-j>"] = require('telescope.actions').move_selection_next,
+                            },
+                            n = {
+                                ["<C-d>"] = require('telescope.actions').delete_buffer
+                            }
                         }
-                    }
-                })
-                ,
+                    }),
                 extensions = {
                     fzy_native = {
                         override_generic_sorter = false,

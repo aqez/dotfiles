@@ -56,19 +56,19 @@ wk.register({
             n = { vim.diagnostic.goto_next, "Go to next diagnostic" },
             p = { vim.diagnostic.goto_prev, "Go to previous diagnostic" },
         },
+        ["rg"] = { ":Telescope live_grep<CR>", "Live grep" }
     },
     -- Quick fix
     ["<C-j>"] = { ":cn<CR>", "Next Quickfix" },
     ["<C-k>"] = { ":cp<CR>", "Previous Quickfix" },
 
     g = {
-        name = "Goto+",
+        name = "Goto",
         d = { builtin.lsp_definitions, "Go to definition" },
         D = { builtin.lsp_references, "Go to references" },
     },
     K = { vim.lsp.buf.hover, "Show hover" },
     ["<C-b>"] = { ":make<CR>", "Build" },
-    ["rg"] = { ":Telescope live_grep<CR>", "Live grep" }
 })
 
 wk.register({

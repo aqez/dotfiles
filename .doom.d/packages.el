@@ -61,3 +61,7 @@
 (package! rg)
 
 (package! gptel)
+
+(package! plain-theme)
+(package! basic-theme)
+(package! white-theme)

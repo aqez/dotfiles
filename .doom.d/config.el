@@ -93,6 +93,9 @@
        :desc "Step Into" "<f11>" #'dap-step-in
        :desc "Step Out" "<f12>" #'dap-step-out))
 
+(after! evil-snipe
+  (setq evil-snipe-scope 'visible))
+
 (map! :leader
       (:desc "Go to left window" "h" #'evil-window-left
        :desc "Go to right window" "l" #'evil-window-right
@@ -168,7 +171,7 @@
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
-  :bind (("C-Q" . 'copilot-accept-completion-by-word)
+  :bind (;("C-Q" . 'copilot-accept-completion-by-word)
          :map copilot-completion-map
          ("C-Q" . 'copilot-accept-completion)))
 

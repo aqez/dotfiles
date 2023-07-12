@@ -124,6 +124,9 @@ change `org-directory'. It must be set before org loads!
 
 * Evil Mode
 #+BEGIN_SRC emacs-lisp
+(after! evil-snipe
+  (setq evil-snipe-scope 'visible))
+
 (map! :leader
       (:desc "Go to left window" "h" #'evil-window-left
        :desc "Go to right window" "l" #'evil-window-right
@@ -209,7 +212,7 @@ Set up copilot
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
-  :bind (("C-Q" . 'copilot-accept-completion-by-word)
+  :bind (;("C-Q" . 'copilot-accept-completion-by-word)
          :map copilot-completion-map
          ("C-Q" . 'copilot-accept-completion)))
 #+END_SRC
