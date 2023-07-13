@@ -39,21 +39,13 @@ require("packer").startup(function(use)
     }
 
     use {
-        "nvim-telescope/telescope-file-browser.nvim",
-        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+        "nvim-tree/nvim-tree.lua",
+        requires = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            require("telescope").load_extension("file_browser")
+            local nvim_tree = require("nvim-tree")
+            nvim_tree.setup()
         end
     }
-
-    --use {
-    --    "nvim-tree/nvim-tree.lua",
-    --    requires = { "nvim-tree/nvim-web-devicons" },
-    --    config = function()
-    --        local nvim_tree = require("nvim-tree")
-    --        nvim_tree.setup()
-    --    end
-    --}
 
     use {
         "nvim-telescope/telescope.nvim",
