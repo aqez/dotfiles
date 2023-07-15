@@ -269,6 +269,8 @@ require("packer").startup(function(use)
 
     use "f-person/git-blame.nvim"
 
+    use "vimwiki/vimwiki"
+
     use {
         "pbrisbin/vim-colors-off",
         config = function()
