@@ -75,7 +75,7 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["ChatGPT.nvim"] = {
-    config = { "\27LJ\2\n…\2\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\23openai_edit_params\1\0\4\ntop_p\3\1\16temperature\4≥ÊÃô\3≥ÊÃ˛\3\nmodel\26code-davinci-edit-001\6n\3\1\18openai_params\1\0\a\ntop_p\3\1\16temperature\3\0\15max_tokens\3¨\2\21presence_penalty\3\0\22frequency_penalty\3\0\6n\3\1\nmodel\22gpt-3.5-turbo-16k\1\0\1\16api_key_cmd(cat /home/aqez/.config/openai.token\nsetup\fchatgpt\frequire\0" },
+    config = { "\27LJ\2\n…\2\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\23openai_edit_params\1\0\4\16temperature\4≥ÊÃô\3≥ÊÃ˛\3\nmodel\26code-davinci-edit-001\6n\3\1\ntop_p\3\1\18openai_params\1\0\a\6n\3\1\nmodel\22gpt-3.5-turbo-16k\ntop_p\3\1\16temperature\3\0\15max_tokens\3¨\2\21presence_penalty\3\0\22frequency_penalty\3\0\1\0\1\16api_key_cmd(cat /home/aqez/.config/openai.token\nsetup\fchatgpt\frequire\0" },
     loaded = true,
     path = "/home/aqez/.local/share/nvim/site/pack/packer/start/ChatGPT.nvim",
     url = "https://github.com/jackMort/ChatGPT.nvim"
@@ -112,7 +112,7 @@ _G.packer_plugins = {
     url = "https://github.com/ggandor/leap.nvim"
   },
   ["lualine.nvim"] = {
-    config = { "\27LJ\2\nã\2\0\0\t\0\21\0 5\0\0\0006\1\1\0'\3\2\0B\1\2\0029\1\3\0015\3\19\0005\4\17\0005\5\15\0005\6\t\0005\a\5\0009\b\4\0=\b\6\a9\b\a\0=\b\b\a=\a\n\0065\a\v\0009\b\4\0=\b\6\a9\b\a\0=\b\b\a=\a\f\0065\a\r\0009\b\4\0=\b\6\a9\b\a\0=\b\b\a=\a\14\6=\6\16\5=\5\18\4=\4\20\3B\1\2\1K\0\1\0\foptions\1\0\0\ntheme\1\0\0\vnormal\1\0\0\6c\1\0\0\6b\1\0\0\6a\1\0\0\abg\nblack\afg\1\0\0\nwhite\nsetup\flualine\frequire\1\0\3\tgrey\f#444444\nwhite\f#FFFFFF\nblack\f#000000\0" },
+    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0" },
     loaded = true,
     path = "/home/aqez/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
@@ -128,11 +128,23 @@ _G.packer_plugins = {
     path = "/home/aqez/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["neodev.nvim"] = {
+    config = { "\27LJ\2\nu\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\4\0005\4\3\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\flibrary\1\0\0\fplugins\1\0\1\ntypes\2\1\2\0\0\16nvim-dap-ui\nsetup\vneodev\frequire\0" },
+    loaded = true,
+    path = "/home/aqez/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
+  },
   neogit = {
     config = { "\27LJ\2\n8\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\vneogit\frequire\0" },
     loaded = true,
     path = "/home/aqez/.local/share/nvim/site/pack/packer/start/neogit",
     url = "https://github.com/TimUntersberger/neogit"
+  },
+  ["nord.nvim"] = {
+    config = { "\27LJ\2\n{\0\0\3\0\a\0\0146\0\0\0009\0\1\0+\1\2\0=\1\2\0006\0\0\0009\0\1\0+\1\2\0=\1\3\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0B\0\1\1K\0\1\0\bset\tnord\frequire\17nord_borders\28nord_disable_background\6g\bvim\0" },
+    loaded = true,
+    path = "/home/aqez/.local/share/nvim/site/pack/packer/start/nord.nvim",
+    url = "https://github.com/shaunsingh/nord.nvim"
   },
   ["nui.nvim"] = {
     loaded = true,
@@ -144,6 +156,18 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/aqez/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-dap"] = {
+    config = { "\27LJ\2\n\2\0\0\4\0\v\0\0166\0\0\0'\2\1\0B\0\2\0029\1\2\0005\2\4\0005\3\5\0=\3\6\2=\2\3\0019\1\a\0004\2\3\0005\3\t\0>\3\1\0025\3\n\0>\3\2\2=\2\b\1K\0\1\0\1\0\4\ttype\fcoreclr\fprogram\24${command:pickFile}\tname\19Launch program\frequest\vlaunch\1\0\4\ttype\fcoreclr\14processId\27${command:pickProcess}\tname\29Attach to dotnet process\frequest\vattach\acs\19configurations\targs\1\2\0\0\25--interpreter=vscode\1\0\2\ttype\15executable\fcommand\24/usr/bin/netcoredbg\fcoreclr\radapters\bdap\frequire\0" },
+    loaded = true,
+    path = "/home/aqez/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-ui"] = {
+    config = { "\27LJ\2\n3\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\ndapui\frequire\0" },
+    loaded = true,
+    path = "/home/aqez/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/rcarriga/nvim-dap-ui"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -157,7 +181,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    config = { "\27LJ\2\nº\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0005\4\4\0=\4\5\0035\4\6\0=\4\a\3B\1\2\1K\0\1\0\frainbow\1\0\1\venable\2\14highlight\1\0\2&additional_vim_regex_highlighting\2\venable\2\1\0\1\21ensure_installed\ball\nsetup\28nvim-treesitter.configs\frequire\0" },
+    config = { "\27LJ\2\nº\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0005\4\4\0=\4\5\0035\4\6\0=\4\a\3B\1\2\1K\0\1\0\frainbow\1\0\1\venable\2\14highlight\1\0\2\venable\2&additional_vim_regex_highlighting\2\1\0\1\21ensure_installed\ball\nsetup\28nvim-treesitter.configs\frequire\0" },
     loaded = true,
     path = "/home/aqez/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
@@ -203,13 +227,13 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope-ui-select.nvim"
   },
   ["telescope.nvim"] = {
-    config = { "\27LJ\2\nÿ\4\0\0\14\0\"\0;6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\25\0006\4\3\0009\4\4\4'\6\5\0006\a\0\0'\t\6\0B\a\2\0029\a\a\aB\a\1\0025\b\n\0006\t\0\0'\v\b\0B\t\2\0029\t\t\t=\t\v\b5\t\18\0005\n\14\0006\v\0\0'\r\f\0B\v\2\0029\v\r\v=\v\15\n6\v\0\0'\r\f\0B\v\2\0029\v\16\v=\v\17\n=\n\19\t5\n\21\0006\v\0\0'\r\f\0B\v\2\0029\v\20\v=\v\22\n=\n\23\t=\t\24\bB\4\4\2=\4\26\0035\4\28\0005\5\27\0=\5\29\0044\5\0\0=\5\30\4=\4\31\3B\1\2\0019\1 \0'\3\29\0B\1\2\0019\1 \0'\3\30\0B\1\2\0019\1 \0'\3!\0B\1\2\1K\0\1\0\15smart_open\19load_extension\15extensions\14ui-select\15fzy_native\1\0\0\1\0\2\25override_file_sorter\2\28override_generic_sorter\1\rdefaults\1\0\0\rmappings\6n\n<C-d>\1\0\0\18delete_buffer\6i\1\0\0\n<C-j>\24move_selection_next\n<C-k>\1\0\0\28move_selection_previous\22telescope.actions\16file_sorter\1\0\0\19get_fzy_sorter\22telescope.sorters\fget_ivy\21telescope.themes\nforce\15tbl_extend\bvim\nsetup\14telescope\frequire\0" },
+    config = { "\27LJ\2\nÿ\4\0\0\14\0\"\0;6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\25\0006\4\3\0009\4\4\4'\6\5\0006\a\0\0'\t\6\0B\a\2\0029\a\a\aB\a\1\0025\b\n\0006\t\0\0'\v\b\0B\t\2\0029\t\t\t=\t\v\b5\t\18\0005\n\14\0006\v\0\0'\r\f\0B\v\2\0029\v\r\v=\v\15\n6\v\0\0'\r\f\0B\v\2\0029\v\16\v=\v\17\n=\n\19\t5\n\21\0006\v\0\0'\r\f\0B\v\2\0029\v\20\v=\v\22\n=\n\23\t=\t\24\bB\4\4\2=\4\26\0035\4\28\0005\5\27\0=\5\29\0044\5\0\0=\5\30\4=\4\31\3B\1\2\0019\1 \0'\3\29\0B\1\2\0019\1 \0'\3\30\0B\1\2\0019\1 \0'\3!\0B\1\2\1K\0\1\0\15smart_open\19load_extension\15extensions\14ui-select\15fzy_native\1\0\0\1\0\2\28override_generic_sorter\1\25override_file_sorter\2\rdefaults\1\0\0\rmappings\6n\n<C-d>\1\0\0\18delete_buffer\6i\1\0\0\n<C-j>\24move_selection_next\n<C-k>\1\0\0\28move_selection_previous\22telescope.actions\16file_sorter\1\0\0\19get_fzy_sorter\22telescope.sorters\fget_ivy\21telescope.themes\nforce\15tbl_extend\bvim\nsetup\14telescope\frequire\0" },
     loaded = true,
     path = "/home/aqez/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["vim-colors-off"] = {
-    config = { "\27LJ\2\nL\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0-            colorscheme off\n            \bcmd\bvim\0" },
+    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
     loaded = true,
     path = "/home/aqez/.local/share/nvim/site/pack/packer/start/vim-colors-off",
     url = "https://github.com/pbrisbin/vim-colors-off"
@@ -248,30 +272,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\1\2\0B\1\1\1K\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\nÿ\4\0\0\14\0\"\0;6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\25\0006\4\3\0009\4\4\4'\6\5\0006\a\0\0'\t\6\0B\a\2\0029\a\a\aB\a\1\0025\b\n\0006\t\0\0'\v\b\0B\t\2\0029\t\t\t=\t\v\b5\t\18\0005\n\14\0006\v\0\0'\r\f\0B\v\2\0029\v\r\v=\v\15\n6\v\0\0'\r\f\0B\v\2\0029\v\16\v=\v\17\n=\n\19\t5\n\21\0006\v\0\0'\r\f\0B\v\2\0029\v\20\v=\v\22\n=\n\23\t=\t\24\bB\4\4\2=\4\26\0035\4\28\0005\5\27\0=\5\29\0044\5\0\0=\5\30\4=\4\31\3B\1\2\0019\1 \0'\3\29\0B\1\2\0019\1 \0'\3\30\0B\1\2\0019\1 \0'\3!\0B\1\2\1K\0\1\0\15smart_open\19load_extension\15extensions\14ui-select\15fzy_native\1\0\0\1\0\2\25override_file_sorter\2\28override_generic_sorter\1\rdefaults\1\0\0\rmappings\6n\n<C-d>\1\0\0\18delete_buffer\6i\1\0\0\n<C-j>\24move_selection_next\n<C-k>\1\0\0\28move_selection_previous\22telescope.actions\16file_sorter\1\0\0\19get_fzy_sorter\22telescope.sorters\fget_ivy\21telescope.themes\nforce\15tbl_extend\bvim\nsetup\14telescope\frequire\0", "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
--- Config for: ChatGPT.nvim
-time([[Config for ChatGPT.nvim]], true)
-try_loadstring("\27LJ\2\n…\2\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\23openai_edit_params\1\0\4\ntop_p\3\1\16temperature\4≥ÊÃô\3≥ÊÃ˛\3\nmodel\26code-davinci-edit-001\6n\3\1\18openai_params\1\0\a\ntop_p\3\1\16temperature\3\0\15max_tokens\3¨\2\21presence_penalty\3\0\22frequency_penalty\3\0\6n\3\1\nmodel\22gpt-3.5-turbo-16k\1\0\1\16api_key_cmd(cat /home/aqez/.config/openai.token\nsetup\fchatgpt\frequire\0", "config", "ChatGPT.nvim")
-time([[Config for ChatGPT.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\nº\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0005\4\4\0=\4\5\0035\4\6\0=\4\a\3B\1\2\1K\0\1\0\frainbow\1\0\1\venable\2\14highlight\1\0\2&additional_vim_regex_highlighting\2\venable\2\1\0\1\21ensure_installed\ball\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: neogit
-time([[Config for neogit]], true)
-try_loadstring("\27LJ\2\n8\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\vneogit\frequire\0", "config", "neogit")
-time([[Config for neogit]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\nã\2\0\0\t\0\21\0 5\0\0\0006\1\1\0'\3\2\0B\1\2\0029\1\3\0015\3\19\0005\4\17\0005\5\15\0005\6\t\0005\a\5\0009\b\4\0=\b\6\a9\b\a\0=\b\b\a=\a\n\0065\a\v\0009\b\4\0=\b\6\a9\b\a\0=\b\b\a=\a\f\0065\a\r\0009\b\4\0=\b\6\a9\b\a\0=\b\b\a=\a\14\6=\6\16\5=\5\18\4=\4\20\3B\1\2\1K\0\1\0\foptions\1\0\0\ntheme\1\0\0\vnormal\1\0\0\6c\1\0\0\6b\1\0\0\6a\1\0\0\abg\nblack\afg\1\0\0\nwhite\nsetup\flualine\frequire\1\0\3\tgrey\f#444444\nwhite\f#FFFFFF\nblack\f#000000\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 try_loadstring("\27LJ\2\n;\0\1\4\0\4\0\0066\1\0\0009\1\1\0019\1\2\0019\3\3\0B\1\2\1K\0\1\0\tbody\20vsnip#anonymous\afn\bvimR\0\1\3\1\2\0\f-\1\0\0009\1\0\1B\1\1\2\15\0\1\0X\2\4Ä-\1\0\0009\1\1\1B\1\1\1X\1\2Ä\18\1\0\0B\1\1\1K\0\1\0\0¿\21select_next_item\fvisibleF\0\0\2\1\2\0\t-\0\0\0009\0\0\0B\0\1\2\15\0\0\0X\1\3Ä-\0\0\0009\0\1\0B\0\1\1K\0\1\0\0¿\21select_prev_item\fvisibleë\3\1\0\n\0\26\0.6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\6\0005\4\4\0003\5\3\0=\5\5\4=\4\a\0039\4\b\0009\4\t\4=\4\n\0035\4\14\0009\5\v\0009\a\v\0009\a\f\a)\t¸ˇB\a\2\0025\b\r\0B\5\3\2=\5\15\0049\5\v\0003\a\16\0B\5\2\2=\5\17\0049\5\v\0003\a\18\0B\5\2\2=\5\19\4=\4\v\0034\4\4\0005\5\20\0>\5\1\0045\5\21\0>\5\2\0045\5\22\0>\5\3\4=\4\23\3B\1\2\0016\1\0\0'\3\24\0B\1\2\0029\1\25\1B\1\1\0012\0\0ÄK\0\1\0\25default_capabilities\17cmp_nvim_lsp\fsources\1\0\1\tname\vbuffer\1\0\1\tname\nvsnip\1\0\1\tname\rnvim_lsp\f<S-Tab>\0\n<Tab>\0\n<C-j>\1\0\0\1\3\0\0\6i\6c\16scroll_docs\fmapping\14preselect\tNone\18PreselectMode\fsnippet\1\0\0\vexpand\1\0\0\0\nsetup\bcmp\frequire\0", "config", "nvim-cmp")
@@ -280,17 +280,57 @@ time([[Config for nvim-cmp]], false)
 time([[Config for mason.nvim]], true)
 try_loadstring("\27LJ\2\n?\0\1\4\0\3\0\b6\1\0\0'\3\1\0B\1\2\0028\1\0\0019\1\2\0014\3\0\0B\1\2\1K\0\1\0\nsetup\14lspconfig\frequireB\0\1\3\0\2\0\0049\1\0\0+\2\0\0=\2\1\1K\0\1\0\27semanticTokensProvider\24server_capabilities_\1\0\4\0\a\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0009\0\3\0005\2\5\0003\3\4\0=\3\6\2B\0\2\1K\0\1\0\14on_attach\1\0\0\0\nsetup\14omnisharp\14lspconfig\frequireõ\1\0\0\a\0\r\0\0166\0\0\0'\2\1\0B\0\2\0029\0\2\0009\0\3\0005\2\v\0005\3\t\0005\4\a\0005\5\5\0005\6\4\0=\6\6\5=\5\b\4=\4\n\3=\3\f\2B\0\2\1K\0\1\0\rsettings\1\0\0\bLua\1\0\0\16diagnostics\1\0\0\fglobals\1\0\0\1\2\0\0\bvim\nsetup\vlua_ls\14lspconfig\frequireÃ\1\1\0\4\0\f\0\0246\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0005\2\4\0B\0\2\0016\0\0\0'\2\3\0B\0\2\0029\0\5\0005\2\b\0003\3\6\0>\3\1\0023\3\a\0=\3\t\0023\3\n\0=\3\v\2B\0\2\1K\0\1\0\vlua_ls\0\14omnisharp\1\0\0\0\0\19setup_handlers\1\0\1\27automatic_installation\2\20mason-lspconfig\nsetup\nmason\frequire\0", "config", "mason.nvim")
 time([[Config for mason.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\nº\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0005\4\4\0=\4\5\0035\4\6\0=\4\a\3B\1\2\1K\0\1\0\frainbow\1\0\1\venable\2\14highlight\1\0\2\venable\2&additional_vim_regex_highlighting\2\1\0\1\21ensure_installed\ball\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
 -- Config for: leap.nvim
 time([[Config for leap.nvim]], true)
 try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\25add_default_mappings\tleap\frequire\0", "config", "leap.nvim")
 time([[Config for leap.nvim]], false)
+-- Config for: nvim-dap
+time([[Config for nvim-dap]], true)
+try_loadstring("\27LJ\2\n\2\0\0\4\0\v\0\0166\0\0\0'\2\1\0B\0\2\0029\1\2\0005\2\4\0005\3\5\0=\3\6\2=\2\3\0019\1\a\0004\2\3\0005\3\t\0>\3\1\0025\3\n\0>\3\2\2=\2\b\1K\0\1\0\1\0\4\ttype\fcoreclr\fprogram\24${command:pickFile}\tname\19Launch program\frequest\vlaunch\1\0\4\ttype\fcoreclr\14processId\27${command:pickProcess}\tname\29Attach to dotnet process\frequest\vattach\acs\19configurations\targs\1\2\0\0\25--interpreter=vscode\1\0\2\ttype\15executable\fcommand\24/usr/bin/netcoredbg\fcoreclr\radapters\bdap\frequire\0", "config", "nvim-dap")
+time([[Config for nvim-dap]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\1\2\0B\1\1\1K\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\2\nÿ\4\0\0\14\0\"\0;6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\25\0006\4\3\0009\4\4\4'\6\5\0006\a\0\0'\t\6\0B\a\2\0029\a\a\aB\a\1\0025\b\n\0006\t\0\0'\v\b\0B\t\2\0029\t\t\t=\t\v\b5\t\18\0005\n\14\0006\v\0\0'\r\f\0B\v\2\0029\v\r\v=\v\15\n6\v\0\0'\r\f\0B\v\2\0029\v\16\v=\v\17\n=\n\19\t5\n\21\0006\v\0\0'\r\f\0B\v\2\0029\v\20\v=\v\22\n=\n\23\t=\t\24\bB\4\4\2=\4\26\0035\4\28\0005\5\27\0=\5\29\0044\5\0\0=\5\30\4=\4\31\3B\1\2\0019\1 \0'\3\29\0B\1\2\0019\1 \0'\3\30\0B\1\2\0019\1 \0'\3!\0B\1\2\1K\0\1\0\15smart_open\19load_extension\15extensions\14ui-select\15fzy_native\1\0\0\1\0\2\28override_generic_sorter\1\25override_file_sorter\2\rdefaults\1\0\0\rmappings\6n\n<C-d>\1\0\0\18delete_buffer\6i\1\0\0\n<C-j>\24move_selection_next\n<C-k>\1\0\0\28move_selection_previous\22telescope.actions\16file_sorter\1\0\0\19get_fzy_sorter\22telescope.sorters\fget_ivy\21telescope.themes\nforce\15tbl_extend\bvim\nsetup\14telescope\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: neogit
+time([[Config for neogit]], true)
+try_loadstring("\27LJ\2\n8\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\vneogit\frequire\0", "config", "neogit")
+time([[Config for neogit]], false)
+-- Config for: nord.nvim
+time([[Config for nord.nvim]], true)
+try_loadstring("\27LJ\2\n{\0\0\3\0\a\0\0146\0\0\0009\0\1\0+\1\2\0=\1\2\0006\0\0\0009\0\1\0+\1\2\0=\1\3\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0B\0\1\1K\0\1\0\bset\tnord\frequire\17nord_borders\28nord_disable_background\6g\bvim\0", "config", "nord.nvim")
+time([[Config for nord.nvim]], false)
+-- Config for: nvim-dap-ui
+time([[Config for nvim-dap-ui]], true)
+try_loadstring("\27LJ\2\n3\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\ndapui\frequire\0", "config", "nvim-dap-ui")
+time([[Config for nvim-dap-ui]], false)
+-- Config for: neodev.nvim
+time([[Config for neodev.nvim]], true)
+try_loadstring("\27LJ\2\nu\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\4\0005\4\3\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\flibrary\1\0\0\fplugins\1\0\1\ntypes\2\1\2\0\0\16nvim-dap-ui\nsetup\vneodev\frequire\0", "config", "neodev.nvim")
+time([[Config for neodev.nvim]], false)
+-- Config for: ChatGPT.nvim
+time([[Config for ChatGPT.nvim]], true)
+try_loadstring("\27LJ\2\n…\2\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\23openai_edit_params\1\0\4\16temperature\4≥ÊÃô\3≥ÊÃ˛\3\nmodel\26code-davinci-edit-001\6n\3\1\ntop_p\3\1\18openai_params\1\0\a\6n\3\1\nmodel\22gpt-3.5-turbo-16k\ntop_p\3\1\16temperature\3\0\15max_tokens\3¨\2\21presence_penalty\3\0\22frequency_penalty\3\0\1\0\1\16api_key_cmd(cat /home/aqez/.config/openai.token\nsetup\fchatgpt\frequire\0", "config", "ChatGPT.nvim")
+time([[Config for ChatGPT.nvim]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
 time([[Config for which-key.nvim]], false)
 -- Config for: vim-colors-off
 time([[Config for vim-colors-off]], true)
-try_loadstring("\27LJ\2\nL\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0-            colorscheme off\n            \bcmd\bvim\0", "config", "vim-colors-off")
+try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "vim-colors-off")
 time([[Config for vim-colors-off]], false)
 
 _G._packer.inside_compile = false

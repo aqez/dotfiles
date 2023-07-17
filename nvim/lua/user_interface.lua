@@ -19,7 +19,16 @@ vim.opt.laststatus = 2
 vim.opt.scrolloff = 5
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
-vim.opt.background = "light"
+--vim.opt.background = "light"
+
+local _border = "single"
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = _border
+  }
+)
+
 
 -- Text/Indent
 vim.opt.expandtab = true

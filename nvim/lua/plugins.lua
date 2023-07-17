@@ -19,22 +19,23 @@ require("packer").startup(function(use)
         "nvim-lualine/lualine.nvim",
         requires = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            local colors = {
-                black = "#000000",
-                white = "#FFFFFF",
-                grey = "#444444",
-            }
-            require('lualine').setup({
-                options = {
-                    theme = {
-                        normal = {
-                            a = { fg = colors.white, bg = colors.black },
-                            b = { fg = colors.white, bg = colors.black },
-                            c = { fg = colors.white, bg = colors.black },
-                        },
-                    }
-                }
-            })
+            require("lualine").setup()
+            --local colors = {
+            --    black = "#000000",
+            --    white = "#FFFFFF",
+            --    grey = "#444444",
+            --}
+            --require('lualine').setup({
+            --    options = {
+            --        theme = {
+            --            normal = {
+            --                a = { fg = colors.white, bg = colors.black },
+            --                b = { fg = colors.white, bg = colors.black },
+            --                c = { fg = colors.white, bg = colors.black },
+            --            },
+            --        }
+            --    }
+            --})
         end
     }
 
@@ -198,14 +199,14 @@ require("packer").startup(function(use)
 
     use "rust-lang/rust.vim"
 
-    --use {
-    --    "shaunsingh/nord.nvim",
-    --    config = function()
-    --        vim.g.nord_disable_background = true
-    --        vim.g.nord_borders = true
-    --        require('nord').set();
-    --    end
-    --}
+    use {
+        "shaunsingh/nord.nvim",
+        config = function()
+            vim.g.nord_disable_background = true
+            vim.g.nord_borders = true
+            require('nord').set();
+        end
+    }
 
     use "github/copilot.vim"
 
@@ -274,9 +275,57 @@ require("packer").startup(function(use)
     use {
         "pbrisbin/vim-colors-off",
         config = function()
-            vim.cmd [[
-            colorscheme off
-            ]]
+            -- vim.cmd [[ colorscheme off ]]
+        end
+    }
+
+    use {
+        'mfussenegger/nvim-dap',
+        config = function()
+            local dap = require('dap')
+
+            dap.adapters.coreclr = {
+                type = "executable",
+                command = "/usr/bin/netcoredbg",
+                args = { "--interpreter=vscode" }
+            }
+
+            dap.configurations.cs = {
+                {
+                    type = "coreclr",
+                    name = "Attach to dotnet process",
+                    request = "attach",
+                    processId = "${command:pickProcess}"
+                },
+                {
+                    type = "coreclr",
+                    name = "Launch program",
+                    request = "launch",
+                    program = "${command:pickFile}"
+                }
+            }
+        end
+    }
+
+    use {
+        "rcarriga/nvim-dap-ui",
+        requires = {"mfussenegger/nvim-dap"},
+        config = function()
+            require("dapui").setup()
+        end
+    }
+
+    use {
+        "folke/neodev.nvim",
+        config = function()
+            require("neodev").setup({
+                library = {
+                    plugins = {
+                        "nvim-dap-ui"
+                    },
+                    types = true
+                }
+            })
         end
     }
 

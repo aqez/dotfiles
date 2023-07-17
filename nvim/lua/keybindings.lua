@@ -7,7 +7,8 @@ local wk = require("which-key")
 
 local telescope = require("telescope");
 local builtin = require("telescope.builtin")
-
+local dap = require("dap")
+local dapui = require("dapui")
 
 wk.register({
     ["<leader>"] = {
@@ -54,6 +55,8 @@ wk.register({
             d = { vim.diagnostic.open_float, "Show line diagnostic in floating window" },
             n = { vim.diagnostic.goto_next, "Go to next diagnostic" },
             p = { vim.diagnostic.goto_prev, "Go to previous diagnostic" },
+            r = { dap.repl.open, "Open debugging REPL" },
+            t = { dapui.toggle, "Toggle debugging UI" },
         },
         ["rg"] = { ":Telescope live_grep<CR>", "Live grep" }
     },
@@ -68,6 +71,11 @@ wk.register({
     },
     K = { vim.lsp.buf.hover, "Show hover" },
     ["<C-b>"] = { ":make<CR>", "Build" },
+    ["<F9>"] = { dap.toggle_breakpoint, "Toggle breakpoint" },
+    ["<F5>"] = { dap.continue, "Continue debugging" },
+    ["<F10>"] = { dap.step_over, "Step over" },
+    ["<F11>"] = { dap.step_into, "Step into" },
+    ["<F12>"] = { dap.step_out, "Step out" }
 })
 
 wk.register({
