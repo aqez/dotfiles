@@ -166,6 +166,27 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+
+local gc_info_widget = awful.widget.watch(
+    "echo yo",
+    1,
+    function(widget)
+        local i = collectgarbage("count")
+        local suffixes = {"B", "KiB", "MiB", "GiB"}
+        local suffix = 1
+
+        for _, _ in ipairs(suffixes) do
+            if i < 1024 then
+                break
+            end
+            i = i / 1024
+            suffix = suffix + 1
+        end
+
+        widget:set_text(string.format("GC: %.2f %s", i, suffixes[suffix]))
+    end
+)
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -228,11 +249,13 @@ awful.screen.connect_for_each_screen(function(s)
                 },
                 widget_font = "FiraCode Nerd Font 14",
             }),
-            wibox.widget.textbox("   |   mem"),
-            ram_widget(),
-            wibox.widget.textbox("   |   "),
+            wibox.widget.textbox("  |  mem"),
+            ram_widget({ widget_show_buf = true, color_free = "#FFFFFF", color_used = "#FF0000", color_buf = "#777777" }),
+            wibox.widget.textbox("  |  "),
+            gc_info_widget,
+            wibox.widget.textbox("  |  "),
             volume_widget({ widget_type = 'arc' }),
-            wibox.widget.textbox("   |   "),
+            wibox.widget.textbox("  |  "),
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox
