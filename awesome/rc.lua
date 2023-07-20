@@ -225,6 +225,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
     local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+    local battery_widget = require("battery-widget")
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -239,7 +240,7 @@ awful.screen.connect_for_each_screen(function(s)
         },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            require("battery-widget")({
+            battery_widget({
                 adapter = "BAT0",
                 battery_prefix = {
                     { 25, "  " },
