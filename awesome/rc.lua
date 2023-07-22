@@ -592,11 +592,3 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 awful.spawn.with_shell("/home/aqez/repos/dotfiles/bin/startup.sh")
-
-collectgarbage("setpause", 160)
-collectgarbage("setstepmul", 400)
-
-gears.timer.start_new(10, function()
-    collectgarbage("step", 20000)
-    return true
-end)

@@ -109,6 +109,7 @@ require("packer").startup(function(use)
     }
 
     use "neovim/nvim-lspconfig"
+    use "Issafalcon/lsp-overloads.nvim"
 
     use {
         "williamboman/mason.nvim",
@@ -125,13 +126,20 @@ require("packer").startup(function(use)
 
             require("mason-lspconfig").setup_handlers {
                 function(server_name)
-                    require("lspconfig")[server_name].setup {}
+                    require("lspconfig")[server_name].setup {
+                        on_attach = function(client)
+                            if client.server_capabilities.signatureHelpProvider then
+                                require('lsp-overloads').setup(client, { })
+                            end
+                        end
+                    }
                 end,
 
                 ["omnisharp"] = function()
                     require("lspconfig")["omnisharp"].setup {
                         on_attach = function(client)
-                            client.server_capabilities.semanticTokensProvider = nil
+                            client.server_capabilities.semanticTokensProvider = false
+                            require('lsp-overloads').setup(client, { })
                         end
                     }
                 end,
@@ -144,7 +152,10 @@ require("packer").startup(function(use)
                                     globals = { "vim" }
                                 }
                             }
-                        }
+                        },
+                        on_attach = function(client)
+                            require('lsp-overloads').setup(client, { })
+                        end
                     }
                 end
             }
