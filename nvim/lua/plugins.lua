@@ -123,13 +123,12 @@ require("packer").startup(function(use)
                 automatic_installation = true
             })
 
-
             require("mason-lspconfig").setup_handlers {
                 function(server_name)
                     require("lspconfig")[server_name].setup {
                         on_attach = function(client)
                             if client.server_capabilities.signatureHelpProvider then
-                                require('lsp-overloads').setup(client, { })
+                                require('lsp-overloads').setup(client, {})
                             end
                         end
                     }
@@ -139,7 +138,7 @@ require("packer").startup(function(use)
                     require("lspconfig")["omnisharp"].setup {
                         on_attach = function(client)
                             client.server_capabilities.semanticTokensProvider = false
-                            require('lsp-overloads').setup(client, { })
+                            require('lsp-overloads').setup(client, {})
                         end
                     }
                 end,
@@ -154,7 +153,7 @@ require("packer").startup(function(use)
                             }
                         },
                         on_attach = function(client)
-                            require('lsp-overloads').setup(client, { })
+                            require('lsp-overloads').setup(client, {})
                         end
                     }
                 end
@@ -166,13 +165,14 @@ require("packer").startup(function(use)
         "L3MON4D3/LuaSnip",
         tag = "v2.*",
         run = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
         config = function()
             local luasnip = require("luasnip")
             luasnip.config.set_config({
                 history = true,
                 updateevents = "TextChanged,TextChangedI"
             })
-            require("luasnip/loaders/from_vscode").load()
+            require("luasnip.loaders.from_vscode").lazy_load()
         end
     }
 
@@ -219,7 +219,7 @@ require("packer").startup(function(use)
             })
 
             --local capabilities = vim.lsp.protocol.make_client_capabilities()
-            require('cmp_nvim_lsp').default_capabilities()
+            --require('cmp_nvim_lsp').default_capabilities()
         end
     }
 

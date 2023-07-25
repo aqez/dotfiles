@@ -1,18 +1,11 @@
-
 local ls = require("luasnip")
-
 local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 local i  = ls.insert_node
 local t = ls.text_node
 local f = ls.function_node
 local c = ls.choice_node
-
 local sn = ls.snippet_node
-
-local copy = function(args)
-    return args[1]
-end
 
 ls.add_snippets("cs", {
     ls.snippet("cls", fmt(
