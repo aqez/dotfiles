@@ -17,7 +17,7 @@ wk.register({
         k = { "<C-w>k", "Move to top window" },
         l = { "<C-w>l", "Move to right window" },
         H = { ":Telescope help_tags<CR>", "Search help tags" },
-        ["<space>"] = { function () telescope.extensions.smart_open.smart_open({ cwd_only = true}) end, "Smart open" },
+        ["<space>"] = { function() telescope.extensions.smart_open.smart_open({ cwd_only = true }) end, "Smart open" },
         t = { ":NvimTreeFindFileToggle<CR>", "Toggle file tree" },
         b = {
             name = "Buffers",
@@ -58,6 +58,10 @@ wk.register({
             r = { dap.repl.open, "Open debugging REPL" },
             t = { dapui.toggle, "Toggle debugging UI" },
         },
+        s = {
+            name = "Snippets",
+            r = { ":source ~/.config/nvim/lua/snippets.lua<CR>", "Reload snippets" },
+        },
         ["rg"] = { ":Telescope live_grep<CR>", "Live grep" }
     },
     -- Quick fix
@@ -86,6 +90,35 @@ wk.register({
         }
     }
 }, { mode = "v" })
+
+local ls = require("luasnip")
+wk.register({
+    ["<C-k>"] = {
+        function()
+            if ls.expand_or_jumpable() then
+                ls.expand_or_jump()
+            end
+        end,
+        "Expand snipet"
+    },
+    ["<C-j>"] = {
+        function()
+            if ls.jumpable(-1) then
+                ls.jump(-1)
+            end
+        end,
+        "Jump to previous snippet"
+    },
+    ["<C-l>"] = {
+        function()
+            if ls.choice_active() then
+                ls.change_choice(1)
+            end
+        end, "Toggle snippet choice"
+    }
+
+}, { mode = { "i", "s" } })
+
 
 
 vim.cmd [[imap <silent><script><expr> <C-q> copilot#Accept('')]]

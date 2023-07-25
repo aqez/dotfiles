@@ -163,9 +163,23 @@ require("packer").startup(function(use)
     }
 
     use {
+        "L3MON4D3/LuaSnip",
+        tag = "v2.*",
+        run = "make install_jsregexp",
+        config = function()
+            local luasnip = require("luasnip")
+            luasnip.config.set_config({
+                history = true,
+                updateevents = "TextChanged,TextChangedI"
+            })
+            require("luasnip/loaders/from_vscode").load()
+        end
+    }
+
+    use {
         "hrsh7th/nvim-cmp",
         requires = {
-            "hrsh7th/vim-vsnip",
+            "saadparwaiz1/cmp_luasnip",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
@@ -175,12 +189,13 @@ require("packer").startup(function(use)
             cmp.setup({
                 snippet = {
                     expand = function(args)
-                        vim.fn["vsnip#anonymous"](args.body)
+                        require('luasnip').lsp_expand(args.body)
                     end,
                 },
                 preselect = cmp.PreselectMode.None,
                 mapping = {
                     ['<C-j>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+                    ['<C-k>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
                     ['<Tab>'] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
@@ -192,11 +207,13 @@ require("packer").startup(function(use)
                         if cmp.visible() then
                             cmp.select_prev_item()
                         end
-                    end)
+                    end),
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+
                 },
                 sources = {
                     { name = "nvim_lsp" },
-                    { name = "vsnip" },
+                    { name = "luasnip" },
                     { name = "buffer" }
                 }
             })
@@ -206,16 +223,26 @@ require("packer").startup(function(use)
         end
     }
 
+
     use "vim-test/vim-test"
 
     use "rust-lang/rust.vim"
 
+    use { "catppuccin/nvim", as = "catppuccin" }
+    use {
+        "sonph/onehalf",
+        rtp = "vim",
+        config = function()
+            vim.cmd [[colorscheme onehalflight]]
+        end
+    }
+
     use {
         "shaunsingh/nord.nvim",
         config = function()
-            vim.g.nord_disable_background = true
-            vim.g.nord_borders = true
-            require('nord').set();
+            --vim.g.nord_disable_background = true
+            --vim.g.nord_borders = true
+            --require('nord').set();
         end
     }
 
@@ -320,7 +347,7 @@ require("packer").startup(function(use)
 
     use {
         "rcarriga/nvim-dap-ui",
-        requires = {"mfussenegger/nvim-dap"},
+        requires = { "mfussenegger/nvim-dap" },
         config = function()
             require("dapui").setup()
         end
