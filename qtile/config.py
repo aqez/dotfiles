@@ -24,10 +24,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+import subprocess
+import os
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -48,16 +50,16 @@ keys = [
         desc="Move window to the left"),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right(),
         desc="Move window to the right"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move down"),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move up"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "h", lazy.layout.grow_left(),
         desc="Grow window to the left"),
     Key([mod, "control"], "l", lazy.layout.grow_right(),
         desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow down"),
+    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -87,21 +89,15 @@ groups = [Group(i) for i in "123456789"]
 for i in groups:
     keys.extend(
         [
-            # mod1 + letter of group = switch to group
-            Key(
-                [mod],
+            Key([mod],
                 i.name,
                 lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
-            ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
+                desc="Switch to group {}".format(i.name)),
+            Key([mod, "shift"],
                 i.name,
                 lazy.window.togroup(i.name, switch_group=False),
-                desc="Switch to & move focused window to group {}".format(
-                    i.name),
-            ),
+                desc="Switch to & move focused window to group {}"
+                    .format(i.name)),
             # Or, use below if you prefer not to switch to that group.
             # # mod1 + shift + letter of group = move focused window to group
             # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
@@ -110,8 +106,11 @@ for i in groups:
     )
 
 layouts = [
-    layout.MonadTall(margin=20, new_client_position="top",
-                     border_focus="#000000", border_width=1),
+    layout.MonadTall(
+        margin=20,
+        new_client_position="top",
+        border_focus="#000000",
+        border_width=1),
 ]
 
 widget_defaults = dict(
@@ -128,8 +127,11 @@ screens = [
         wallpaper="/home/aqez/Pictures/backgrounds/background.png",
         top=bar.Bar(
             [
-                widget.GroupBox(fontsize=20, highlight_method="line",
-                                inactive="#aaaaaa", highlight_color=highlight_color),
+                widget.GroupBox(
+                    fontsize=20,
+                    highlight_method="line",
+                    inactive="#aaaaaa",
+                    highlight_color=highlight_color),
                 widget.Prompt(fontsize=20),
                 # widget.WindowName(),
                 widget.Spacer(),
@@ -140,7 +142,8 @@ screens = [
                 widget.Battery(fontsize=20),
                 widget.Spacer(length=20),
 
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+                # NB Systray is incompatible with Wayland, consider
+                # using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
@@ -149,7 +152,8 @@ screens = [
             34,
             background="#3b4252",
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]
+            # Borders are magenta
         ),
     ),
 ]
@@ -170,7 +174,8 @@ bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
+        # Run the utility of `xprop` to see the wm class
+        # and name of an X client.
         *layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
@@ -194,4 +199,8 @@ wl_input_rules = None
 
 wmname = "LG3D"
 
-lazy.spawn("xset r rate 170 100")
+
+@hook.subscribe.startup
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call([home])

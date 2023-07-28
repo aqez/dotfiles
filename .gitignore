@@ -1,2 +1,5 @@
 lazygit/state.yml
 .luarc.json
+
+# pycache
+__pycache__/

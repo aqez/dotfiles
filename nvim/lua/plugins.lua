@@ -233,7 +233,7 @@ require("packer").startup(function(use)
         "sonph/onehalf",
         rtp = "vim",
         config = function()
-            vim.cmd [[colorscheme onehalflight]]
+            -- vim.cmd [[colorscheme onehalflight]]
         end
     }
 
@@ -242,7 +242,7 @@ require("packer").startup(function(use)
         config = function()
             --vim.g.nord_disable_background = true
             --vim.g.nord_borders = true
-            --require('nord').set();
+            require('nord').set();
         end
     }
 
@@ -373,6 +373,7 @@ require("packer").startup(function(use)
 end)
 
 local packer_auto_compile = vim.api.nvim_create_augroup("packer_auto_compile", { clear = true })
+
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*/nvim/lua/plugins.lua",
     command = [[source <afile> | PackerCompile]],
