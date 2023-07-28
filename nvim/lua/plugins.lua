@@ -240,8 +240,8 @@ require("packer").startup(function(use)
     use {
         "shaunsingh/nord.nvim",
         config = function()
-            --vim.g.nord_disable_background = true
-            --vim.g.nord_borders = true
+            vim.g.nord_disable_background = true
+            vim.g.nord_borders = true
             require('nord').set();
         end
     }
