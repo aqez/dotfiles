@@ -87,7 +87,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawn("rofi -show drun"),
         desc="Spawn a command using a prompt widget"),
-
+    Key([mod], "print", lazy.spawn("flameshot gui")),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
 ]
 
