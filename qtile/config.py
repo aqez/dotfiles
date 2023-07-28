@@ -146,7 +146,7 @@ screens = [
                 # using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p", fontsize=20),
                 # widget.QuickExit(),
             ],
             34,
