@@ -34,6 +34,13 @@ import os
 mod = "mod4"
 terminal = guess_terminal()
 
+nord = {
+    "darkest": "#2e3440",
+    "dark": "#3b4252",
+    "medium": "#434c5e",
+    "light": "#4c566a",
+}
+
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -121,7 +128,7 @@ widget_defaults = dict(
 
 extension_defaults = widget_defaults.copy()
 
-highlight_color = ["#434c5e", "#4c566a"]
+highlight_color = [nord["medium"], nord["light"]]
 screens = [
     Screen(
         wallpaper="/home/aqez/Pictures/backgrounds/background.png",
@@ -150,7 +157,7 @@ screens = [
                 # widget.QuickExit(),
             ],
             34,
-            background="#3b4252",
+            background=nord["dark"],
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]
             # Borders are magenta
@@ -200,7 +207,7 @@ wl_input_rules = None
 wmname = "LG3D"
 
 
-@hook.subscribe.startup
+@hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~/.config/qtile/autostart.sh')
     subprocess.call([home])
