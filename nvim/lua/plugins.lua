@@ -17,12 +17,18 @@ require("packer").startup(function(use)
     use "neovim/nvim-lspconfig"
     use "Issafalcon/lsp-overloads.nvim"
     use "f-person/git-blame.nvim"
-    use "vimwiki/vimwiki"
     use "pbrisbin/vim-colors-off"
     use "vim-test/vim-test"
     use "rust-lang/rust.vim"
     use "github/copilot.vim"
     use "elkowar/yuck.vim"
+    
+    use {
+        "vimwiki/vimwiki",
+        config = function()
+            vim.g.vimwiki_folding="expr,list"
+        end
+    }
 
     use {
         "nvim-lualine/lualine.nvim",
