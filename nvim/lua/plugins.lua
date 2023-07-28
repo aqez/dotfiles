@@ -14,28 +14,21 @@ local packer_bootstrap = ensure_packer()
 
 require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
+    use "neovim/nvim-lspconfig"
+    use "Issafalcon/lsp-overloads.nvim"
+    use "f-person/git-blame.nvim"
+    use "vimwiki/vimwiki"
+    use "pbrisbin/vim-colors-off"
+    use "vim-test/vim-test"
+    use "rust-lang/rust.vim"
+    use "github/copilot.vim"
+    use "elkowar/yuck.vim"
 
     use {
         "nvim-lualine/lualine.nvim",
         requires = { "nvim-tree/nvim-web-devicons" },
         config = function()
             require("lualine").setup()
-            --local colors = {
-            --    black = "#000000",
-            --    white = "#FFFFFF",
-            --    grey = "#444444",
-            --}
-            --require('lualine').setup({
-            --    options = {
-            --        theme = {
-            --            normal = {
-            --                a = { fg = colors.white, bg = colors.black },
-            --                b = { fg = colors.white, bg = colors.black },
-            --                c = { fg = colors.white, bg = colors.black },
-            --            },
-            --        }
-            --    }
-            --})
         end
     }
 
@@ -108,8 +101,6 @@ require("packer").startup(function(use)
         end
     }
 
-    use "neovim/nvim-lspconfig"
-    use "Issafalcon/lsp-overloads.nvim"
 
     use {
         "williamboman/mason.nvim",
@@ -224,10 +215,6 @@ require("packer").startup(function(use)
     }
 
 
-    use "vim-test/vim-test"
-
-    use "rust-lang/rust.vim"
-
     use { "catppuccin/nvim", as = "catppuccin" }
     use {
         "sonph/onehalf",
@@ -246,7 +233,6 @@ require("packer").startup(function(use)
         end
     }
 
-    use "github/copilot.vim"
 
     use {
         "jackMort/ChatGPT.nvim",
@@ -287,7 +273,6 @@ require("packer").startup(function(use)
         end
     }
 
-    use "elkowar/yuck.vim"
 
     use {
         "folke/which-key.nvim",
@@ -306,16 +291,7 @@ require("packer").startup(function(use)
         end
     }
 
-    use "f-person/git-blame.nvim"
 
-    use "vimwiki/vimwiki"
-
-    use {
-        "pbrisbin/vim-colors-off",
-        config = function()
-            -- vim.cmd [[ colorscheme off ]]
-        end
-    }
 
     use {
         'mfussenegger/nvim-dap',
