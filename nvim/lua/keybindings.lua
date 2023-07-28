@@ -62,6 +62,12 @@ wk.register({
             name = "Snippets",
             r = { ":source ~/.config/nvim/lua/snippets.lua<CR>", "Reload snippets" },
         },
+        e = {
+            name = "Editor",
+            r = { ":source $MYVIMRC<CR>:source ~/.config/nvim/lua/keybindings.lua<CR>:echo \"Config reloaded!\"<CR>", "Reload config" },
+            e = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
+            c = { ":Telescope colorscheme<CR>", "Pick colorscheme" },
+        },
         ["rg"] = { ":Telescope live_grep<CR>", "Live grep" }
     },
     -- Quick fix

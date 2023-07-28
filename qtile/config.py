@@ -118,6 +118,7 @@ layouts = [
         new_client_position="top",
         border_focus="#4c566a",
         border_width=2),
+    layout.Max()
 ]
 
 widget_defaults = dict(
