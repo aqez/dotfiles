@@ -109,8 +109,8 @@ layouts = [
     layout.MonadTall(
         margin=20,
         new_client_position="top",
-        border_focus="#000000",
-        border_width=1),
+        border_focus="#4c566a",
+        border_width=2),
 ]
 
 widget_defaults = dict(
