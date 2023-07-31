@@ -204,7 +204,7 @@ require("packer").startup(function(use)
                             cmp.select_prev_item()
                         end
                     end),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
                 },
                 sources = {
                     { name = "nvim_lsp" },
