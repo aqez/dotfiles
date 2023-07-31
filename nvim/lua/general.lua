@@ -6,7 +6,6 @@ vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.hidden = true
 
-
 -- Typescript/react autocmds
 vim.cmd [[
 augroup ts

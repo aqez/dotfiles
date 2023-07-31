@@ -26,7 +26,7 @@ require("packer").startup(function(use)
     use {
         "vimwiki/vimwiki",
         config = function()
-            vim.g.vimwiki_folding="expr"
+            vim.g.vimwiki_folding = "expr"
         end
     }
 
@@ -106,7 +106,6 @@ require("packer").startup(function(use)
             })
         end
     }
-
 
     use {
         "williamboman/mason.nvim",
@@ -206,7 +205,6 @@ require("packer").startup(function(use)
                         end
                     end),
                     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-
                 },
                 sources = {
                     { name = "nvim_lsp" },
@@ -219,7 +217,6 @@ require("packer").startup(function(use)
             --require('cmp_nvim_lsp').default_capabilities()
         end
     }
-
 
     use { "catppuccin/nvim", as = "catppuccin" }
     use {
@@ -238,7 +235,6 @@ require("packer").startup(function(use)
             require('nord').set();
         end
     }
-
 
     use {
         "jackMort/ChatGPT.nvim",
@@ -279,7 +275,6 @@ require("packer").startup(function(use)
         end
     }
 
-
     use {
         "folke/which-key.nvim",
         config = function()
@@ -296,8 +291,6 @@ require("packer").startup(function(use)
             require('neogit').setup {}
         end
     }
-
-
 
     use {
         'mfussenegger/nvim-dap',

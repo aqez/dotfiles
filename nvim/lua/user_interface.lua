@@ -24,11 +24,10 @@ vim.opt.termguicolors = true
 local _border = "single"
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    border = _border
-  }
+    vim.lsp.handlers.hover, {
+        border = _border
+    }
 )
-
 
 -- Text/Indent
 vim.opt.expandtab = true

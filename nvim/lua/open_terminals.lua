@@ -1,4 +1,3 @@
-
 local function open_terminals_in_project()
     local csproj_folders = vim.fn.systemlist("find . -name 'Program.cs' -maxdepth 2 -exec dirname {} \\; | uniq")
     local node_folders = vim.fn.systemlist("find . -name 'package.json' -maxdepth 2 -exec dirname {} \\; | uniq")

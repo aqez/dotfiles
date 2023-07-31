@@ -123,10 +123,7 @@ wk.register({
             end
         end, "Toggle snippet choice"
     }
-
 }, { mode = { "i", "s" } })
-
-
 
 vim.cmd [[imap <silent><script><expr> <C-q> copilot#Accept('')]]
 vim.g.copilot_no_tab_map = 1
