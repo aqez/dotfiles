@@ -33,7 +33,7 @@ wk.register({
         },
         g = {
             name = "Git",
-            g = { require("neogit").open, "Open Neogit" },
+            g = { function() vim.fn.system("tmux new-window -S -n 'lazy-git' lg") end, "Open lazy-git" },
             s = { builtin.git_status, "Git status" },
             b = { builtin.git_branches, "Git branches" },
             c = { builtin.git_commits, "Git commits" },
@@ -64,7 +64,8 @@ wk.register({
         },
         e = {
             name = "Editor",
-            r = { ":source $MYVIMRC<CR>:source ~/.config/nvim/lua/keybindings.lua<CR>:echo \"Config reloaded!\"<CR>", "Reload config" },
+            r = { ":source $MYVIMRC<CR>:source ~/.config/nvim/lua/keybindings.lua<CR>:echo \"Config reloaded!\"<CR>",
+                "Reload config" },
             e = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
             c = { ":Telescope colorscheme<CR>", "Pick colorscheme" },
         },

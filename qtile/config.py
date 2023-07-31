@@ -147,7 +147,7 @@ screens = [
                 widget.Spacer(length=20),
                 widget.Memory(fontsize=20),
                 widget.Spacer(length=20),
-                widget.Battery(fontsize=20),
+                widget.Battery(fontsize=20, update_interval=5),
                 widget.Spacer(length=20),
 
                 # NB Systray is incompatible with Wayland, consider

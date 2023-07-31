@@ -1,3 +1,7 @@
+os:
+  edit: "nvim {{filename}}"
+  editAtLine: "nvim +{{line}} {{filename}}"
+  openDirInEditor: "ranger {dir}"
 git:
   paging:
     colorArg: never
