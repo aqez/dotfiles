@@ -27,12 +27,13 @@
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
+# from libqtile.utils import guess_terminal
 import subprocess
 import os
 
 mod = "mod4"
-terminal = guess_terminal()
+terminal = "/usr/bin/kitty"
+# guess_terminal()
 
 nord = {
     "darkest": "#2e3440",
@@ -65,8 +66,8 @@ keys = [
         desc="Grow window to the left"),
     Key([mod, "control"], "l", lazy.layout.grow_right(),
         desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow up"),
+    # Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow down"),
+    # Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
