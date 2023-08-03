@@ -30,6 +30,7 @@ from libqtile.lazy import lazy
 # from libqtile.utils import guess_terminal
 import subprocess
 import os
+import random
 
 mod = "mod4"
 terminal = "/usr/bin/kitty"
@@ -133,7 +134,9 @@ extension_defaults = widget_defaults.copy()
 highlight_color = [nord["medium"], nord["light"]]
 screens = [
     Screen(
-        wallpaper="/home/aqez/Pictures/backgrounds/background.png",
+        wallpaper="/home/aqez/Pictures/backgrounds/" +
+        random.choice(os.listdir("/home/aqez/Pictures/backgrounds")),
+        wallpaper_mode="stretch",
         top=bar.Bar(
             [
                 widget.GroupBox(
