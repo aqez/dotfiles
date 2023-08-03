@@ -16,13 +16,13 @@ local function open_terminals_in_project()
 
     for k, v in pairs(csproj_folders) do
         local names = split(v, "\\.")
-        local cmd = string.format('tmux new-window -dS -c %s -n %s', v, v, names[#names])
+        local cmd = string.format('tmux new-window -dS -c %s -n %s', v, names[#names])
         vim.fn.system(cmd)
     end
 
     for k, v in pairs(node_folders) do
         local names = split(v, "\\.")
-        local cmd = string.format('tmux new-window -dS -c %s -n %s "npm start; fish"', v, v, names[#names])
+        local cmd = string.format('tmux new-window -dS -c %s -n %s "npm start; fish"', v, names[#names])
         vim.fn.system(cmd)
     end
 end
