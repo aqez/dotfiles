@@ -107,10 +107,6 @@ for i in groups:
                 lazy.window.togroup(i.name, switch_group=False),
                 desc="Switch to & move focused window to group {}"
                     .format(i.name)),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
         ]
     )
 
@@ -132,10 +128,13 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 highlight_color = [nord["medium"], nord["light"]]
+wallpaper = "/home/aqez/Pictures/backgrounds/" + random.choice(
+        os.listdir("/home/aqez/Pictures/backgrounds"))
+systray = widget.Systray()
+
 screens = [
     Screen(
-        wallpaper="/home/aqez/Pictures/backgrounds/" +
-        random.choice(os.listdir("/home/aqez/Pictures/backgrounds")),
+        wallpaper=wallpaper,
         wallpaper_mode="stretch",
         top=bar.Bar(
             [
@@ -157,7 +156,75 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider
                 # using StatusNotifier instead
                 # widget.StatusNotifier(),
-                widget.Systray(),
+                systray,
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p", fontsize=20),
+                # widget.QuickExit(),
+            ],
+            34,
+            background=nord["dark"],
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]
+            # Borders are magenta
+        ),
+    ),
+    Screen(
+        wallpaper=wallpaper,
+        wallpaper_mode="stretch",
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    fontsize=20,
+                    highlight_method="line",
+                    inactive="#aaaaaa",
+                    highlight_color=highlight_color),
+                widget.Prompt(fontsize=20),
+                # widget.WindowName(),
+                widget.Spacer(),
+                widget.CPU(fontsize=20),
+                widget.Spacer(length=20),
+                widget.Memory(fontsize=20),
+                widget.Spacer(length=20),
+                widget.Battery(fontsize=20, update_interval=5),
+                widget.Spacer(length=20),
+
+                # NB Systray is incompatible with Wayland, consider
+                # using StatusNotifier instead
+                # widget.StatusNotifier(),
+                systray,
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p", fontsize=20),
+                # widget.QuickExit(),
+            ],
+            34,
+            background=nord["dark"],
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]
+            # Borders are magenta
+        ),
+    ),
+    Screen(
+        wallpaper=wallpaper,
+        wallpaper_mode="stretch",
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    fontsize=20,
+                    highlight_method="line",
+                    inactive="#aaaaaa",
+                    highlight_color=highlight_color),
+                widget.Prompt(fontsize=20),
+                # widget.WindowName(),
+                widget.Spacer(),
+                widget.CPU(fontsize=20),
+                widget.Spacer(length=20),
+                widget.Memory(fontsize=20),
+                widget.Spacer(length=20),
+                widget.Battery(fontsize=20, update_interval=5),
+                widget.Spacer(length=20),
+
+                # NB Systray is incompatible with Wayland, consider
+                # using StatusNotifier instead
+                # widget.StatusNotifier(),
+                systray,
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p", fontsize=20),
                 # widget.QuickExit(),
             ],

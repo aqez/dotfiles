@@ -65,3 +65,4 @@
 (package! plain-theme)
 (package! basic-theme)
 (package! white-theme)
+(package! evil-snipe)

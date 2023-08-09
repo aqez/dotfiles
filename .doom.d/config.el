@@ -201,3 +201,10 @@
   (with-temp-buffer
     (insert-file-contents "/home/aqez/.config/openai.token")
     (setq! gptel-api-key (buffer-string))))
+
+; (add-hook 'neo-enter-hook
+;           (lambda (type)
+;             (progn
+;               (print type)
+;               (if (equal type 'file)
+;                   (neotree-hide)))))
