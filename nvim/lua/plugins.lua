@@ -25,9 +25,6 @@ require("packer").startup(function(use)
 
     use {
         "vimwiki/vimwiki",
-        config = function()
-            vim.g.vimwiki_folding = "expr"
-        end
     }
 
     use {

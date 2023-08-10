@@ -9,7 +9,6 @@ vim.opt.hlsearch = false
 vim.opt.magic = true
 vim.opt.showmatch = true
 vim.opt.cursorline = false
-vim.opt.foldcolumn = "1"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.completeopt = { "menu", "menuone", "noselect" }

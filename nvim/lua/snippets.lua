@@ -62,4 +62,26 @@ ls.add_snippets("cs", {
     ls.snippet("logw", fmt([[_logger.LogWarning($"{}");]], { i(1, "") })),
     ls.snippet("loge", fmt([[_logger.LogError($"{}");]], { i(1, "") })),
     ls.snippet("jcso", fmt([[JsonConvert.SerializeObject({}, null, )]], { i(1, "") })),
+
+    ls.snippet("prop", fmt(
+        [[
+        public {} {}
+        {{
+            get {{ return {}; }}
+            set {{ {} = value; }}
+        }}
+        ]],
+        {
+            i(1, "int"),
+            i(2, "PropertyName"),
+            i(2),
+            i(2)
+        })),
+
+    ls.snippet("aprop", fmt(
+        [[ public {} {} {{ get; set; }} ]],
+        {
+            i(1, "int"),
+            i(2, "PropertyName"),
+        })),
 })
