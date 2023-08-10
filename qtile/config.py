@@ -47,6 +47,13 @@ keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
+    Key([], "XF86AudioRaiseVolume",
+        lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")),
+    Key([], "XF86AudioLowerVolume",
+        lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")),
+
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
