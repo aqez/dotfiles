@@ -79,9 +79,10 @@ ls.add_snippets("cs", {
         })),
 
     ls.snippet("aprop", fmt(
-        [[ public {} {} {{ get; set; }} ]],
+        [[ public {} {} {{ get; set; }}{}]],
         {
-            i(1, "int"),
+            i(1, "string"),
             i(2, "PropertyName"),
+            c(3, { t(" = null!;"), t("") }),
         })),
 })

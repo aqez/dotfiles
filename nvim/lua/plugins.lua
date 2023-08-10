@@ -22,6 +22,7 @@ require("packer").startup(function(use)
     use "rust-lang/rust.vim"
     use "github/copilot.vim"
     use "elkowar/yuck.vim"
+    use "mbbill/undotree"
 
     use {
         "vimwiki/vimwiki",

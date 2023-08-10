@@ -69,6 +69,10 @@ wk.register({
             e = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
             c = { ":Telescope colorscheme<CR>", "Pick colorscheme" },
         },
+        u = {
+            name = "Undo Tree",
+            t = { ":UndotreeToggle<CR>", "Toggle undo tree" },
+        },
         ["rg"] = { ":Telescope live_grep<CR>", "Live grep" }
     },
     -- Quick fix
