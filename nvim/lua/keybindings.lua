@@ -90,7 +90,8 @@ wk.register({
     ["<F5>"] = { dap.continue, "Continue debugging" },
     ["<F10>"] = { dap.step_over, "Step over" },
     ["<F11>"] = { dap.step_into, "Step into" },
-    ["<F12>"] = { dap.step_out, "Step out" }
+    ["<F12>"] = { dap.step_out, "Step out" },
+    ["<BS>"] = { "<C-^>", "Previous file" }
 })
 
 wk.register({

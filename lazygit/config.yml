@@ -4,5 +4,5 @@ os:
   openDirInEditor: "ranger {dir}"
 git:
   paging:
-    # colorArg: never
+    colorArg: always
     # pager: delta --dark --paging=never

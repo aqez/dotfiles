@@ -147,6 +147,70 @@ require("packer").startup(function(use)
             })
         end
     }
+    use {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        after = "nvim-treesitter",
+        requires = "nvim-treesitter/nvim-treesitter",
+        config = function()
+            require('nvim-treesitter.configs').setup {
+                textobjects = {
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ["af"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["ac"] = "@class.outer",
+                            ["ic"] = "@class.inner",
+                        },
+                    },
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ["<leader>a"] = "@parameter.inner",
+                        },
+                        swap_previous = {
+                            ["<leader>A"] = "@parameter.inner",
+                        },
+                    },
+                    move = {
+                        enable = true,
+                        set_jumps = true,
+                        goto_next_start = {
+                            ["]f"] = "@function.inner",
+                            ["]m"] = "@function.outer",
+                            ["]]"] = "@class.outer",
+                        },
+                        goto_next_end = {
+                            ["]F"] = "@function.inner",
+                            ["]M"] = "@function.outer",
+                            ["]["] = "@class.outer",
+                        },
+                        goto_previous_start = {
+                            ["[f"] = "@function.inner",
+                            ["[m"] = "@function.outer",
+                            ["[["] = "@class.outer",
+                        },
+                        goto_previous_end = {
+                            ["[F"] = "@function.inner",
+                            ["[M"] = "@function.outer",
+                            ["[]"] = "@class.outer",
+                        },
+                        goto_next = {
+                            ["]a"] = "@parameter.inner",
+                            ["]A"] = "@parameter.outer",
+                            ["]d"] = "@conditional.outer",
+                        },
+                        goto_previous = {
+                            ["[a"] = "@parameter.inner",
+                            ["[A"] = "@parameter.outer",
+                            ["[d"] = "@conditional.outer",
+                        },
+                    },
+                },
+            }
+        end
+    }
 
     use {
         "williamboman/mason.nvim",

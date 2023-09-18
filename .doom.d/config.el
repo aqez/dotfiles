@@ -5,6 +5,7 @@
 
 (setq doom-font (font-spec :family "Noto Sans Mono" :size 20 :weight 'normal))
 (setq doom-theme 'doom-nord)
+(setq inhibit-startup-screen t)
 (setq display-line-numbers-type 'relative)
 (set-frame-parameter (selected-frame) 'alpha-background 95)
 (add-to-list 'default-frame-alist '(alpha-background . 95))
@@ -79,9 +80,10 @@
 (add-hook 'prog-mode-hook #'(lambda () (add-hook 'before-save-hook 'file-cleanup)))
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
-(setq lsp-lens-enable t)
-(setq flycheck-check-syntax-automatically '(save mode-enabled))
-(setq company-idle-delay 0.2)
+(setq company-idle-delay 0.25
+      lsp-lens-enable t
+      flycheck-check-syntax-automatically '(save mode-enabled)
+      lsp-modeline-code-actions-enable nil)
 
 (setq dap-auto-configure-mode t)
 (require 'dap-cpptools)
@@ -138,6 +140,40 @@
           ".ccls-cache"
           ".cache"
           ".clangd")))
+
+(defun open-vterms-in-project-from-terminals-file ()
+  "Opens vterms for specified projects from a .terminals file in the current directory."
+  (interactive)
+  (let* ((project-root (projectile-project-root))
+         (opened-buffer nil)
+         (current-buffer (current-buffer))
+         (display-buffer-alist '(("\\*vterm.*" display-buffer-same-window)))
+         (terminals-file (concat project-root ".terminals"))
+         (project-names (when (file-exists-p terminals-file)
+                          (with-temp-buffer
+                            (insert-file-contents terminals-file)
+                            (split-string (buffer-string) "\n" t))))
+         )
+    (when (and project-root project-names)
+      (dolist (dir project-names)
+        (let ((default-directory (concat project-root dir))
+              (has-program-cs (file-exists-p (concat project-root dir "/Program.cs")))
+              (has-package-json (file-exists-p (concat project-root dir "/package.json"))))
+          (when (and (file-directory-p default-directory)
+                     (or has-program-cs has-package-json))
+            (let* ((buffer-name (concat "*vterm: " dir " *"))
+                   (vterm-buffer (vterm buffer-name)))
+              (setf opened-buffer t)
+              (message (concat "Opening buffer " buffer-name))
+              (persp-add-buffer vterm-buffer)
+              (with-current-buffer vterm-buffer
+                (if has-program-cs
+                    (vterm-send-string "dotnet watch run")
+                  (vterm-send-string "npm start"))
+                (vterm-send-return)))))))
+    (when opened-buffer
+      (message "Opened some buffers, so restoring the original buffer")
+      (switch-to-buffer current-buffer))))
 
 (defun open-vterms-in-project ()
   "Opens vterms in all of the 'runnable' project directories (those with Program.cs or package.json)
@@ -211,3 +247,5 @@
 ;               (print type)
 ;               (if (equal type 'file)
 ;                   (neotree-hide)))))
+
+(add-to-list 'auth-sources "~/.authinfo")
