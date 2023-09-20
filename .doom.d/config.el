@@ -71,13 +71,14 @@
       (forward-line 1))
     (goto-char initial-point)))
 
-(defun file-cleanup ()
-  "Clean up the file by removing unnecessary spaces and formatting it"
-  (aqez/remove-duplicate-blank-lines)
-  (aqez/remove-blank-lines-near-curly-braces)
-  (+format/buffer))
+(defun aqez/file-cleanup ()
+  (when (derived-mode-p prog-mode)
+    "Clean up the file by removing unnecessary spaces and formatting it"
+    (aqez/remove-duplicate-blank-lines)
+    (aqez/remove-blank-lines-near-curly-braces)
+    (+format/buffer)))
 
-(add-hook 'prog-mode-hook #'(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+(add-hook 'prog-mode-hook #'(lambda () (add-hook 'before-save-hook 'aqez/file-cleanup)))
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
 (setq company-idle-delay 0.25

@@ -93,13 +93,14 @@ change `org-directory'. It must be set before org loads!
       (forward-line 1))
     (goto-char initial-point)))
 
-(defun file-cleanup ()
-  "Clean up the file by removing unnecessary spaces and formatting it"
-  (aqez/remove-duplicate-blank-lines)
-  (aqez/remove-blank-lines-near-curly-braces)
-  (+format/buffer))
+(defun aqez/file-cleanup ()
+  (when (derived-mode-p prog-mode)
+    "Clean up the file by removing unnecessary spaces and formatting it"
+    (aqez/remove-duplicate-blank-lines)
+    (aqez/remove-blank-lines-near-curly-braces)
+    (+format/buffer)))
 
-(add-hook 'prog-mode-hook #'(lambda () (add-hook 'before-save-hook 'file-cleanup)))
+(add-hook 'prog-mode-hook #'(lambda () (add-hook 'before-save-hook 'aqez/file-cleanup)))
 #+END_SRC
 
 * Language Server Protocol
