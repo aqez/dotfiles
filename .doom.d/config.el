@@ -236,11 +236,16 @@
 ;;   :config
 ;;   (require 'tree-sitter-langs))
 
+(defvar aqez-openai-token-file
+  "/home/aqez/.config/openai.token"
+  "The file path to find open ai token.")
+
 (use-package! gptel
   :config
-  (with-temp-buffer
-    (insert-file-contents "/home/aqez/.config/openai.token")
-    (setq! gptel-api-key (buffer-string))))
+  (when (file-exists-p aqez-openai-token-file)
+    (with-temp-buffer
+      (insert-file-contents "/home/aqez/.config/openai.token")
+      (setq! gptel-api-key (buffer-string)))))
 
 ; (add-hook 'neo-enter-hook
 ;           (lambda (type)
