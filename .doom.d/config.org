@@ -41,7 +41,8 @@ change `org-directory'. It must be set before org loads!
 
 * Editor / Misc
 #+BEGIN_SRC emacs-lisp
-(setq vterm-shell "/usr/bin/fish")
+(setq shell-file-name (executable-find "bash"))
+(setq vterm-shell (executable-find "fish"))
 
 (after! projectile (setq projectile-project-search-path '("~/repos")))
 (after! neotree (setq neo-smart-open t))
@@ -94,7 +95,8 @@ change `org-directory'. It must be set before org loads!
     (goto-char initial-point)))
 
 (defun aqez/file-cleanup ()
-  (when (derived-mode-p prog-mode)
+  (interactive)
+  (when (derived-mode-p 'prog-mode)
     "Clean up the file by removing unnecessary spaces and formatting it"
     (aqez/remove-duplicate-blank-lines)
     (aqez/remove-blank-lines-near-curly-braces)

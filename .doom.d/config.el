@@ -19,7 +19,8 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t))
 
-(setq vterm-shell "/usr/bin/fish")
+(setq shell-file-name (executable-find "bash"))
+(setq vterm-shell (executable-find "fish"))
 
 (after! projectile (setq projectile-project-search-path '("~/repos")))
 (after! neotree (setq neo-smart-open t))
@@ -72,7 +73,8 @@
     (goto-char initial-point)))
 
 (defun aqez/file-cleanup ()
-  (when (derived-mode-p prog-mode)
+  (interactive)
+  (when (derived-mode-p 'prog-mode)
     "Clean up the file by removing unnecessary spaces and formatting it"
     (aqez/remove-duplicate-blank-lines)
     (aqez/remove-blank-lines-near-curly-braces)
