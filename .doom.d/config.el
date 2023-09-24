@@ -3,21 +3,22 @@
 (setq user-full-name "Tony Dwire"
       user-mail-address "tony@undauntedonline.com")
 
-(setq doom-font (font-spec :family "Noto Sans Mono" :size 20 :weight 'normal))
-(setq doom-theme 'doom-one)
-(setq inhibit-startup-screen t)
-(setq display-line-numbers-type 'relative)
-(set-frame-parameter (selected-frame) 'alpha-background 95)
-(add-to-list 'default-frame-alist '(alpha-background . 95))
+(setq doom-font (font-spec :family "UbuntuMono Nerd Font" :size 25 :weight 'normal)
+      doom-theme 'doom-one
+      inhibit-startup-screen t
+      display-line-numbers-type 'relative)
+(set-frame-parameter (selected-frame) 'alpha-background 100)
+(add-to-list 'default-frame-alist '(alpha-background . 100))
 
-(setq org-directory "~/org/")
-(setq org-roam-directory "~/org/roam")
+(setq org-directory "~/org/"
+      org-roam-directory "~/org/roam"
+      org-hide-emphasis-markers t)
 
 (after! org
-  (setq org-agenda-files '("~/org/Agenda.org" "~/org/roam/"))
-  (setq org-agenda-start-with-log-mode t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t))
+  (setq org-agenda-files '("~/org/Agenda.org" "~/org/roam/")
+        org-agenda-start-with-log-mode t
+        org-log-done 'time
+        org-log-into-drawer t))
 
 (setq shell-file-name (executable-find "bash"))
 (setq vterm-shell (executable-find "fish"))
@@ -106,7 +107,8 @@
        :desc "Go to right window" "l" #'evil-window-right
        :desc "Go to upper window" "k" #'evil-window-up
        :desc "Go to below window" "j" #'evil-window-down
-       :desc "Toggle neotree" "t" #'neotree-toggle))
+       :desc "Open dired in project" "t" #'projectile-dired))
+       ;:desc "Toggle neotree" "t" #'neotree-toggle))
 
 (defun aqez/open-pull-request-for-current-branch ()
   "Opens a PR for the current branch/remote on GitHub"
@@ -257,3 +259,6 @@
 ;                   (neotree-hide)))))
 
 (add-to-list 'auth-sources "~/.authinfo")
+
+(map! :map dired-mode-map
+      :n "c" 'dired-create-empty-file)
