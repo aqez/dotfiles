@@ -20,8 +20,8 @@
         org-log-done 'time
         org-log-into-drawer t))
 
-(setq shell-file-name (executable-find "bash"))
-(setq vterm-shell (executable-find "fish"))
+(setq shell-file-name (executable-find "bash")
+      vterm-shell (executable-find "fish"))
 
 (after! projectile (setq projectile-project-search-path '("~/repos")))
 (after! neotree (setq neo-smart-open t))
@@ -84,7 +84,8 @@
 (add-hook 'prog-mode-hook #'(lambda () (add-hook 'before-save-hook 'aqez/file-cleanup)))
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
-(setq company-idle-delay 0.25
+
+(setq company-idle-delay 0.10
       lsp-lens-enable t
       flycheck-check-syntax-automatically '(save mode-enabled)
       lsp-modeline-code-actions-enable nil)
@@ -109,20 +110,6 @@
        :desc "Go to below window" "j" #'evil-window-down
        :desc "Open dired in project" "t" #'projectile-dired))
        ;:desc "Toggle neotree" "t" #'neotree-toggle))
-
-(defun aqez/open-pull-request-for-current-branch ()
-  "Opens a PR for the current branch/remote on GitHub"
-  (interactive)
-  (let* ((branch-name (magit-get-current-branch))
-         (remote-name (magit-get-current-remote))
-         (remote-url (magit-get "remote" remote-name "url"))
-         (remote-path (second (split-string remote-url ":")))
-         (remote-path-name (first (split-string remote-path "\\.")))
-         (full-url (concat "https://github.com/" remote-path-name "/compare/" branch-name "?expand=1")))
-    (browse-url full-url)))
-
-(map! :mode 'magit
-    (:desc "Create pull request" ";" #'aqez/open-pull-request-for-current-branch))
 
 (setq projectile-project-search-path '("~/repos"))
 (map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
@@ -234,11 +221,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
 (add-hook 'c-ts-mode-hook 'lsp-mode)
-;; (use-package! tree-sitter
-;;   :hook (prog-mode . turn-on-tree-sitter-mode)
-;;   :hook (tree-sitter-after-on . tree-sitter-hl-mode)
-;;   :config
-;;   (require 'tree-sitter-langs))
 
 (defvar aqez-openai-token-file
   "/home/aqez/.config/openai.token"
@@ -250,13 +232,6 @@
     (with-temp-buffer
       (insert-file-contents "/home/aqez/.config/openai.token")
       (setq! gptel-api-key (buffer-string)))))
-
-; (add-hook 'neo-enter-hook
-;           (lambda (type)
-;             (progn
-;               (print type)
-;               (if (equal type 'file)
-;                   (neotree-hide)))))
 
 (add-to-list 'auth-sources "~/.authinfo")
 
