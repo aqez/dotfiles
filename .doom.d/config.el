@@ -3,7 +3,7 @@
 (setq user-full-name "Tony Dwire"
       user-mail-address "tony@undauntedonline.com")
 
-(setq doom-font (font-spec :family "UbuntuMono Nerd Font" :size 25 :weight 'normal)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20 :weight 'normal)
       doom-theme 'doom-one
       inhibit-startup-screen t
       display-line-numbers-type 'relative)
@@ -133,7 +133,7 @@
           ".cache"
           ".clangd")))
 
-(defun open-vterms-in-project-from-terminals-file ()
+(defun aqez/open-vterms-in-project-from-terminals-file ()
   "Opens vterms for specified projects from a .terminals file in the current directory."
   (interactive)
   (let* ((project-root (projectile-project-root))
@@ -167,7 +167,7 @@
       (message "Opened some buffers, so restoring the original buffer")
       (switch-to-buffer current-buffer))))
 
-(defun open-vterms-in-project ()
+(defun aqez/open-vterms-in-project ()
   "Opens vterms in all of the 'runnable' project directories (those with Program.cs or package.json)
    and runs all of the commands that are needed to start those projects."
   (interactive)
