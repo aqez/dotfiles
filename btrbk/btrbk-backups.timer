@@ -1,0 +1,8 @@
+[Unit]
+Description="Run btrbk timer"
+
+[Timer]
+OnCalendar=*-*-* *:00:00
+
+[Install]
+WantedBy=timers.target

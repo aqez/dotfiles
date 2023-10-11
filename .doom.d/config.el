@@ -85,7 +85,7 @@
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
 
-(setq company-idle-delay 0.10
+(setq company-idle-delay 0.05
       lsp-lens-enable t
       flycheck-check-syntax-automatically '(save mode-enabled)
       lsp-modeline-code-actions-enable nil)

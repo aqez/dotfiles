@@ -1,0 +1,6 @@
+[Unit]
+Description="Run btrbk"
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/btrbk run
