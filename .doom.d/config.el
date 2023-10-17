@@ -199,9 +199,7 @@
 ;; accept completion from copilot and fallback to company
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
-  :bind (;("C-Q" . 'copilot-accept-completion-by-word)
-         :map copilot-completion-map
-         ("C-Q" . 'copilot-accept-completion)))
+  :bind (:map copilot-completion-map ("C-Q" . 'copilot-accept-completion)))
 
 (defun aqez/org-tree-slide-mode-hook (&rest args)
   (if org-tree-slide-mode
@@ -235,5 +233,6 @@
 
 (add-to-list 'auth-sources "~/.authinfo")
 
-(map! :map dired-mode-map
+(map! :after dired
+      :map dired-mode-map
       :n "c" 'dired-create-empty-file)
