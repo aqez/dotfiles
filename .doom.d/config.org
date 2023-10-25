@@ -246,7 +246,7 @@ Set up copilot
 #+END_SRC
 * Slide Mode
 #+begin_src elisp
-(defun aqez/org-tree-slide-mode-hook (&rest args)
+(defun aqez/org-tree-slide-mode-hook ()
   (if org-tree-slide-mode
       (progn
         (display-line-numbers-mode -1)

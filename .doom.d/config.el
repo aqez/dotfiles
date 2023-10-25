@@ -201,7 +201,7 @@
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map ("C-Q" . 'copilot-accept-completion)))
 
-(defun aqez/org-tree-slide-mode-hook (&rest args)
+(defun aqez/org-tree-slide-mode-hook ()
   (if org-tree-slide-mode
       (progn
         (display-line-numbers-mode -1)
