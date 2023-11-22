@@ -3,7 +3,7 @@
 (setq user-full-name "Tony Dwire"
       user-mail-address "tony@undauntedonline.com")
 
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20 :weight 'normal)
+(setq doom-font (font-spec :family "JetBrainsMono NF" :size 20 :weight 'normal)
       doom-theme 'doom-one
       inhibit-startup-screen t
       display-line-numbers-type 'relative)
