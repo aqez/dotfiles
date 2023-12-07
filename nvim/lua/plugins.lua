@@ -23,6 +23,7 @@ require("packer").startup(function(use)
     use "github/copilot.vim"
     use "elkowar/yuck.vim"
     use "mbbill/undotree"
+    use "kdheepak/lazygit.nvim"
 
     use {
         "vimwiki/vimwiki",
@@ -238,7 +239,7 @@ require("packer").startup(function(use)
                 ["omnisharp"] = function()
                     require("lspconfig")["omnisharp"].setup {
                         on_attach = function(client)
-                            client.server_capabilities.semanticTokensProvider = false
+                            --client.server_capabilities.semanticTokensProvider = false
                             require('lsp-overloads').setup(client, {})
                         end
                     }
@@ -339,35 +340,6 @@ require("packer").startup(function(use)
             vim.g.nord_borders = true
             require('nord').set();
         end
-    }
-
-    use {
-        "jackMort/ChatGPT.nvim",
-        config = function()
-            require("chatgpt").setup({
-                api_key_cmd = "cat /home/aqez/.config/openai.token",
-                openai_params = {
-                    model = "gpt-3.5-turbo-16k",
-                    frequency_penalty = 0,
-                    presence_penalty = 0,
-                    max_tokens = 300,
-                    temperature = 0,
-                    top_p = 1,
-                    n = 1,
-                },
-                openai_edit_params = {
-                    model = "code-davinci-edit-001",
-                    temperature = 0.3,
-                    top_p = 1,
-                    n = 1,
-                },
-            })
-        end,
-        requires = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
-        }
     }
 
     use {
