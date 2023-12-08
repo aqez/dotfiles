@@ -78,6 +78,8 @@ wk.register({
     -- Quick fix
     ["<C-j>"] = { ":cn<CR>", "Next Quickfix" },
     ["<C-k>"] = { ":cp<CR>", "Previous Quickfix" },
+    ["]e"] = { ":cnext<CR>", "Next Quickfix" },
+    ["[e"] = { ":cprev<CR>", "Previous Quickfix" },
 
     g = {
         name = "Goto",
