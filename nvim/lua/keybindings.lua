@@ -33,7 +33,8 @@ wk.register({
         },
         g = {
             name = "Git",
-            g = { function() vim.fn.system("tmux new-window -S -n 'lazy-git' lg") end, "Open lazy-git" },
+            --g = { function() vim.fn.system("tmux new-window -S -n 'lazy-git' lg") end, "Open lazy-git" },
+            g = { ":Neogit<CR>", "Open Neogit" },
             s = { builtin.git_status, "Git status" },
             b = { builtin.git_branches, "Git branches" },
             c = { builtin.git_commits, "Git commits" },
