@@ -324,7 +324,13 @@ require("packer").startup(function(use)
         end
     }
 
-    use { "catppuccin/nvim", as = "catppuccin" }
+    use { 
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function()
+            vim.cmd [[colorscheme catppuccin-frappe]]
+        end
+    }
     use {
         "sonph/onehalf",
         rtp = "vim",
@@ -337,8 +343,8 @@ require("packer").startup(function(use)
         "shaunsingh/nord.nvim",
         config = function()
             -- vim.g.nord_disable_background = true
-            vim.g.nord_borders = true
-            require('nord').set();
+            -- vim.g.nord_borders = true
+            -- require('nord').set();
         end
     }
 
