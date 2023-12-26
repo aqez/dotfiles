@@ -24,9 +24,15 @@ require("packer").startup(function(use)
     use "elkowar/yuck.vim"
     use "mbbill/undotree"
     use "kdheepak/lazygit.nvim"
+    use "Olical/conjure"
 
     use {
         "vimwiki/vimwiki",
+    }
+
+    use {
+        "clojure-vim/vim-jack-in",
+        requires = { "tpope/vim-dispatch", "radenling/vim-dispatch-neovim" },
     }
 
     use {
@@ -34,6 +40,26 @@ require("packer").startup(function(use)
         requires = { "nvim-tree/nvim-web-devicons" },
         config = function()
             require("lualine").setup()
+        end
+    }
+
+    use {
+        "dundalek/parpar.nvim",
+        requires = { "gpanders/nvim-parinfer", "julienvincent/nvim-paredit" },
+        config = function()
+            local paredit = require("nvim-paredit")
+            require("parpar").setup {
+                paredit = {
+                    -- pass any nvim-paredit options here
+                    keys = {
+                        -- custom bindings are automatically wrapped
+                        ["<A-H>"] = { paredit.api.slurp_backwards, "Slurp backwards" },
+                        ["<A-J>"] = { paredit.api.barf_backwards, "Barf backwards" },
+                        ["<A-K>"] = { paredit.api.barf_forwards, "Barf forwards" },
+                        ["<A-L>"] = { paredit.api.slurp_forwards, "Slurp forwards" },
+                    }
+                }
+            }
         end
     }
 
@@ -384,7 +410,7 @@ require("packer").startup(function(use)
 
             dap.adapters.coreclr = {
                 type = "executable",
-                command = "/usr/bin/netcoredbg",
+                command = "~/.local/share/nvim/mason/packages/netcoredbg/netcoredbg",
                 args = { "--interpreter=vscode" }
             }
 
