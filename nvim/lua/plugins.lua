@@ -24,7 +24,37 @@ require("packer").startup(function(use)
     use "elkowar/yuck.vim"
     use "mbbill/undotree"
     use "kdheepak/lazygit.nvim"
-    use "Olical/conjure"
+
+    use 'Olical/conjure'
+
+    use {
+        "dundalek/parpar.nvim",
+        requires = { "gpanders/nvim-parinfer", "julienvincent/nvim-paredit" },
+        config = function()
+            local paredit = require("nvim-paredit")
+            require("parpar").setup {
+                paredit = {
+                    -- pass any nvim-paredit options here
+                    keys = {
+                        -- custom bindings are automatically wrapped
+                        ["<A-H>"] = { paredit.api.slurp_backwards, "Slurp backwards" },
+                        ["<A-J>"] = { paredit.api.barf_backwards, "Barf backwards" },
+                        ["<A-K>"] = { paredit.api.barf_forwards, "Barf forwards" },
+                        ["<A-L>"] = { paredit.api.slurp_forwards, "Slurp forwards" },
+                        ["<A-h>"] = { paredit.api.drag_element_backwards, "Drag element backwards" },
+                        ["<A-l>"] = { paredit.api.drag_element_forwards, "Drag element forwards" },
+                        ["<A-k>"] = { paredit.api.raise_form, "Raise form" },
+                        ["<A-j>"] = { paredit.api.raise_element, "Raise element" }
+                    }
+                }
+            }
+        end
+    }
+
+    use {
+        "clojure-vim/vim-jack-in",
+        requires = { "tpope/vim-dispatch", "radenling/vim-dispatch-neovim" }
+    }
 
     use {
         "vimwiki/vimwiki",
@@ -90,7 +120,7 @@ require("packer").startup(function(use)
                             local window_h_int = math.floor(window_h)
                             local center_x = (screen_w - window_w) / 2
                             local center_y = ((vim.opt.lines:get() - window_h) / 2)
-                                - vim.opt.cmdheight:get()
+                            - vim.opt.cmdheight:get()
                             return {
                                 border = "rounded",
                                 relative = "editor",
@@ -129,20 +159,20 @@ require("packer").startup(function(use)
             local telescope = require('telescope')
             telescope.setup({
                 defaults = vim.tbl_extend(
-                    "force",
-                    require('telescope.themes').get_ivy(),
-                    {
-                        file_sorter = require('telescope.sorters').get_fzy_sorter,
-                        mappings = {
-                            i = {
-                                ["<C-k>"] = require('telescope.actions').move_selection_previous,
-                                ["<C-j>"] = require('telescope.actions').move_selection_next,
-                            },
-                            n = {
-                                ["<C-d>"] = require('telescope.actions').delete_buffer
-                            }
+                "force",
+                require('telescope.themes').get_ivy(),
+                {
+                    file_sorter = require('telescope.sorters').get_fzy_sorter,
+                    mappings = {
+                        i = {
+                            ["<C-k>"] = require('telescope.actions').move_selection_previous,
+                            ["<C-j>"] = require('telescope.actions').move_selection_next,
+                        },
+                        n = {
+                            ["<C-d>"] = require('telescope.actions').delete_buffer
                         }
-                    }),
+                    }
+                }),
                 extensions = {
                     fzy_native = {
                         override_generic_sorter = false,
