@@ -314,8 +314,8 @@ Set up copilot
       (:desc "Forward Slurp" "M-L" #'sp-forward-slurp-sexp
        :desc "Forward Barf" "M-K" #'sp-forward-barf-sexp
        :desc "Backwards Slurp" "M-H" #'sp-backward-slurp-sexp
-       :desc "Backwards Slurp" "M-J" #'sp-backward-barf-sexp))
-
+       :desc "Backwards Slurp" "M-J" #'sp-backward-barf-sexp
+       :desc "Raise sexp" "M-I" #'cljr-raise-sexp))
 (map! :map clojure-mode-map
       (:desc "Evaluate last sexp" "M-RET" #'cider-eval-last-sexp))
 #+end_src
