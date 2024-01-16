@@ -426,7 +426,7 @@ require("packer").startup(function(use)
 
             dap.adapters.coreclr = {
                 type = "executable",
-                command = "~/.local/share/nvim/mason/packages/netcoredbg/netcoredbg",
+                command = "/home/aqez/.local/share/nvim/mason/packages/netcoredbg/netcoredbg",
                 args = { "--interpreter=vscode" }
             }
 
