@@ -63,10 +63,6 @@ require("packer").startup(function(use)
     }
 
     use {
-        "vimwiki/vimwiki",
-    }
-
-    use {
         "clojure-vim/vim-jack-in",
         requires = { "tpope/vim-dispatch", "radenling/vim-dispatch-neovim" },
     }
@@ -426,23 +422,8 @@ require("packer").startup(function(use)
 
             dap.adapters.coreclr = {
                 type = "executable",
-                command = "/home/aqez/.local/share/nvim/mason/packages/netcoredbg/netcoredbg",
+                command = "netcoredbg",
                 args = { "--interpreter=vscode" }
-            }
-
-            dap.configurations.cs = {
-                {
-                    type = "coreclr",
-                    name = "Attach to dotnet process",
-                    request = "attach",
-                    processId = "${command:pickProcess}"
-                },
-                {
-                    type = "coreclr",
-                    name = "Launch program",
-                    request = "launch",
-                    program = "${command:pickFile}"
-                }
             }
         end
     }
@@ -467,6 +448,14 @@ require("packer").startup(function(use)
                 }
             })
         end
+    }
+
+    use {
+        "stevearc/aerial.nvim",
+        config = function()
+            require("aerial").setup({
+            })
+        end,
     }
 
     if packer_bootstrap then
