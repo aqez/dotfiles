@@ -10,6 +10,8 @@ local builtin = require("telescope.builtin")
 local dap = require("dap")
 local dapui = require("dapui")
 
+local oil = require("oil")
+
 wk.register({
     ["<leader>"] = {
         h = { "<C-w>h", "Move to left window" },
@@ -18,7 +20,8 @@ wk.register({
         l = { "<C-w>l", "Move to right window" },
         H = { ":Telescope help_tags<CR>", "Search help tags" },
         ["<space>"] = { function() telescope.extensions.smart_open.smart_open({ cwd_only = true }) end, "Smart open" },
-        t = { ":NvimTreeFindFileToggle<CR>", "Toggle file tree" },
+        --t = { ":NvimTreeFindFileToggle<CR>", "Toggle file tree" },
+        t = { oil.open, "Open oil browser" },
         b = {
             name = "Buffers",
             s = { builtin.buffers, "Search buffers" },
