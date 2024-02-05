@@ -21,7 +21,8 @@ wk.register({
         H = { ":Telescope help_tags<CR>", "Search help tags" },
         ["<space>"] = { function() telescope.extensions.smart_open.smart_open({ cwd_only = true }) end, "Smart open" },
         --t = { ":NvimTreeFindFileToggle<CR>", "Toggle file tree" },
-        t = { oil.open, "Open oil browser" },
+        t = { ":Oil .<CR>", "Open oil browser at project root" },
+        ["-"] = { oil.open, "Open oil browser at file root" },
         b = {
             name = "Buffers",
             s = { builtin.buffers, "Search buffers" },

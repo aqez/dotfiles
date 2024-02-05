@@ -435,6 +435,15 @@ require("packer").startup(function(use)
                 command = "netcoredbg",
                 args = { "--interpreter=vscode" }
             }
+
+            dap.configurations.cs = {
+                {
+                    type = "coreclr",
+                    name = "attach - netcoredbg",
+                    request = "attach",
+                    processId = require('dap.utils').pick_process,
+                }
+            }
         end
     }
 
