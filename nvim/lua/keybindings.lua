@@ -9,6 +9,7 @@ local telescope = require("telescope");
 local builtin = require("telescope.builtin")
 local dap = require("dap")
 local dapui = require("dapui")
+local dapui_widgets = require("dap.ui.widgets")
 
 local oil = require("oil")
 
@@ -56,12 +57,13 @@ wk.register({
             }
         },
         d = {
-            name = "Diagnostics",
+            name = "Debug/Diagnostics",
             d = { vim.diagnostic.open_float, "Show line diagnostic in floating window" },
             n = { vim.diagnostic.goto_next, "Go to next diagnostic" },
             p = { vim.diagnostic.goto_prev, "Go to previous diagnostic" },
             r = { dap.repl.open, "Open debugging REPL" },
             t = { dapui.toggle, "Toggle debugging UI" },
+            h = { dapui_widgets.preview, "Show hover" },
         },
         s = {
             name = "Snippets",
@@ -109,33 +111,6 @@ wk.register({
         }
     }
 }, { mode = "v" })
-
-local ls = require("luasnip")
-wk.register({
-    ["<C-k>"] = {
-        function()
-            if ls.expand_or_jumpable() then
-                ls.expand_or_jump()
-            end
-        end,
-        "Expand snipet"
-    },
-    ["<C-j>"] = {
-        function()
-            if ls.jumpable(-1) then
-                ls.jump(-1)
-            end
-        end,
-        "Jump to previous snippet"
-    },
-    ["<C-l>"] = {
-        function()
-            if ls.choice_active() then
-                ls.change_choice(1)
-            end
-        end, "Toggle snippet choice"
-    }
-}, { mode = { "i", "s" } })
 
 vim.cmd [[imap <silent><script><expr> <C-q> copilot#Accept('')]]
 vim.g.copilot_no_tab_map = 1

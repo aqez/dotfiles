@@ -1,31 +1,31 @@
-local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-        vim.cmd "packadd packer.nvim"
-        return true
-    end
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-    return false
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
 end
 
-local packer_bootstrap = ensure_packer()
+vim.opt.rtp:prepend(lazypath)
 
-require("packer").startup(function(use)
-    use "wbthomason/packer.nvim"
-    use "neovim/nvim-lspconfig"
-    use "Issafalcon/lsp-overloads.nvim"
-    use "f-person/git-blame.nvim"
-    use "pbrisbin/vim-colors-off"
-    use "vim-test/vim-test"
-    use "rust-lang/rust.vim"
-    use "github/copilot.vim"
-    use "elkowar/yuck.vim"
-    use "mbbill/undotree"
-    use "kdheepak/lazygit.nvim"
-
-    use {
+require("lazy").setup({
+    "wbthomason/packer.nvim",
+    "neovim/nvim-lspconfig",
+    "Issafalcon/lsp-overloads.nvim",
+    "f-person/git-blame.nvim",
+    "pbrisbin/vim-colors-off",
+    "vim-test/vim-test",
+    "rust-lang/rust.vim",
+    "github/copilot.vim",
+    "elkowar/yuck.vim",
+    "mbbill/undotree",
+    "kdheepak/lazygit.nvim",
+    {
         "stevearc/oil.nvim",
         config = function()
             require('oil').setup({
@@ -34,23 +34,10 @@ require("packer").startup(function(use)
                 }
             })
         end
-    }
-
-    use {
-        'Olical/conjure',
-        config = function()
-            local wk = require("which-key")
-
-            vim.cmd [[map <a-cr> ^[^M]]
-            wk.register({
-                ["<a-cr>"] = ":ConjureEvalRootForm"
-            })
-        end
-    }
-
-    use {
+    },
+    {
         "dundalek/parpar.nvim",
-        requires = { "gpanders/nvim-parinfer", "julienvincent/nvim-paredit" },
+        dependencies = { "gpanders/nvim-parinfer", "julienvincent/nvim-paredit" },
         config = function()
             local paredit = require("nvim-paredit")
             require("parpar").setup {
@@ -70,77 +57,22 @@ require("packer").startup(function(use)
                 }
             }
         end
-    }
-
-    use {
+    },
+    {
         "clojure-vim/vim-jack-in",
-        requires = { "tpope/vim-dispatch", "radenling/vim-dispatch-neovim" },
-    }
-
-    use {
+        dependencies = { "tpope/vim-dispatch", "radenling/vim-dispatch-neovim" },
+    },
+    {
         "nvim-lualine/lualine.nvim",
-        requires = { "nvim-tree/nvim-web-devicons" },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             require("lualine").setup()
         end
-    }
-
---    use {
---        "nvim-tree/nvim-tree.lua",
---        requires = { "nvim-tree/nvim-web-devicons" },
---        config = function()
---            local nvim_tree = require("nvim-tree")
---            --nvim_tree.setup()
---            local HEIGHT_RATIO = 0.8 -- You can change this
---            local WIDTH_RATIO = 0.5  -- You can change this too
---
---            nvim_tree.setup({
---                disable_netrw = true,
---                hijack_netrw = true,
---                respect_buf_cwd = true,
---                sync_root_with_cwd = true,
---                view = {
---                    relativenumber = true,
---                    float = {
---                        enable = true,
---                        open_win_config = function()
---                            local screen_w = vim.opt.columns:get()
---                            local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
---                            local window_w = screen_w * WIDTH_RATIO
---                            local window_h = screen_h * HEIGHT_RATIO
---                            local window_w_int = math.floor(window_w)
---                            local window_h_int = math.floor(window_h)
---                            local center_x = (screen_w - window_w) / 2
---                            local center_y = ((vim.opt.lines:get() - window_h) / 2)
---                            - vim.opt.cmdheight:get()
---                            return {
---                                border = "rounded",
---                                relative = "editor",
---                                row = center_y,
---                                col = center_x,
---                                width = window_w_int,
---                                height = window_h_int,
---                            }
---                        end,
---                    },
---                    width = function()
---                        return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
---                    end,
---                },
---                -- filters = {
---                --   custom = { "^.git$" },
---                -- },
---                -- renderer = {
---                --   indent_width = 1,
---                -- },
---            })
---        end
---    }
-
-    use {
+    },
+    {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.4",
-        requires = {
+        dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
             "nvim-telescope/telescope-fzy-native.nvim",
@@ -177,29 +109,26 @@ require("packer").startup(function(use)
             telescope.load_extension('ui-select')
             telescope.load_extension('smart_open')
         end
-    }
-
-    use {
+    },
+    {
         "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
+        build = ":TSUpdate",
         config = function()
-            local treesitter = require('nvim-treesitter.configs')
-            treesitter.setup({
+            local configs = require('nvim-treesitter.configs')
+            configs.setup({
                 ensure_installed = "all",
                 highlight = {
                     enable = true,
-                    additional_vim_regex_highlighting = true,
+                    --additional_vim_regex_highlighting = true,
                 },
-                rainbow = {
-                    enable = true
-                }
+                indent = { enable = true },
+                rainbow = { enable = true }
             })
         end
-    }
-    use {
+    },
+    {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        after = "nvim-treesitter",
-        requires = "nvim-treesitter/nvim-treesitter",
+        dependencies = "nvim-treesitter/nvim-treesitter",
         config = function()
             require('nvim-treesitter.configs').setup {
                 textobjects = {
@@ -259,12 +188,11 @@ require("packer").startup(function(use)
                 },
             }
         end
-    }
-
-    use {
+    },
+    {
         "williamboman/mason.nvim",
-        run = ":MasonUpdate",
-        requires = {
+        build = ":MasonUpdate",
+        dependencies = {
             "williamboman/mason-lspconfig.nvim"
         },
         config = function()
@@ -309,26 +237,10 @@ require("packer").startup(function(use)
                 end
             }
         end
-    }
-
-    use {
-        "L3MON4D3/LuaSnip",
-        tag = "v2.*",
-        run = "make install_jsregexp",
-        dependencies = { "rafamadriz/friendly-snippets" },
-        config = function()
-            local luasnip = require("luasnip")
-            luasnip.config.set_config({
-                history = true,
-                updateevents = "TextChanged,TextChangedI"
-            })
-            require("luasnip.loaders.from_vscode").lazy_load()
-        end
-    }
-
-    use {
+    },
+    {
         "hrsh7th/nvim-cmp",
-        requires = {
+        dependencies = {
             "saadparwaiz1/cmp_luasnip",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp",
@@ -370,52 +282,40 @@ require("packer").startup(function(use)
             --local capabilities = vim.lsp.protocol.make_client_capabilities()
             --require('cmp_nvim_lsp').default_capabilities()
         end
-    }
-
-    use { 
+    },
+    { 
         "catppuccin/nvim",
-        as = "catppuccin",
+        name = "catppuccin",
         config = function()
             vim.cmd [[colorscheme catppuccin-frappe]]
         end
-    }
-    use {
-        "sonph/onehalf",
-        rtp = "vim",
-        config = function()
-            -- vim.cmd [[colorscheme onehalflight]]
-        end
-    }
-
-    use {
+    },
+    {
         "shaunsingh/nord.nvim",
         config = function()
             -- vim.g.nord_disable_background = true
             -- vim.g.nord_borders = true
             -- require('nord').set();
         end
-    }
-
-    use {
+    },
+    {
         "ggandor/leap.nvim",
-        requires = {
+        dependencies = {
             "tpope/vim-repeat"
         },
         config = function()
             require("leap").add_default_mappings()
         end
-    }
-
-    use {
+    },
+    {
         "folke/which-key.nvim",
         config = function()
             require("which-key").setup {}
         end
-    }
-
-    use {
+    },
+    {
         'TimUntersberger/neogit',
-        requires = {
+        dependencies = {
             'nvim-lua/plenary.nvim',
             'sindrets/diffview.nvim',
             'ibhagwan/fzf-lua',
@@ -423,9 +323,8 @@ require("packer").startup(function(use)
         config = function()
             require('neogit').setup {}
         end
-    }
-
-    use {
+    },
+    {
         'mfussenegger/nvim-dap',
         config = function()
             local dap = require('dap')
@@ -445,47 +344,12 @@ require("packer").startup(function(use)
                 }
             }
         end
-    }
-
-    use {
+    },
+    {
         "rcarriga/nvim-dap-ui",
-        requires = { "mfussenegger/nvim-dap" },
+        dependencies = { "mfussenegger/nvim-dap" },
         config = function()
             require("dapui").setup()
         end
     }
-
-    use {
-        "folke/neodev.nvim",
-        config = function()
-            require("neodev").setup({
-                library = {
-                    plugins = {
-                        "nvim-dap-ui"
-                    },
-                    types = true
-                }
-            })
-        end
-    }
-
-    use {
-        "stevearc/aerial.nvim",
-        config = function()
-            require("aerial").setup({
-            })
-        end,
-    }
-
-    if packer_bootstrap then
-        require("packer").sync()
-    end
-end)
-
-local packer_auto_compile = vim.api.nvim_create_augroup("packer_auto_compile", { clear = true })
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = "*/nvim/lua/plugins.lua",
-    command = [[source <afile> | PackerCompile]],
-    group = packer_auto_compile
 })
