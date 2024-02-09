@@ -14,17 +14,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    "wbthomason/packer.nvim",
     "neovim/nvim-lspconfig",
     "Issafalcon/lsp-overloads.nvim",
     "f-person/git-blame.nvim",
     "pbrisbin/vim-colors-off",
     "vim-test/vim-test",
-    "rust-lang/rust.vim",
     "github/copilot.vim",
-    "elkowar/yuck.vim",
     "mbbill/undotree",
-    "kdheepak/lazygit.nvim",
     {
         "stevearc/oil.nvim",
         config = function()
@@ -37,6 +33,8 @@ require("lazy").setup({
     },
     {
         "dundalek/parpar.nvim",
+        lazy = true,
+        ft = { "clojure", "fennel", "lisp", "scheme" },
         dependencies = { "gpanders/nvim-parinfer", "julienvincent/nvim-paredit" },
         config = function()
             local paredit = require("nvim-paredit")
@@ -60,6 +58,8 @@ require("lazy").setup({
     },
     {
         "clojure-vim/vim-jack-in",
+        lazy = true,
+        ft = { "clojure", "python" },
         dependencies = { "tpope/vim-dispatch", "radenling/vim-dispatch-neovim" },
     },
     {
@@ -241,7 +241,6 @@ require("lazy").setup({
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
-            "saadparwaiz1/cmp_luasnip",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
@@ -249,11 +248,6 @@ require("lazy").setup({
         config = function()
             local cmp = require('cmp')
             cmp.setup({
-                snippet = {
-                    expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
-                    end,
-                },
                 preselect = cmp.PreselectMode.None,
                 mapping = {
                     ['<C-j>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
@@ -274,7 +268,6 @@ require("lazy").setup({
                 },
                 sources = {
                     { name = "nvim_lsp" },
-                    { name = "luasnip" },
                     { name = "buffer" }
                 }
             })
@@ -292,10 +285,11 @@ require("lazy").setup({
     },
     {
         "shaunsingh/nord.nvim",
+        lazy = true,
         config = function()
-            -- vim.g.nord_disable_background = true
-            -- vim.g.nord_borders = true
-            -- require('nord').set();
+            vim.g.nord_disable_background = true
+            vim.g.nord_borders = true
+            require('nord').set();
         end
     },
     {
