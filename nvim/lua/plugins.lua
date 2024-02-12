@@ -239,6 +239,16 @@ require("lazy").setup({
         end
     },
     {
+        "iabdelkareem/csharp.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "Tastyep/structlog.nvim",
+        },
+        config = function ()
+            require("csharp").setup()
+        end
+    },
+    {
         "hrsh7th/nvim-cmp",
         dependencies = {
             "hrsh7th/cmp-buffer",
@@ -322,10 +332,11 @@ require("lazy").setup({
         'mfussenegger/nvim-dap',
         config = function()
             local dap = require('dap')
+            local debuggers_folder = vim.fn.stdpath('data') .. "/mason"
 
             dap.adapters.coreclr = {
                 type = "executable",
-                command = "netcoredbg",
+                command = debuggers_folder .. "/packages/netcoredbg/netcoredbg",
                 args = { "--interpreter=vscode" }
             }
 
