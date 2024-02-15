@@ -48,6 +48,7 @@ wk.register({
         p = {
             name = "Project",
             T = { terminals.open_terminals_in_project, "Open terminals in project" },
+            f = { ":Telescope projections<CR>", "Find" },
             t = {
                 name = "Test",
                 n = { ":TestNearest<CR>", "Test nearest" },

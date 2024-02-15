@@ -70,6 +70,32 @@ require("lazy").setup({
         end
     },
     {
+        "gnikdroy/projections.nvim",
+        config = function()
+            require("projections").setup({
+                workspaces = { "~/repos" }
+            })
+
+            -- Bind <leader>fp to Telescope projections
+            require('telescope').load_extension('projections')
+            --vim.keymap.set("n", "<leader>fp", function() vim.cmd("Telescope projections") end)
+
+            -- Autostore session on VimExit
+            local Session = require("projections.session")
+            vim.api.nvim_create_autocmd({ 'VimLeavePre' }, {
+                callback = function() Session.store(vim.loop.cwd()) end,
+            })
+
+            -- Switch to project if vim was started in a project dir
+            local switcher = require("projections.switcher")
+            vim.api.nvim_create_autocmd({ "VimEnter" }, {
+                callback = function()
+                    if vim.fn.argc() == 0 then switcher.switch(vim.loop.cwd()) end
+                end,
+            })
+        end
+    },
+    {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.4",
         dependencies = {
@@ -77,26 +103,26 @@ require("lazy").setup({
             "nvim-telescope/telescope-ui-select.nvim",
             "nvim-telescope/telescope-fzy-native.nvim",
             "kkharji/sqlite.lua",
-            "danielfalk/smart-open.nvim"
+            "danielfalk/smart-open.nvim",
         },
         config = function()
             local telescope = require('telescope')
             telescope.setup({
                 defaults = vim.tbl_extend(
-                "force",
-                require('telescope.themes').get_ivy(),
-                {
-                    file_sorter = require('telescope.sorters').get_fzy_sorter,
-                    mappings = {
-                        i = {
-                            ["<C-k>"] = require('telescope.actions').move_selection_previous,
-                            ["<C-j>"] = require('telescope.actions').move_selection_next,
-                        },
-                        n = {
-                            ["<C-d>"] = require('telescope.actions').delete_buffer
+                    "force",
+                    require('telescope.themes').get_ivy(),
+                    {
+                        file_sorter = require('telescope.sorters').get_fzy_sorter,
+                        mappings = {
+                            i = {
+                                ["<C-k>"] = require('telescope.actions').move_selection_previous,
+                                ["<C-j>"] = require('telescope.actions').move_selection_next,
+                            },
+                            n = {
+                                ["<C-d>"] = require('telescope.actions').delete_buffer
+                            }
                         }
-                    }
-                }),
+                    }),
                 extensions = {
                     fzy_native = {
                         override_generic_sorter = false,
@@ -244,7 +270,7 @@ require("lazy").setup({
             "williamboman/mason.nvim",
             "Tastyep/structlog.nvim",
         },
-        config = function ()
+        config = function()
             require("csharp").setup()
         end
     },
@@ -286,7 +312,7 @@ require("lazy").setup({
             --require('cmp_nvim_lsp').default_capabilities()
         end
     },
-    { 
+    {
         "catppuccin/nvim",
         name = "catppuccin",
         config = function()
