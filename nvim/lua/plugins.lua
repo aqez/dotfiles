@@ -17,9 +17,11 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     "Issafalcon/lsp-overloads.nvim",
     "f-person/git-blame.nvim",
+    "rust-lang/rust.vim",
     "pbrisbin/vim-colors-off",
     "vim-test/vim-test",
     "github/copilot.vim",
+    { 'wakatime/vim-wakatime', lazy = false },
     "mbbill/undotree",
     {
         "stevearc/oil.nvim",
