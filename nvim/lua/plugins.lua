@@ -21,6 +21,13 @@ require("lazy").setup({
     "pbrisbin/vim-colors-off",
     "vim-test/vim-test",
     "github/copilot.vim",
+    { "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup {}
+        end
+    },
     { 'wakatime/vim-wakatime', lazy = false },
     "mbbill/undotree",
     {
