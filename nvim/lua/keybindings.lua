@@ -65,10 +65,6 @@ wk.register({
             t = { dapui.toggle, "Toggle debugging UI" },
             h = { dapui_widgets.preview, "Show hover" },
         },
-        s = {
-            name = "Snippets",
-            r = { ":source ~/.config/nvim/lua/snippets.lua<CR>", "Reload snippets" },
-        },
         e = {
             name = "Editor",
             r = { ":source $MYVIMRC<CR>:source ~/.config/nvim/lua/keybindings.lua<CR>:echo \"Config reloaded!\"<CR>",
