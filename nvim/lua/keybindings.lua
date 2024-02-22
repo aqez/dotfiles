@@ -44,6 +44,8 @@ wk.register({
             b = { builtin.git_branches, "Git branches" },
             c = { builtin.git_commits, "Git commits" },
             C = { builtin.git_bcommits, "Git buffer commits" },
+            i = { ":Octo issue list<CR>", "Open Octo issue list" },
+            p = { ":Octo pr list<CR>", "Open Octo PR list" }
         },
         p = {
             name = "Project",

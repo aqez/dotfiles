@@ -28,7 +28,19 @@ require("lazy").setup({
             require("nvim-surround").setup {}
         end
     },
+    { "numToStr/Comment.nvim", opts = { }, lazy = false },
     { 'wakatime/vim-wakatime', lazy = false },
+    { 
+        "pwntester/octo.nvim",
+        dependencies = { 
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+            "nvim-tree/nvim-web-devicons"
+        },
+        config = function()
+            require("octo").setup()
+        end
+    },
     "mbbill/undotree",
     {
         "stevearc/oil.nvim",
