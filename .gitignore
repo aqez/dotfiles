@@ -3,3 +3,5 @@ lazygit/state.yml
 
 # pycache
 __pycache__/
+tmux/plugins/
+bin/nvim
