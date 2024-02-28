@@ -42,6 +42,7 @@ wk.register({
             g = { ":Neogit<CR>", "Open Neogit" },
             s = { builtin.git_status, "Git status" },
             b = { builtin.git_branches, "Git branches" },
+            B = { ":GitBlameToggle<CR>", "Toggle git blame" },
             c = { builtin.git_commits, "Git commits" },
             C = { builtin.git_bcommits, "Git buffer commits" },
             i = { ":Octo issue list<CR>", "Open Octo issue list" },

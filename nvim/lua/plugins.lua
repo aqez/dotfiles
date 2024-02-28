@@ -38,7 +38,9 @@ require("lazy").setup({
             "nvim-tree/nvim-web-devicons"
         },
         config = function()
-            require("octo").setup()
+            require("octo").setup({
+                default_to_projects_v2 = true
+            })
         end
     },
     "mbbill/undotree",
@@ -343,7 +345,7 @@ require("lazy").setup({
         dependencies = {
             'nvim-lua/plenary.nvim',
             'sindrets/diffview.nvim',
-            'ibhagwan/fzf-lua',
+            'nvim-telescope/telescope.nvim',
         },
         config = function()
             require('neogit').setup {}
