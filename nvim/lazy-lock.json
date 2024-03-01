@@ -8,7 +8,7 @@
   "csharp.nvim": { "branch": "main", "commit": "48d72dfad26177295744d6da958f1dc08046a9d9" },
   "diffview.nvim": { "branch": "main", "commit": "3dc498c9777fe79156f3d32dddd483b8b3dbd95f" },
   "git-blame.nvim": { "branch": "master", "commit": "ed84c1cfc49828a917af52bd92cac882851eca25" },
-  "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
+  "lazy.nvim": { "branch": "main", "commit": "28126922c9b54e35a192ac415788f202c3944c9f" },
   "leap.nvim": { "branch": "main", "commit": "fbf4e3c8949c759e498d64d2965f6b7343f04c3c" },
   "lsp-overloads.nvim": { "branch": "main", "commit": "6b023414d7a6264ce1880148f1a61cf10294546e" },
   "lualine.nvim": { "branch": "master", "commit": "7d131a8d3ba5016229e8a1d08bf8782acea98852" },
