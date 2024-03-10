@@ -99,7 +99,8 @@ wk.register({
     ["<F10>"] = { dap.step_over, "Step over" },
     ["<F11>"] = { dap.step_into, "Step into" },
     ["<F12>"] = { dap.step_out, "Step out" },
-    ["<BS>"] = { "<C-^>", "Previous file" }
+    ["<BS>"] = { "<C-^>", "Previous file" },
+    ["<CR>"] = { ":noh<CR><CR>", "Clear search highlights" }
 })
 
 wk.register({
