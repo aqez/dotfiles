@@ -21,6 +21,16 @@ require("lazy").setup({
     "pbrisbin/vim-colors-off",
     "vim-test/vim-test",
     "github/copilot.vim",
+    { "rcarriga/nvim-notify",
+        config = function()
+            vim.notify = require("notify")
+        end
+    },
+    { "dmmulroy/tsc.nvim",
+        config = function()
+            require("tsc").setup()
+        end
+    },
     { "kylechui/nvim-surround",
         version = "*",
         event = "VeryLazy",
