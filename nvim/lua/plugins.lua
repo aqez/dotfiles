@@ -234,9 +234,11 @@ require("lazy").setup({
                 automatic_installation = true
             })
 
+            local lspconfig = require("lspconfig")
+
             require("mason-lspconfig").setup_handlers {
                 function(server_name)
-                    require("lspconfig")[server_name].setup {
+                    lspconfig[server_name].setup {
                         on_attach = function(client)
                             if client.server_capabilities.signatureHelpProvider then
                                 require('lsp-overloads').setup(client, {})
@@ -246,7 +248,7 @@ require("lazy").setup({
                 end,
 
                 ["omnisharp"] = function()
-                    require("lspconfig")["omnisharp"].setup {
+                    lspconfig["omnisharp"].setup {
                         on_attach = function(client)
                             --client.server_capabilities.semanticTokensProvider = false
                             require('lsp-overloads').setup(client, {})
@@ -255,7 +257,7 @@ require("lazy").setup({
                 end,
 
                 ["lua_ls"] = function()
-                    require("lspconfig")["lua_ls"].setup {
+                    lspconfig["lua_ls"].setup {
                         settings = {
                             Lua = {
                                 diagnostics = {
@@ -266,6 +268,12 @@ require("lazy").setup({
                         on_attach = function(client)
                             require('lsp-overloads').setup(client, {})
                         end
+                    }
+                end,
+
+                ["clangd"] = function()
+                    lspconfig.clangd.setup {
+                        cmd = { "clangd", "--offset-encoding=utf-16" }
                     }
                 end
             }
@@ -391,7 +399,7 @@ require("lazy").setup({
     },
     {
         "rcarriga/nvim-dap-ui",
-        dependencies = { "mfussenegger/nvim-dap" },
+        dependencies = { "mfussenegger/nvim-dap",  "nvim-neotest/nvim-nio" },
         config = function()
             require("dapui").setup()
         end
