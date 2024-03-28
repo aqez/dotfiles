@@ -23,7 +23,9 @@ local function toggle_light_dark(window, _)
 end
 
 config.color_scheme = dark
-config.font = wezterm.font("0xProto Nerd Font Mono")
+-- config.font = wezterm.font("0xProto Nerd Font Mono")
+config.font = wezterm.font("Fira Code")
+-- config.font = wezterm.font("Source Code Pro")
 config.font_size = 15.0
 config.enable_tab_bar = false
 config.window_padding = {

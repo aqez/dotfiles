@@ -1,5 +1,4 @@
 local function split(inputstr, sep)
-    print("Splitting " .. inputstr .. " on " .. sep)
     if sep == nil then
         sep = "%s"
     end
@@ -38,6 +37,7 @@ local function open_terminals_in_project()
 
     local csproj_folders = vim.fn.systemlist("find . -name 'Program.cs' -maxdepth 2 -exec dirname {} \\; | uniq")
     local node_folders = vim.fn.systemlist("find . -name 'package.json' -maxdepth 2 -exec dirname {} \\; | uniq")
+    local lisp_folders = vim.fn.systemlist("find . -name '*.asd' -maxdepth 2 -exec dirname {} \\; | uniq")
 
     for _, v in pairs(csproj_folders) do
         if #allowed_folders == 0 or vim.tbl_contains(allowed_folders, v) then
@@ -49,6 +49,14 @@ local function open_terminals_in_project()
     for _, v in pairs(node_folders) do
         if #allowed_folders == 0 or vim.tbl_contains(allowed_folders, v) then
             local cmd = string.format('tmux new-window -dS -c %s -n %s "npm start; fish"', v, get_name_from_path(v))
+            vim.fn.system(cmd)
+        end
+    end
+
+    for _, v in pairs(lisp_folders) do
+        if #allowed_folders == 0 or vim.tbl_contains(allowed_folders, v) then
+            local sbcl_command = "ros run --eval '(ql:quickload :swank)'  --eval '(swank:create-server :dont-close t)'"
+            local cmd = string.format('tmux new-window -dS -n "sbcl" %s', sbcl_command)
             vim.fn.system(cmd)
         end
     end

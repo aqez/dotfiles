@@ -21,6 +21,7 @@ require("lazy").setup({
     "pbrisbin/vim-colors-off",
     "vim-test/vim-test",
     "github/copilot.vim",
+    "Olical/conjure",
     { "rcarriga/nvim-notify",
         config = function()
             vim.notify = require("notify")
@@ -295,6 +296,7 @@ require("lazy").setup({
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
+            "PaterJason/cmp-conjure",
         },
         config = function()
             local cmp = require('cmp')
@@ -319,7 +321,9 @@ require("lazy").setup({
                 },
                 sources = {
                     { name = "nvim_lsp" },
-                    { name = "buffer" }
+                    { name = "buffer" },
+                    { name = "path" },
+                    { name = "conjure" }
                 }
             })
 
@@ -347,10 +351,7 @@ require("lazy").setup({
         "ggandor/leap.nvim",
         dependencies = {
             "tpope/vim-repeat"
-        },
-        config = function()
-            require("leap").add_default_mappings()
-        end
+        }
     },
     {
         "folke/which-key.nvim",
