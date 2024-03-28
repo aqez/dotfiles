@@ -21,7 +21,6 @@ require("lazy").setup({
     "pbrisbin/vim-colors-off",
     "vim-test/vim-test",
     "github/copilot.vim",
-    "Olical/conjure",
     { "rcarriga/nvim-notify",
         config = function()
             vim.notify = require("notify")
@@ -66,34 +65,9 @@ require("lazy").setup({
         end
     },
     {
-        "dundalek/parpar.nvim",
-        lazy = true,
-        ft = { "clojure", "fennel", "lisp", "scheme" },
-        dependencies = { "gpanders/nvim-parinfer", "julienvincent/nvim-paredit" },
-        config = function()
-            local paredit = require("nvim-paredit")
-            require("parpar").setup {
-                paredit = {
-                    -- pass any nvim-paredit options here
-                    keys = {
-                        -- custom bindings are automatically wrapped
-                        ["<A-H>"] = { paredit.api.slurp_backwards, "Slurp backwards" },
-                        ["<A-J>"] = { paredit.api.barf_backwards, "Barf backwards" },
-                        ["<A-K>"] = { paredit.api.barf_forwards, "Barf forwards" },
-                        ["<A-L>"] = { paredit.api.slurp_forwards, "Slurp forwards" },
-                        ["<A-h>"] = { paredit.api.drag_element_backwards, "Drag element backwards" },
-                        ["<A-l>"] = { paredit.api.drag_element_forwards, "Drag element forwards" },
-                        ["<A-k>"] = { paredit.api.raise_form, "Raise form" },
-                        ["<A-j>"] = { paredit.api.raise_element, "Raise element" }
-                    }
-                }
-            }
-        end
-    },
-    {
         "clojure-vim/vim-jack-in",
         lazy = true,
-        ft = { "clojure", "python" },
+        ft = { "python" },
         dependencies = { "tpope/vim-dispatch", "radenling/vim-dispatch-neovim" },
     },
     {
@@ -296,7 +270,6 @@ require("lazy").setup({
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
-            "PaterJason/cmp-conjure",
         },
         config = function()
             local cmp = require('cmp')
@@ -323,7 +296,6 @@ require("lazy").setup({
                     { name = "nvim_lsp" },
                     { name = "buffer" },
                     { name = "path" },
-                    { name = "conjure" }
                 }
             })
 
