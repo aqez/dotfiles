@@ -30,7 +30,6 @@ local function open_terminals_in_project()
         print("Found terminals file, going to read it")
         local terminals = vim.fn.systemlist("cat " .. terminals_file)
         for k, v in pairs(terminals) do
-            print("Adding " .. v .. " to allowed folders")
             allowed_folders[k] = "./" .. v
         end
     end
