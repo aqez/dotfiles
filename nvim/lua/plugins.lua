@@ -20,7 +20,7 @@ require("lazy").setup({
     "rust-lang/rust.vim",
     "pbrisbin/vim-colors-off",
     "vim-test/vim-test",
-    "github/copilot.vim",
+    --"github/copilot.vim",
     { "rcarriga/nvim-notify",
         config = function()
             vim.notify = require("notify")
@@ -104,7 +104,8 @@ require("lazy").setup({
                                 ["<C-d>"] = require('telescope.actions').delete_buffer
                             }
                         }
-                    }),
+                    }
+                ),
                 extensions = {
                     fzy_native = {
                         override_generic_sorter = false,
@@ -323,7 +324,10 @@ require("lazy").setup({
         "ggandor/leap.nvim",
         dependencies = {
             "tpope/vim-repeat"
-        }
+        },
+        config = function()
+            require('leap').create_default_mappings()
+        end
     },
     {
         "folke/which-key.nvim",

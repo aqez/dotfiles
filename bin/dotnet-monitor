@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+process=$(ps -ef | fzf)
+
+pid=$(echo $process | cut -d' ' -f2)
+
+echo "process id: "
+echo $pid
+
+dotnet-counters monitor --process-id $pid

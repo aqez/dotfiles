@@ -81,8 +81,6 @@ wk.register({
         },
         ["rg"] = { ":Telescope live_grep<CR>", "Live grep" }
     },
-    ["f"] = { "<Plug>(leap-forward)", "Leap" },
-    ["F"] = { "<Plug>(leap-backward)", "Leap" },
     -- Quick fix
     ["<C-j>"] = { ":cn<CR>", "Next Quickfix" },
     ["<C-k>"] = { ":cp<CR>", "Previous Quickfix" },
