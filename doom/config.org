@@ -306,7 +306,6 @@ Set up copilot
       :leader (:desc "Dired" "d" #'dired))
 #+end_src
 
-
 * Clojure
 #+begin_src elisp
 
