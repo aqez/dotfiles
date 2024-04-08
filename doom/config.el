@@ -109,6 +109,8 @@
        :desc "Go to upper window" "k" #'evil-window-up
        :desc "Go to below window" "j" #'evil-window-down
        :desc "Open dired in project" "t" #'projectile-dired))
+
+(map! :desc "Swap to last buffer" :n "<backspace>" #'evil-switch-to-windows-last-buffer)
        ;:desc "Toggle neotree" "t" #'neotree-toggle))
 
 (setq projectile-project-search-path '("~/repos"))
@@ -225,11 +227,10 @@
 
 (advice-add 'org-tree-slide-mode :after #'aqez/org-tree-slide-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-ts-mode))
-(add-hook 'csharp-ts-mode-hook 'lsp-mode)
-
-(add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
-(add-hook 'c-ts-mode-hook 'lsp-mode)
+(add-to-list 'major-mode-remap-alist '(csharp-mode . csharp-ts-mode))
+(add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
+(add-to-list 'major-mode-remap-alist '(json-mode . json-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.yml" . yaml-ts-mode))
 
 (defvar aqez-openai-token-file
   "/home/aqez/.config/openai.token"
