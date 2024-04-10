@@ -250,6 +250,13 @@
       :n "c" 'dired-create-empty-file
       :leader (:desc "Dired" "d" #'dired))
 
+(map! :map lisp-mode-map
+      (:desc "Forward Slurp" "M-L" #'sp-forward-slurp-sexp
+       :desc "Forward Barf" "M-K" #'sp-forward-barf-sexp
+       :desc "Backwards Slurp" "M-H" #'sp-backward-slurp-sexp
+       :desc "Backwards Slurp" "M-J" #'sp-backward-barf-sexp
+       :desc "Raise sexp" "M-I" #'raise-sexp))
+
 (map! :map clojure-mode-map
       (:desc "Forward Slurp" "M-L" #'sp-forward-slurp-sexp
        :desc "Forward Barf" "M-K" #'sp-forward-barf-sexp
