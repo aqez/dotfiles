@@ -157,8 +157,7 @@
          (project-names (when (file-exists-p terminals-file)
                           (with-temp-buffer
                             (insert-file-contents terminals-file)
-                            (split-string (buffer-string) "\n" t))))
-         )
+                            (split-string (buffer-string) "\n" t)))))
     (when (and project-root project-names)
       (dolist (dir project-names)
         (let ((default-directory (concat project-root dir))
