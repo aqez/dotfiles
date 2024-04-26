@@ -159,8 +159,7 @@
          (project-names (when (file-exists-p terminals-file)
                           (with-temp-buffer
                             (insert-file-contents terminals-file)
-                            (split-string (buffer-string) "\n" t))))
-         )
+                            (split-string (buffer-string) "\n" t)))))
     (when (and project-root project-names)
       (dolist (dir project-names)
         (let ((default-directory (concat project-root dir))
@@ -251,6 +250,13 @@
       :map dired-mode-map
       :n "c" 'dired-create-empty-file
       :leader (:desc "Dired" "d" #'dired))
+
+(map! :map lisp-mode-map
+      (:desc "Forward Slurp" "M-L" #'sp-forward-slurp-sexp
+       :desc "Forward Barf" "M-K" #'sp-forward-barf-sexp
+       :desc "Backwards Slurp" "M-H" #'sp-backward-slurp-sexp
+       :desc "Backwards Slurp" "M-J" #'sp-backward-barf-sexp
+       :desc "Raise sexp" "M-I" #'raise-sexp))
 
 (map! :map clojure-mode-map
       (:desc "Forward Slurp" "M-L" #'sp-forward-slurp-sexp
