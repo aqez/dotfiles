@@ -24,10 +24,7 @@ local function open_terminals_in_project()
     local allowed_folders = {}
     local terminals_file = vim.fn.system("find . -name '.terminals'")
 
-    print("Terminals file: " .. terminals_file)
-
     if #terminals_file > 0 then
-        print("Found terminals file, going to read it")
         local terminals = vim.fn.systemlist("cat " .. terminals_file)
         for k, v in pairs(terminals) do
             allowed_folders[k] = "./" .. v

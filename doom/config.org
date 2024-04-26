@@ -111,6 +111,8 @@ change `org-directory'. It must be set before org loads!
 #+BEGIN_SRC emacs-lisp
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
 
+(add-hook 'csharp-ts-mode-hook #'lsp)
+
 (setq company-idle-delay 0.05
       lsp-lens-enable t
       flycheck-check-syntax-automatically '(save mode-enabled)
@@ -252,9 +254,9 @@ Set up projectile search path
 Set up copilot
 #+BEGIN_SRC emacs-lisp
 ;; accept completion from copilot and fallback to company
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map ("C-Q" . 'copilot-accept-completion)))
+;;(use-package! copilot
+;;  :hook (prog-mode . copilot-mode)
+;;  :bind (:map copilot-completion-map ("C-Q" . 'copilot-accept-completion)))
 
 #+END_SRC
 * Slide Mode

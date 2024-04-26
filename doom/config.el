@@ -85,6 +85,8 @@
 
 (after! lsp-rust (setq lsp-rust-server 'rust-analyzer))
 
+(add-hook 'csharp-ts-mode-hook #'lsp)
+
 (setq company-idle-delay 0.05
       lsp-lens-enable t
       flycheck-check-syntax-automatically '(save mode-enabled)
@@ -210,9 +212,9 @@
       (switch-to-buffer current-buffer))))
 
 ;; accept completion from copilot and fallback to company
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map ("C-Q" . 'copilot-accept-completion)))
+;;(use-package! copilot
+;;  :hook (prog-mode . copilot-mode)
+;;  :bind (:map copilot-completion-map ("C-Q" . 'copilot-accept-completion)))
 
 (defun aqez/org-tree-slide-mode-hook ()
   (if org-tree-slide-mode

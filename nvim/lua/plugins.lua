@@ -20,7 +20,7 @@ require("lazy").setup({
     "rust-lang/rust.vim",
     "pbrisbin/vim-colors-off",
     "vim-test/vim-test",
-    --"github/copilot.vim",
+    "github/copilot.vim",
     { "rcarriga/nvim-notify",
         config = function()
             vim.notify = require("notify")

@@ -1,6 +1,6 @@
 hide_window_decorations yes
-font_size 14
+font_size 18
 # BEGIN_KITTY_THEME
-# Nord
+# Doom One Light
 include current-theme.conf
 # END_KITTY_THEME

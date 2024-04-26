@@ -28,6 +28,7 @@ wk.register({
             name = "Buffers",
             s = { builtin.buffers, "Search buffers" },
             f = { builtin.current_buffer_fuzzy_find, "Find in buffer" },
+            o = { ":%bdelete|edit #|normal`\"<CR>", "Kill all but current buffer" },
         },
         c = {
             name = "Code",
@@ -100,7 +101,8 @@ wk.register({
     ["<F11>"] = { dap.step_into, "Step into" },
     ["<F12>"] = { dap.step_out, "Step out" },
     ["<BS>"] = { "<C-^>", "Previous file" },
-    ["<CR>"] = { ":noh<CR><CR>", "Clear search highlights" }
+    ["<CR>"] = { ":noh<CR><CR>", "Clear search highlights" },
+    ["<A-x>"] = { ":Telescope commands<CR>", "M-x" }
 })
 
 wk.register({
