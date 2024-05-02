@@ -47,7 +47,8 @@ wk.register({
             c = { builtin.git_commits, "Git commits" },
             C = { builtin.git_bcommits, "Git buffer commits" },
             i = { ":Octo issue list<CR>", "Open Octo issue list" },
-            p = { ":Octo pr list<CR>", "Open Octo PR list" }
+            p = { ":Octo pr list<CR>", "Open Octo PR list" },
+            P = { ":Octo pr create<CR>", "Create Pull Request" },
         },
         p = {
             name = "Project",

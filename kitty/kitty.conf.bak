@@ -1,5 +1,5 @@
 hide_window_decorations yes
-font_size 18
+font_size 14
 # BEGIN_KITTY_THEME
 # Doom One Light
 include current-theme.conf

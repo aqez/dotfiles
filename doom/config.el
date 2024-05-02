@@ -246,9 +246,16 @@
 
 (add-to-list 'auth-sources "~/.authinfo")
 
+(defun dired-open-file ()
+  "In dired, open the file named on this line."
+  (interactive)
+  (let* ((file (dired-get-filename nil t)))
+    (call-process "xdg-open" nil 0 nil file)))
+
 (map! :after dired
       :map dired-mode-map
       :n "c" 'dired-create-empty-file
+      :n "gx" 'dired-open-file
       :leader (:desc "Dired" "d" #'dired))
 
 (map! :map lisp-mode-map
