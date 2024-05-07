@@ -92,15 +92,23 @@
       flycheck-check-syntax-automatically '(save mode-enabled)
       lsp-modeline-code-actions-enable nil)
 
-(setq dap-auto-configure-mode t)
-(require 'dap-cpptools)
-(require 'dap-netcore)
+(after! dap-mode
+  (require 'dap-cpptools)
+  (require 'dap-netcore)
+  (setq dap-auto-configure-mode t)
 
-(map! (:desc "Toggle breakpoint" "<f9>" #'dap-breakpoint-toggle
-       :desc "Debug" "<f5>" #'dap-debug
-       :desc "Step Over" "<f10>" #'dap-next
-       :desc "Step Into" "<f11>" #'dap-step-in
-       :desc "Step Out" "<f12>" #'dap-step-out))
+  (dap-register-debug-template ".Net Core Attach (Pick Process)"
+                               (list :type "coreclr"
+                                     :request "attach"
+                                     :mode "attach"
+                                     :processId "${command:pickProcess}"
+                                     :name "NetCoreDbg::AttachPickProcess"))
+
+  (map! (:desc "Toggle breakpoint" "<f9>" #'dap-breakpoint-toggle
+         :desc "Debug" "<f5>" #'dap-debug
+         :desc "Step Over" "<f10>" #'dap-next
+         :desc "Step Into" "<f11>" #'dap-step-in
+         :desc "Step Out" "<f12>" #'dap-step-out)))
 
 (after! evil-snipe
   (setq evil-snipe-scope 'visible))
