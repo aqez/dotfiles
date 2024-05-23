@@ -41,6 +41,7 @@ change `org-directory'. It must be set before org loads!
         org-log-into-drawer t))
 #+END_SRC
 
+
 * Editor / Misc
 #+BEGIN_SRC emacs-lisp
 (setq shell-file-name (executable-find "bash")
