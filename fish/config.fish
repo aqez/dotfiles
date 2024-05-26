@@ -6,3 +6,6 @@ if status is-interactive
 
     fish_config prompt choose arrow
 end
+
+# opam configuration
+source /home/aqez/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
