@@ -25,7 +25,7 @@ require("lazy").setup({
         "Mofiqul/vscode.nvim",
         config = function()
             require('vscode').setup()
-            vim.cmd.colorscheme = "vscode"
+            vim.cmd [[colorscheme vscode]]
         end
     },
     { "rcarriga/nvim-notify",
