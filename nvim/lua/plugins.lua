@@ -21,6 +21,13 @@ require("lazy").setup({
     "pbrisbin/vim-colors-off",
     "vim-test/vim-test",
     "github/copilot.vim",
+    {
+        "Mofiqul/vscode.nvim",
+        config = function()
+            require('vscode').setup()
+            vim.cmd.colorscheme = "vscode"
+        end
+    },
     { "rcarriga/nvim-notify",
         config = function()
             vim.notify = require("notify")
@@ -84,9 +91,13 @@ require("lazy").setup({
     },
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        dependencies = { "nvim-tree/nvim-web-devicons", "Mofiqul/vscode.nvim" },
         config = function()
-            require("lualine").setup()
+            require("lualine").setup({
+                options = {
+                    theme = "vscode"
+                }
+            })
         end
     },
     {
@@ -396,6 +407,8 @@ require("lazy").setup({
     },
     {
         'NTBBloodbath/doom-one.nvim',
+        lazy = true,
+        enable = false,
         config = function()
             -- Add color to cursor
             vim.g.doom_one_cursor_coloring = false
