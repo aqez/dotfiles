@@ -90,7 +90,8 @@
 (setq company-idle-delay 0.05
       lsp-lens-enable t
       flycheck-check-syntax-automatically '(save mode-enabled)
-      lsp-modeline-code-actions-enable nil)
+      lsp-modeline-code-actions-enable nil
+      lsp-auto-execute-action nil)
 
 (after! dap-mode
   (require 'dap-cpptools)

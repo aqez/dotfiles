@@ -117,7 +117,8 @@ change `org-directory'. It must be set before org loads!
 (setq company-idle-delay 0.05
       lsp-lens-enable t
       flycheck-check-syntax-automatically '(save mode-enabled)
-      lsp-modeline-code-actions-enable nil)
+      lsp-modeline-code-actions-enable nil
+      lsp-auto-execute-action nil)
 #+END_SRC
 
 * Debug Adapter Protocol
