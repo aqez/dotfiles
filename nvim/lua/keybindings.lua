@@ -10,6 +10,7 @@ local builtin = require("telescope.builtin")
 local dap = require("dap")
 local dapui = require("dapui")
 local dapui_widgets = require("dap.ui.widgets")
+local neotest = require("neotest")
 
 local oil = require("oil")
 
@@ -34,7 +35,7 @@ wk.register({
             name = "Code",
             a = { vim.lsp.buf.code_action, "Code actions" },
             i = { builtin.lsp_implementations, "Go to implementation" },
-            f = { function() vim.lsp.buf.format { async = true } end, "Format buffer" },
+            f = { function() vim.lsp.buf.format({ async = true }) end, "Format buffer" },
             r = { vim.lsp.buf.rename, "Rename symbol" },
         },
         g = {
@@ -55,10 +56,14 @@ wk.register({
             T = { terminals.open_terminals_in_project, "Open terminals in project" },
             t = {
                 name = "Test",
-                n = { ":TestNearest<CR>", "Test nearest" },
-                f = { ":TestFile<CR>", "Test file" },
-                s = { ":TestSuite<CR>", "Test suite" },
-                l = { ":TestLast<CR>", "Test last" },
+                d = { function() neotest.run.run({ strategy = "dap" }) end, "Debug nearest test"},
+                a = { function() neotest.run.run({ suite = true }) end, "Test all" },
+                n = { ":Neotest run<CR>", "Test nearest" },
+                t = { ":Neotest run<CR>", "Test nearest" },
+                f = { function() neotest.run.run(vim.fn.expand("%")) end, "Test file" },
+                s = { ":Neotest summary<CR>", "Toggle summary" },
+                l = { neotest.run.run_last, "Run last test" },
+                w = { function() neotest.watch.toggle(vim.fn.expand("%")) end, "Watch tests in file" }
             }
         },
         d = {
@@ -86,8 +91,11 @@ wk.register({
     -- Quick fix
     ["<C-j>"] = { ":cn<CR>", "Next Quickfix" },
     ["<C-k>"] = { ":cp<CR>", "Previous Quickfix" },
+    ["<C-s>"] = { ":w<CR>", "Save buffer" },
     ["]e"] = { ":cnext<CR>", "Next Quickfix" },
     ["[e"] = { ":cprev<CR>", "Previous Quickfix" },
+    ["]t"] = { function() neotest.jump.next({ status = "failed" }) end, "Jump to next failing test" },
+    ["[t"] = { function() neotest.jump.prev({ status = "failed" }) end, "Jump to previous failing test" },
 
     g = {
         name = "Goto",
@@ -114,6 +122,10 @@ wk.register({
         }
     }
 }, { mode = "v" })
+
+wk.register({
+    ["<Esc>"] = { "<C-\\><C-n>", "Exit terminal mode" }
+}, { mode = "t" })
 
 vim.cmd [[imap <silent><script><expr> <C-q> copilot#Accept('')]]
 vim.g.copilot_no_tab_map = 1

@@ -41,7 +41,6 @@ change `org-directory'. It must be set before org loads!
         org-log-into-drawer t))
 #+END_SRC
 
-
 * Editor / Misc
 #+BEGIN_SRC emacs-lisp
 (setq shell-file-name (executable-find "bash")
@@ -114,11 +113,12 @@ change `org-directory'. It must be set before org loads!
 
 (add-hook 'csharp-ts-mode-hook #'lsp)
 
-(setq company-idle-delay 0.05
-      lsp-lens-enable t
-      flycheck-check-syntax-automatically '(save mode-enabled)
-      lsp-modeline-code-actions-enable nil
-      lsp-auto-execute-action nil)
+(after! lsp-mode (setq company-idle-delay 0
+                       lsp-idle-delay 0.05
+                       ;lsp-lens-enable nil
+                       flycheck-check-syntax-automatically '(save mode-enabled)
+                       lsp-modeline-code-actions-enable nil
+                       lsp-auto-execute-action nil))
 #+END_SRC
 
 * Debug Adapter Protocol
@@ -147,15 +147,17 @@ change `org-directory'. It must be set before org loads!
 (after! evil-snipe
   (setq evil-snipe-scope 'visible))
 
-(map! :leader
-      (:desc "Go to left window" "h" #'evil-window-left
-       :desc "Go to right window" "l" #'evil-window-right
-       :desc "Go to upper window" "k" #'evil-window-up
-       :desc "Go to below window" "j" #'evil-window-down
-       :desc "Open dired in project" "t" #'projectile-dired))
+(after! evil
+  (global-undo-tree-mode)
+  (map! :leader
+        (:desc "Go to left window" "h" #'evil-window-left
+         :desc "Go to right window" "l" #'evil-window-right
+         :desc "Go to upper window" "k" #'evil-window-up
+         :desc "Go to below window" "j" #'evil-window-down
+         :desc "Open dired in project" "t" #'projectile-dired))
 
-(map! :desc "Swap to last buffer" :n "<backspace>" #'evil-switch-to-windows-last-buffer)
-       ;:desc "Toggle neotree" "t" #'neotree-toggle))
+  (map! :desc "Swap to last buffer" :n "<backspace>" #'evil-switch-to-windows-last-buffer))
+                                        ;:desc "Toggle neotree" "t" #'neotree-toggle))
 #+END_SRC
 * Projectile
 Set up projectile search path
@@ -262,6 +264,11 @@ Set up projectile search path
 * Copilot
 Set up copilot
 #+BEGIN_SRC emacs-lisp
+(after! copilot
+  (add-hook 'prog-mode #'copilot-mode)
+  (map! :desc "Accept copilot completion"
+        :i "C-Q" #'copilot-accept-completion))
+
 ;; accept completion from copilot and fallback to company
 ;;(use-package! copilot
 ;;  :hook (prog-mode . copilot-mode)

@@ -15,7 +15,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append("c")
 vim.opt.previewheight = 10
 vim.opt.laststatus = 2
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 10
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
 --vim.opt.background = "light"

@@ -66,3 +66,4 @@
 (package! basic-theme)
 (package! white-theme)
 (package! evil-snipe)
+(package! vscode-dark-plus-theme)

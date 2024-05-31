@@ -87,11 +87,12 @@
 
 (add-hook 'csharp-ts-mode-hook #'lsp)
 
-(setq company-idle-delay 0.05
-      lsp-lens-enable t
-      flycheck-check-syntax-automatically '(save mode-enabled)
-      lsp-modeline-code-actions-enable nil
-      lsp-auto-execute-action nil)
+(after! lsp-mode (setq company-idle-delay 0
+                       lsp-idle-delay 0.05
+                       ;lsp-lens-enable nil
+                       flycheck-check-syntax-automatically '(save mode-enabled)
+                       lsp-modeline-code-actions-enable nil
+                       lsp-auto-execute-action nil))
 
 (after! dap-mode
   (require 'dap-cpptools)
@@ -114,15 +115,17 @@
 (after! evil-snipe
   (setq evil-snipe-scope 'visible))
 
-(map! :leader
-      (:desc "Go to left window" "h" #'evil-window-left
-       :desc "Go to right window" "l" #'evil-window-right
-       :desc "Go to upper window" "k" #'evil-window-up
-       :desc "Go to below window" "j" #'evil-window-down
-       :desc "Open dired in project" "t" #'projectile-dired))
+(after! evil
+  (global-undo-tree-mode)
+  (map! :leader
+        (:desc "Go to left window" "h" #'evil-window-left
+         :desc "Go to right window" "l" #'evil-window-right
+         :desc "Go to upper window" "k" #'evil-window-up
+         :desc "Go to below window" "j" #'evil-window-down
+         :desc "Open dired in project" "t" #'projectile-dired))
 
-(map! :desc "Swap to last buffer" :n "<backspace>" #'evil-switch-to-windows-last-buffer)
-       ;:desc "Toggle neotree" "t" #'neotree-toggle))
+  (map! :desc "Swap to last buffer" :n "<backspace>" #'evil-switch-to-windows-last-buffer))
+                                        ;:desc "Toggle neotree" "t" #'neotree-toggle))
 
 (setq projectile-project-search-path '("~/repos"))
 (map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
@@ -218,6 +221,11 @@
     (when opened-buffer
       (message "Opened some buffers, so restoring the original buffer")
       (switch-to-buffer current-buffer))))
+
+(after! copilot
+  (add-hook 'prog-mode #'copilot-mode)
+  (map! :desc "Accept copilot completion"
+        :i "C-Q" #'copilot-accept-completion))
 
 ;; accept completion from copilot and fallback to company
 ;;(use-package! copilot

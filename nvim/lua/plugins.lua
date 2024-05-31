@@ -19,9 +19,43 @@ require("lazy").setup({
     "f-person/git-blame.nvim",
     "rust-lang/rust.vim",
     "pbrisbin/vim-colors-off",
-    "vim-test/vim-test",
     "github/copilot.vim",
     "Olical/conjure", 
+    {
+        "gnikdroy/projections.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        config = function()
+            require("projections").setup({
+                workspaces = {
+                    { "~/repos", { ".git" }}
+                }
+            })
+
+            require("telescope").load_extension("projections")
+
+            local wk = require("which-key")
+            wk.register({
+                ["<leader>pp"] = { "<cmd>Telescope projections<cr>", "Projections" },
+            })
+
+            local Session = require("projections.session")
+            vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
+                callback = function() Session.store(vim.loop.cwd()) end
+            })
+        end
+    },
+    {
+        "akinsho/toggleterm.nvim",
+        version = "*",
+        config = function()
+            local toggleterm = require("toggleterm")
+            toggleterm.setup()
+            local wk = require("which-key")
+            wk.register({
+                ["<leader>ot"] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
+            })
+        end
+    },
     {
         "dundalek/parpar.nvim",
         dependencies = { "gpanders/nvim-parinfer", "julienvincent/nvim-paredit" },
@@ -67,18 +101,6 @@ require("lazy").setup({
     },
     { "numToStr/Comment.nvim", opts = { }, lazy = false },
     { 'wakatime/vim-wakatime', lazy = false },
-    {
-        'nvim-orgmode/orgmode',
-        event = 'VeryLazy',
-        ft = { 'org' },
-        config = function()
-            -- Setup orgmode
-            require('orgmode').setup({
-                org_agenda_files = '~/orgfiles/**/*',
-                org_default_notes_file = '~/orgfiles/refile.org',
-            })
-        end,
-    },
     { 
         "pwntester/octo.nvim",
         dependencies = { 
@@ -403,6 +425,9 @@ require("lazy").setup({
                 args = { "--interpreter=vscode" }
             }
 
+            dap.adapters.netcoredbg = dap.adapters.coreclr
+            dap.adapters.dotnet = dap.adapters.coreclr
+
             dap.configurations.cs = {
                 {
                     type = "coreclr",
@@ -417,6 +442,23 @@ require("lazy").setup({
         dependencies = { "mfussenegger/nvim-dap" },
         config = function()
             require("dap-go").setup()
+        end
+    },
+    {
+        "nvim-neotest/neotest",
+        dependencies = { 
+            "Issafalcon/neotest-dotnet",
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter"
+        },
+        config = function()
+            require("neotest").setup({
+                adapters = {
+                    require("neotest-dotnet")
+                }
+            })
         end
     },
     {
