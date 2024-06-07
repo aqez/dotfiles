@@ -22,8 +22,9 @@ clients, file templates and snippets. It is optional.
       doom-theme 'doom-one
       inhibit-startup-screen t
       display-line-numbers-type 'relative)
-(set-frame-parameter (selected-frame) 'alpha-background 100)
-(add-to-list 'default-frame-alist '(alpha-background . 100))
+(let ((transparency 65))
+  (set-frame-parameter (selected-frame) 'alpha-background 90)
+  (add-to-list 'default-frame-alist '(alpha-background . 90)))
 #+END_SRC
 * Org Mode
 If you use `org' and don't want your org files in the default location below,
@@ -124,8 +125,6 @@ change `org-directory'. It must be set before org loads!
 * Debug Adapter Protocol
 #+BEGIN_SRC emacs-lisp
 (after! dap-mode
-  (require 'dap-cpptools)
-  (require 'dap-netcore)
   (setq dap-auto-configure-mode t)
 
   (dap-register-debug-template ".Net Core Attach (Pick Process)"

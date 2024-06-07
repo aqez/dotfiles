@@ -122,8 +122,9 @@
        lua                           ; one-based indices? one-based indices
        markdown                      ; writing docs for people to ignore
        ;;nim                         ; python + lisp at the speed of c
-       ocaml                       ; an objective camel
-       (org +roam2 +pretty +present) ; organize your plain life in plain text
+       ocaml                         ; an objective camel
+       (org +roam2 +pretty
+            +present +gnuplot)       ; organize your plain life in plain text
        (python +lsp)                 ; beautiful is better than ugly
        rest                          ; Emacs as a REST client
        ;;(ruby +rails)               ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}

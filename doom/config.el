@@ -7,8 +7,9 @@
       doom-theme 'doom-one
       inhibit-startup-screen t
       display-line-numbers-type 'relative)
-(set-frame-parameter (selected-frame) 'alpha-background 100)
-(add-to-list 'default-frame-alist '(alpha-background . 100))
+(let ((transparency 65))
+  (set-frame-parameter (selected-frame) 'alpha-background 90)
+  (add-to-list 'default-frame-alist '(alpha-background . 90)))
 
 (setq org-directory "~/org/"
       org-roam-directory "~/org/roam"
@@ -95,8 +96,6 @@
                        lsp-auto-execute-action nil))
 
 (after! dap-mode
-  (require 'dap-cpptools)
-  (require 'dap-netcore)
   (setq dap-auto-configure-mode t)
 
   (dap-register-debug-template ".Net Core Attach (Pick Process)"

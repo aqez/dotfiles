@@ -22,6 +22,20 @@ require("lazy").setup({
     "github/copilot.vim",
     "Olical/conjure", 
     {
+        "vhyrro/luarocks.nvim",
+        config = true,
+        priority = 1000, -- Very high priority is required, 
+                         -- luarocks.nvim should run as the
+                         -- first plugin in your config.
+    },
+    {
+        "nvim-neorg/neorg",
+        dependencies = { "luarocks.nvim" },
+        lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+        version = "*", -- Pin Neorg to the latest stable release
+        config = true,
+    },
+    {
         "gnikdroy/projections.nvim",
         dependencies = { "nvim-telescope/telescope.nvim" },
         config = function()
