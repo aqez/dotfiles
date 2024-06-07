@@ -15,10 +15,12 @@ const date = Variable("", {
 // so to make a reuseable widget, make it a function
 // then you can simply instantiate one by calling it
 
-function Workspaces() {
+function Workspaces(monitor) {
     const activeId = hyprland.active.workspace.bind("id")
     const workspaces = hyprland.bind("workspaces")
-        .as(ws => ws.map(({ id }) => Widget.Button({
+        .as(ws => ws
+            .filter(({ id }) => id.toString().startsWith((monitor + 1).toString()))
+            .map(({ id }) => Widget.Button({
             on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
             child: Widget.Label(`${id}`),
             class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
@@ -133,11 +135,11 @@ function SysTray() {
 }
 
 // layout of the bar
-function Left() {
+function Left(monitor) {
     return Widget.Box({
         spacing: 8,
         children: [
-            Workspaces(),
+            Workspaces(monitor),
             ClientTitle(),
         ],
     })
@@ -173,7 +175,7 @@ function Bar(monitor = 0) {
         anchor: ["top", "left", "right"],
         exclusivity: "exclusive",
         child: Widget.CenterBox({
-            start_widget: Left(),
+            start_widget: Left(monitor),
             center_widget: Center(),
             end_widget: Right(),
         }),
@@ -183,12 +185,12 @@ function Bar(monitor = 0) {
 App.config({
     style: "./style.css",
     windows: [
-        Bar(),
+        //Bar(),
+        Bar(0),
+        Bar(1),
         NotificationPopups(),
         applauncher
         // you can call it, for each monitor
-        // Bar(0),
-        // Bar(1)
     ],
 })
 
