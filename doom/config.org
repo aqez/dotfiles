@@ -165,34 +165,34 @@ Set up projectile search path
 (map! :leader :desc "Projectile ripgrep" :n "r g" #'projectile-ripgrep)
 
 (after! projectile
-  (progn
-    (defadvice projectile-on (around exlude-tramp activate)
-      "This should disable projectile when visiting a remote file"
-      (unless  (--any? (and it (file-remote-p it))
-                       (list
-                        (buffer-file-name)
-                        list-buffers-directory
-                        default-directory
-                        dired-directory))
-        ad-do-it))
-    (setq projectile-track-known-projects-automatically nil)
-    (setq projectile-globally-ignored-directories
-          '(".idea"
-            ".vscode"
-            ".ensime_cache"
-            ".eunit"
-            ".git"
-            ".hg"
-            ".fslckout"
-            "_FOSSIL_"
-            ".bzr"
-            "_darcs"
-            ".tox"
-            ".svn"
-            ".stack-work"
-            ".ccls-cache"
-            ".cache"
-            ".clangd"))))
+  (defadvice projectile-on (around exlude-tramp activate)
+    "This should disable projectile when visiting a remote file"
+    (unless  (--any? (and it (file-remote-p it))
+                     (list
+                      (buffer-file-name)
+                      list-buffers-directory
+                      default-directory
+                      dired-directory))
+      ad-do-it))
+  (setq projectile-enable-caching nil
+        projectile-track-known-projects-automatically nil
+        projectile-globally-ignored-directories
+           '(".idea"
+             ".vscode"
+             ".ensime_cache"
+             ".eunit"
+             ".git"
+             ".hg"
+             ".fslckout"
+             "_FOSSIL_"
+             ".bzr"
+             "_darcs"
+             ".tox"
+             ".svn"
+             ".stack-work"
+             ".ccls-cache"
+             ".cache"
+             ".clangd")))
 
 #+END_SRC
 

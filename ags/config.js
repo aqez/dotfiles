@@ -176,7 +176,7 @@ function Bar(monitor = 0) {
         exclusivity: "exclusive",
         child: Widget.CenterBox({
             start_widget: Left(monitor),
-            center_widget: Center(),
+            //center_widget: Center(),
             end_widget: Right(),
         }),
     })
