@@ -20,21 +20,6 @@ require("lazy").setup({
     "rust-lang/rust.vim",
     "pbrisbin/vim-colors-off",
     "github/copilot.vim",
-    "Olical/conjure", 
-    {
-        "vhyrro/luarocks.nvim",
-        config = true,
-        priority = 1000, -- Very high priority is required, 
-                         -- luarocks.nvim should run as the
-                         -- first plugin in your config.
-    },
-    {
-        "nvim-neorg/neorg",
-        dependencies = { "luarocks.nvim" },
-        lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-        version = "*", -- Pin Neorg to the latest stable release
-        config = true,
-    },
     {
         "gnikdroy/projections.nvim",
         dependencies = { "nvim-telescope/telescope.nvim" },
@@ -71,25 +56,6 @@ require("lazy").setup({
         end
     },
     {
-        "dundalek/parpar.nvim",
-        dependencies = { "gpanders/nvim-parinfer", "julienvincent/nvim-paredit" },
-        config = function()
-            local paredit = require("nvim-paredit")
-            require("parpar").setup {
-                paredit = {
-                    -- pass any nvim-paredit options here
-                    keys = {
-                        -- custom bindings are automatically wrapped
-                        ["<A-H>"] = { paredit.api.slurp_backwards, "Slurp backwards" },
-                        ["<A-J>"] = { paredit.api.barf_backwards, "Barf backwards" },
-                        ["<A-K>"] = { paredit.api.barf_forwards, "Barf forwards" },
-                        ["<A-L>"] = { paredit.api.slurp_forwards, "Slurp forwards" },
-                    }
-                }
-            }
-        end
-    },
-    {
         "Mofiqul/vscode.nvim",
         config = function()
             require('vscode').setup()
@@ -99,6 +65,10 @@ require("lazy").setup({
     { "rcarriga/nvim-notify",
         config = function()
             vim.notify = require("notify")
+
+            vim.notify .setup({
+                background_colour = "#000000"
+            })
         end
     },
     { "dmmulroy/tsc.nvim",
@@ -350,7 +320,6 @@ require("lazy").setup({
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
-            "PaterJason/cmp-conjure",
         },
         config = function()
             local cmp = require('cmp')

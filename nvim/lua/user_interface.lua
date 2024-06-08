@@ -18,7 +18,8 @@ vim.opt.laststatus = 2
 vim.opt.scrolloff = 5
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
---vim.opt.background = "light"
+
+vim.cmd "hi Normal guibg=None"
 
 local _border = "single"
 
@@ -27,6 +28,9 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
         border = _border
     }
 )
+
+vim.g.neovide_transparency = 0.5
+vim.g.neovide_transparency_point = 0.8
 
 -- Text/Indent
 vim.opt.expandtab = true
