@@ -21,6 +21,10 @@ window.notification-popups box.notifications {
     border-radius: 7px;
 }
 
+.focused {
+    border: 1px solid @wm_borders_edge;
+}
+
 .notification {
     min-width: 350px;
     border-radius: 11px;

@@ -19,8 +19,9 @@ function Workspaces(monitor) {
     const activeId = hyprland.active.workspace.bind("id")
     const workspaces = hyprland.bind("workspaces")
         .as(ws => ws
-            .filter(({ id }) => id.toString().startsWith((monitor + 1).toString()))
-            .map(({ id }) => Widget.Button({
+        //.filter(({ id }) => id.toString().startsWith((monitor + 1).toString()))
+        .sort((a, b) => a.id - b.id)
+        .map(({ id }) => Widget.Button({
             on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
             child: Widget.Label(`${id}`),
             class_name: activeId.as(i => `${i === id ? "focused" : ""}`),

@@ -65,7 +65,7 @@ else
     beautiful.wallpaper = background_directory .. "background.jpg"
 end
 
-beautiful.useless_gap = dpi(20)
+beautiful.useless_gap = dpi(10)
 beautiful.border_width = 0
 
 -- This is used later as the default terminal and editor to run.
@@ -165,7 +165,6 @@ end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
-
 
 local gc_info_widget = awful.widget.watch(
     "echo yo",
@@ -477,7 +476,6 @@ awful.rules.rules = {
     {
         rule = { name = "Slack" },
         properties = { focus = false }
-
     },
     -- Floating clients.
     { rule_any = {
