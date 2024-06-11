@@ -187,7 +187,7 @@ App.config({
     windows: [
         //Bar(),
         Bar(0),
-        Bar(1),
+        //Bar(1),
         NotificationPopups(),
         applauncher
         // you can call it, for each monitor

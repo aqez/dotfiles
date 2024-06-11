@@ -20,6 +20,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
 
 vim.cmd "hi Normal guibg=None"
+vim.cmd "hi LineNr guibg=None"
 
 local _border = "single"
 
