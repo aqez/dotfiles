@@ -84,7 +84,6 @@ require("lazy").setup({
         end
     },
     { "numToStr/Comment.nvim", opts = { }, lazy = false },
-    { 'wakatime/vim-wakatime', lazy = false },
     { 
         "pwntester/octo.nvim",
         dependencies = { 
