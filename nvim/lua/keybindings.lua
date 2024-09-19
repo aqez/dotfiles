@@ -86,6 +86,12 @@ wk.register({
             name = "Undo Tree",
             t = { ":UndotreeToggle<CR>", "Toggle undo tree" },
         },
+        T = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
+        o = {
+            name = "Overseer",
+            t = { "<cmd>OverseerToggle v<cr>", "Overseer Toggle" },
+            r = { "<cmd>OverseerRun<cr>", "Overseer Run" }
+        },
         ["rg"] = { ":Telescope live_grep<CR>", "Live grep" }
     },
     -- Quick fix

@@ -21,6 +21,10 @@ require("lazy").setup({
     "pbrisbin/vim-colors-off",
     "github/copilot.vim",
     {
+        "stevearc/overseer.nvim",
+        opts = {}
+    },
+    {
         "gnikdroy/projections.nvim",
         dependencies = { "nvim-telescope/telescope.nvim" },
         config = function()

@@ -30,8 +30,8 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     }
 )
 
-vim.g.neovide_transparency = 0.5
-vim.g.neovide_transparency_point = 0.8
+--vim.g.neovide_transparency = 0.5
+--vim.g.neovide_transparency_point = 0.8
 
 -- Text/Indent
 vim.opt.expandtab = true
