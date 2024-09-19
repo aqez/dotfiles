@@ -53,10 +53,6 @@ require("lazy").setup({
         config = function()
             local toggleterm = require("toggleterm")
             toggleterm.setup()
-            local wk = require("which-key")
-            wk.register({
-                ["<leader>ot"] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
-            })
         end
     },
     {
