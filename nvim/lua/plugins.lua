@@ -25,6 +25,25 @@ require("lazy").setup({
         opts = {}
     },
     {
+        'nvim-orgmode/orgmode',
+        event = 'VeryLazy',
+        ft = { 'org' },
+        config = function()
+            -- Setup orgmode
+            require('orgmode').setup({
+                org_agenda_files = '~/repos/roam/**/*',
+                org_default_notes_file = '~/repos/roam/refile.org',
+            })
+
+            -- NOTE: If you are using nvim-treesitter with ~ensure_installed = "all"~ option
+            -- add ~org~ to ignore_install
+            -- require('nvim-treesitter.configs').setup({
+            --   ensure_installed = 'all',
+            --   ignore_install = { 'org' },
+            -- })
+        end,
+    },
+    {
         "gnikdroy/projections.nvim",
         dependencies = { "nvim-telescope/telescope.nvim" },
         config = function()
@@ -67,7 +86,8 @@ require("lazy").setup({
             vim.notify = require("notify")
 
             vim.notify .setup({
-                background_colour = "#000000"
+                background_colour = "#000000",
+                timeout = 500,
             })
         end
     },
@@ -102,6 +122,12 @@ require("lazy").setup({
         "stevearc/oil.nvim",
         config = function()
             require('oil').setup({
+                columns = {
+                    "icon",
+                    "permissions",
+                    "size",
+                    "mtime"
+                },
                 keymaps = {
                     ["q"] = "actions.close"
                 }
@@ -173,7 +199,18 @@ require("lazy").setup({
         config = function()
             local configs = require('nvim-treesitter.configs')
             configs.setup({
-                ensure_installed = "all",
+                ensure_installed = {
+                    "c_sharp",
+                    "javascript",
+                    "typescript",
+                    "json",
+                    "yaml",
+                    "go", 
+                    "lua",
+                    "rust",
+                    "tsx",
+                    "html"
+                },
                 highlight = {
                     enable = true,
                     --additional_vim_regex_highlighting = true,
@@ -433,7 +470,7 @@ require("lazy").setup({
             "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
             "antoinemadec/FixCursorHold.nvim",
-            "nvim-treesitter/nvim-treesitter"
+            "nvim-treesitter/nvim-treesitter",
         },
         config = function()
             require("neotest").setup({
@@ -441,6 +478,13 @@ require("lazy").setup({
                     require("neotest-dotnet")
                 }
             })
+        end
+    },
+    {
+        "andythigpen/nvim-coverage",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("coverage").setup()
         end
     },
     {
