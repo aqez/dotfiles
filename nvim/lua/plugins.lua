@@ -44,29 +44,6 @@ require("lazy").setup({
         end,
     },
     {
-        "gnikdroy/projections.nvim",
-        dependencies = { "nvim-telescope/telescope.nvim" },
-        config = function()
-            require("projections").setup({
-                workspaces = {
-                    { "~/repos", { ".git" }}
-                }
-            })
-
-            require("telescope").load_extension("projections")
-
-            local wk = require("which-key")
-            wk.register({
-                ["<leader>pp"] = { "<cmd>Telescope projections<cr>", "Projections" },
-            })
-
-            local Session = require("projections.session")
-            vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
-                callback = function() Session.store(vim.loop.cwd()) end
-            })
-        end
-    },
-    {
         "akinsho/toggleterm.nvim",
         version = "*",
         config = function()
