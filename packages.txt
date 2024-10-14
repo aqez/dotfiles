@@ -68,7 +68,6 @@ networkmanager
 nodejs
 noto-fonts
 npm
-nvidia-dkms
 nvtop
 pipewire
 pipewire-alsa
