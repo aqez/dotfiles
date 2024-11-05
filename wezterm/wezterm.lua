@@ -46,7 +46,7 @@ config.keys = {
     },
 
     -- Theme Cycler
-    { key = "t",      mods = "ALT",    action = wezterm.action_callback(toggle_light_dark) },
+    { key = "t",      mods = "LEADER", action = wezterm.action_callback(toggle_light_dark) },
 
     -- Look up Scheme you switched to
     { key = "Escape", mods = "CTRL",   action = wezterm.action.ShowDebugOverlay },
