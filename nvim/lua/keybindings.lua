@@ -50,6 +50,7 @@ wk.register({
             i = { ":Octo issue list<CR>", "Open Octo issue list" },
             p = { ":Octo pr list<CR>", "Open Octo PR list" },
             P = { ":Octo pr create<CR>", "Create Pull Request" },
+            f = { ":!git pull<CR>", "Git pull" },
         },
         p = {
             name = "Project",
@@ -136,12 +137,12 @@ wk.register({
 vim.cmd [[imap <silent><script><expr> <C-q> copilot#Accept('')]]
 vim.g.copilot_no_tab_map = 1
 
-vim.cmd [[ autocmd FileType cs lua c_sharp_go_to_definition() ]]
-function c_sharp_go_to_definition()
-    local csharp = require("csharp")
-    wk.register({ 
-        g = { 
-            d = { csharp.go_to_definition, "Go to definition" } 
-        } 
-    },  { buffer = vim.api.nvim_get_current_buf() })
-end
+--vim.cmd [[ autocmd FileType cs lua c_sharp_go_to_definition() ]]
+--function c_sharp_go_to_definition()
+--    local csharp = require("csharp")
+--    wk.register({ 
+--        g = { 
+--            d = { csharp.go_to_definition, "Go to definition" } 
+--        } 
+--    },  { buffer = vim.api.nvim_get_current_buf() })
+--end
