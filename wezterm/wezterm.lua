@@ -23,7 +23,7 @@ local function toggle_light_dark(window, _)
     window:set_config_overrides(overrides)
 end
 
-config.color_scheme = dark
+config.color_scheme = 'DoomOne'
 -- config.font = wezterm.font("0xProto Nerd Font Mono")
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 -- config.font = wezterm.font("Source Code Pro")
@@ -35,6 +35,8 @@ config.window_padding = {
     top = 0,
     bottom = 0
 }
+
+config.window_decorations = "NONE"
 
 config.audible_bell = "Disabled"
 
@@ -48,7 +50,7 @@ config.colors = {
     visual_bell = '#777777',
 }
 
-config.leader = { key = '\\', timeout_milliseconds = 1000 }
+config.leader = { key = '\\', mods = "CTRL", timeout_milliseconds = 1000 }
 
 config.keys = {
     {

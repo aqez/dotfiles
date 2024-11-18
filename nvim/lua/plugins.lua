@@ -58,32 +58,35 @@ require("lazy").setup({
             vim.cmd [[colorscheme vscode]]
         end
     },
-    { "rcarriga/nvim-notify",
+    {
+        "rcarriga/nvim-notify",
         config = function()
             vim.notify = require("notify")
 
-            vim.notify .setup({
+            vim.notify.setup({
                 background_colour = "#000000",
                 timeout = 500,
             })
         end
     },
-    { "dmmulroy/tsc.nvim",
+    {
+        "dmmulroy/tsc.nvim",
         config = function()
             require("tsc").setup()
         end
     },
-    { "kylechui/nvim-surround",
+    {
+        "kylechui/nvim-surround",
         version = "*",
         event = "VeryLazy",
         config = function()
             require("nvim-surround").setup {}
         end
     },
-    { "numToStr/Comment.nvim", opts = { }, lazy = false },
-    { 
+    { "numToStr/Comment.nvim", opts = {}, lazy = false },
+    {
         "pwntester/octo.nvim",
-        dependencies = { 
+        dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim",
             "nvim-tree/nvim-web-devicons"
@@ -182,7 +185,7 @@ require("lazy").setup({
                     "typescript",
                     "json",
                     "yaml",
-                    "go", 
+                    "go",
                     "lua",
                     "rust",
                     "tsx",
@@ -434,7 +437,8 @@ require("lazy").setup({
             }
         end
     },
-    { "leoluz/nvim-dap-go",
+    {
+        "leoluz/nvim-dap-go",
         dependencies = { "mfussenegger/nvim-dap" },
         config = function()
             require("dap-go").setup()
@@ -442,7 +446,7 @@ require("lazy").setup({
     },
     {
         "nvim-neotest/neotest",
-        dependencies = { 
+        dependencies = {
             "Issafalcon/neotest-dotnet",
             "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
@@ -466,14 +470,14 @@ require("lazy").setup({
     },
     {
         "rcarriga/nvim-dap-ui",
-        dependencies = { "mfussenegger/nvim-dap",  "nvim-neotest/nvim-nio" },
+        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
         config = function()
             require("dapui").setup()
         end
     },
     {
         'NTBBloodbath/doom-one.nvim',
-        lazy = true,
+        lazy = false,
         enable = false,
         config = function()
             -- Add color to cursor

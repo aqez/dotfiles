@@ -57,7 +57,7 @@ wk.register({
             T = { terminals.open_terminals_in_project, "Open terminals in project" },
             t = {
                 name = "Test",
-                d = { function() neotest.run.run({ strategy = "dap" }) end, "Debug nearest test"},
+                d = { function() neotest.run.run({ strategy = "dap" }) end, "Debug nearest test" },
                 a = { function() neotest.run.run({ suite = true }) end, "Test all" },
                 n = { ":Neotest run<CR>", "Test nearest" },
                 t = { ":Neotest run<CR>", "Test nearest" },
@@ -108,6 +108,7 @@ wk.register({
         name = "Goto",
         d = { builtin.lsp_definitions, "Go to definition" },
         D = { builtin.lsp_references, "Go to references" },
+        t = { builtin.lsp_type_definitions, "Go to type definition" },
     },
     K = { vim.lsp.buf.hover, "Show hover" },
     ["<C-b>"] = { ":make<CR>", "Build" },
@@ -140,9 +141,9 @@ vim.g.copilot_no_tab_map = 1
 --vim.cmd [[ autocmd FileType cs lua c_sharp_go_to_definition() ]]
 --function c_sharp_go_to_definition()
 --    local csharp = require("csharp")
---    wk.register({ 
---        g = { 
---            d = { csharp.go_to_definition, "Go to definition" } 
---        } 
+--    wk.register({
+--        g = {
+--            d = { csharp.go_to_definition, "Go to definition" }
+--        }
 --    },  { buffer = vim.api.nvim_get_current_buf() })
 --end
