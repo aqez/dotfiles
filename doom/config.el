@@ -244,7 +244,7 @@
 
 (advice-add 'org-tree-slide-mode :after #'aqez/org-tree-slide-mode-hook)
 
-(add-to-list 'major-mode-remap-alist '(csharp-mode . csharp-ts-mode))
+;(add-to-list 'major-mode-remap-alist '(csharp-mode . csharp-ts-mode))
 (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
 (add-to-list 'major-mode-remap-alist '(json-mode . json-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.yml" . yaml-ts-mode))
