@@ -47,7 +47,11 @@ wk.register({
             B = { ":GitBlameToggle<CR>", "Toggle git blame" },
             c = { builtin.git_commits, "Git commits" },
             C = { builtin.git_bcommits, "Git buffer commits" },
-            i = { ":Octo issue list<CR>", "Open Octo issue list" },
+            i = {
+                name = "Issues",
+                l = { ":Octo issue list<CR>", "Open Octo issue list" },
+                c = { ":Octo issue create<CR>", "Create issue" },
+            },
             p = {
                 name = "Pull Requests",
                 l = { ":Octo pr list<CR>", "Open Octo PR list" },

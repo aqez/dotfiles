@@ -18,6 +18,7 @@ require("lazy").setup({
     "Issafalcon/lsp-overloads.nvim",
     "f-person/git-blame.nvim",
     "rust-lang/rust.vim",
+    "andrewradev/linediff.vim",
     "pbrisbin/vim-colors-off",
     "github/copilot.vim",
     {
