@@ -291,7 +291,7 @@ Set up copilot
 #+end_src
 * Tree-sitter
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'major-mode-remap-alist '(csharp-mode . csharp-ts-mode))
+;(add-to-list 'major-mode-remap-alist '(csharp-mode . csharp-ts-mode))
 (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
 (add-to-list 'major-mode-remap-alist '(json-mode . json-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.yml" . yaml-ts-mode))

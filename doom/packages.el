@@ -58,6 +58,9 @@
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 
+(package! cognitive-complexity
+  :recipe (:host github :repo "emacs-vs/cognitive-complexity"))
+
 (package! rg)
 
 (package! gptel)
@@ -67,3 +70,4 @@
 (package! white-theme)
 (package! evil-snipe)
 (package! vscode-dark-plus-theme)
+(package! prodigy)

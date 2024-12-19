@@ -21,6 +21,10 @@ require("lazy").setup({
     "pbrisbin/vim-colors-off",
     "github/copilot.vim",
     {
+        "glacambre/firenvim",
+        build = ":call firenvim#install(0)",
+    },
+    {
         "stevearc/overseer.nvim",
         opts = {}
     },
