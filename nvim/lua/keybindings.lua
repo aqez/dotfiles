@@ -14,135 +14,120 @@ local neotest = require("neotest")
 
 local oil = require("oil")
 
-wk.register({
-    ["<leader>"] = {
-        h = { "<C-w>h", "Move to left window" },
-        j = { "<C-w>j", "Move to bottom window" },
-        k = { "<C-w>k", "Move to top window" },
-        l = { "<C-w>l", "Move to right window" },
-        H = { ":Telescope help_tags<CR>", "Search help tags" },
-        ["<space>"] = { function() telescope.extensions.smart_open.smart_open({ cwd_only = true }) end, "Smart open" },
-        --t = { ":NvimTreeFindFileToggle<CR>", "Toggle file tree" },
-        t = { ":Oil .<CR>", "Open oil browser at project root" },
-        ["-"] = { oil.open, "Open oil browser at file root" },
-        b = {
-            name = "Buffers",
-            s = { builtin.buffers, "Search buffers" },
-            f = { builtin.current_buffer_fuzzy_find, "Find in buffer" },
-            o = { ":%bdelete|edit #|normal`\"<CR>", "Kill all but current buffer" },
-        },
-        c = {
-            name = "Code",
-            a = { vim.lsp.buf.code_action, "Code actions" },
-            i = { builtin.lsp_implementations, "Go to implementation" },
-            f = { function() vim.lsp.buf.format({ async = true }) end, "Format buffer" },
-            r = { vim.lsp.buf.rename, "Rename symbol" },
-        },
-        g = {
-            name = "Git",
-            --g = { function() vim.fn.system("tmux new-window -S -n 'lazy-git' lg") end, "Open lazy-git" },
-            g = { ":Neogit<CR>", "Open Neogit" },
-            s = { builtin.git_status, "Git status" },
-            b = { builtin.git_branches, "Git branches" },
-            B = { ":GitBlameToggle<CR>", "Toggle git blame" },
-            c = { builtin.git_commits, "Git commits" },
-            C = { builtin.git_bcommits, "Git buffer commits" },
-            i = {
-                name = "Issues",
-                l = { ":Octo issue list<CR>", "Open Octo issue list" },
-                c = { ":Octo issue create<CR>", "Create issue" },
-            },
-            p = {
-                name = "Pull Requests",
-                l = { ":Octo pr list<CR>", "Open Octo PR list" },
-                c = { ":Octo pr create<CR>", "Create Pull Request" },
-                b = { ":Octo pr browser<CR>", "Open PR in browser" },
-                u = { ":Octo pr url<CR>", "Copy PR URL" },
-            },
-            f = { ":!git pull<CR>", "Git pull" },
-        },
-        p = {
-            name = "Project",
-            T = { terminals.open_terminals_in_project, "Open terminals in project" },
-            t = {
-                name = "Test",
-                d = { function() neotest.run.run({ strategy = "dap" }) end, "Debug nearest test" },
-                a = { function() neotest.run.run({ suite = true }) end, "Test all" },
-                n = { ":Neotest run<CR>", "Test nearest" },
-                t = { ":Neotest run<CR>", "Test nearest" },
-                f = { function() neotest.run.run(vim.fn.expand("%")) end, "Test file" },
-                s = { ":Neotest summary<CR>", "Toggle summary" },
-                l = { neotest.run.run_last, "Run last test" },
-                w = { function() neotest.watch.toggle(vim.fn.expand("%")) end, "Watch tests in file" }
-            }
-        },
-        d = {
-            name = "Debug/Diagnostics",
-            d = { vim.diagnostic.open_float, "Show line diagnostic in floating window" },
-            n = { vim.diagnostic.goto_next, "Go to next diagnostic" },
-            p = { vim.diagnostic.goto_prev, "Go to previous diagnostic" },
-            r = { dap.repl.open, "Open debugging REPL" },
-            t = { dapui.toggle, "Toggle debugging UI" },
-            h = { dapui_widgets.preview, "Show hover" },
-        },
-        e = {
-            name = "Editor",
-            r = { ":source $MYVIMRC<CR>:source ~/.config/nvim/lua/keybindings.lua<CR>:echo \"Config reloaded!\"<CR>",
-                "Reload config" },
-            e = { ":e ~/.config/nvim/init.lua<CR>", "Edit config" },
-            c = { ":Telescope colorscheme<CR>", "Pick colorscheme" },
-        },
-        u = {
-            name = "Undo Tree",
-            t = { ":UndotreeToggle<CR>", "Toggle undo tree" },
-        },
-        T = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
-        o = {
-            name = "Overseer",
-            t = { "<cmd>OverseerToggle v<cr>", "Overseer Toggle" },
-            r = { "<cmd>OverseerRun<cr>", "Overseer Run" }
-        },
-        ["rg"] = { ":Telescope live_grep<CR>", "Live grep" }
-    },
-    -- Quick fix
-    ["<C-j>"] = { ":cn<CR>", "Next Quickfix" },
-    ["<C-k>"] = { ":cp<CR>", "Previous Quickfix" },
-    ["<C-s>"] = { ":w<CR>", "Save buffer" },
-    ["]e"] = { ":cnext<CR>", "Next Quickfix" },
-    ["[e"] = { ":cprev<CR>", "Previous Quickfix" },
-    ["]t"] = { function() neotest.jump.next({ status = "failed" }) end, "Jump to next failing test" },
-    ["[t"] = { function() neotest.jump.prev({ status = "failed" }) end, "Jump to previous failing test" },
+local smart_open = function()
+    telescope.extensions.smart_open.smart_open({ cwd_only = true })
+end
 
-    g = {
-        name = "Goto",
-        d = { builtin.lsp_definitions, "Go to definition" },
-        D = { builtin.lsp_references, "Go to references" },
-        t = { builtin.lsp_type_definitions, "Go to type definition" },
-    },
-    K = { vim.lsp.buf.hover, "Show hover" },
-    ["<C-b>"] = { ":make<CR>", "Build" },
-    ["<F9>"] = { dap.toggle_breakpoint, "Toggle breakpoint" },
-    ["<F5>"] = { dap.continue, "Continue debugging" },
-    ["<F10>"] = { dap.step_over, "Step over" },
-    ["<F11>"] = { dap.step_into, "Step into" },
-    ["<F12>"] = { dap.step_out, "Step out" },
-    ["<BS>"] = { "<C-^>", "Previous file" },
-    ["<CR>"] = { ":noh<CR><CR>", "Clear search highlights" },
-    ["<A-x>"] = { ":Telescope commands<CR>", "M-x" }
+local reload_config = function()
+    vim.cmd('source $MYVIMRC')
+    vim.cmd('source ~/.config/nvim/lua/keybindings.lua')
+    vim.cmd('echo "Config reloaded!"')
+end
+
+wk.add({
+    { "<A-x>",           ":Telescope commands<CR>",                               desc = "M-x" },
+    { "<BS>",            "<C-^>",                                                 desc = "Previous file" },
+    { "<C-b>",           ":make<CR>",                                             desc = "Build" },
+    { "<C-j>",           ":cn<CR>",                                               desc = "Next Quickfix" },
+    { "<C-k>",           ":cp<CR>",                                               desc = "Previous Quickfix" },
+    { "<C-s>",           ":w<CR>",                                                desc = "Save buffer" },
+    { "<CR>",            ":noh<CR><CR>",                                          desc = "Clear search highlights" },
+    { "<F10>",           dap.step_over,                                           desc = "Step over" },
+    { "<F11>",           dap.step_into,                                           desc = "Step into" },
+    { "<F12>",           dap.step_out,                                            desc = "Step out" },
+    { "<F5>",            dap.continue,                                            desc = "Continue debugging" },
+    { "<F9>",            dap.toggle_breakpoint,                                   desc = "Toggle breakpoint" },
+    { "<leader>-",       oil.open,                                                desc = "Open oil browser at file root" },
+    { "<leader><space>", smart_open,                                              desc = "Smart open" },
+    { "<leader>H",       ":Telescope help_tags<CR>",                              desc = "Search help tags" },
+    { "<leader>T",       "<cmd>ToggleTerm<cr>",                                   desc = "Toggle terminal" },
+
+    { "<leader>b",       group = "Buffers" },
+    { "<leader>bf",      builtin.current_buffer_fuzzy_find,                       desc = "Find in buffer" },
+    { "<leader>bo",      ':%bdelete|edit #|normal`"<CR>',                         desc = "Kill all but current buffer" },
+    { "<leader>bs",      builtin.buffers,                                         desc = "Search buffers" },
+
+    { "<leader>c",       group = "Code" },
+    { "<leader>ca",      vim.lsp.buf.code_action,                                 desc = "Code actions" },
+    { "<leader>cf",      function() vim.lsp.buf.format({ async = true }) end,     desc = "Format buffer" },
+    { "<leader>ci",      builtin.lsp_implementations,                             desc = "Go to implementation" },
+    { "<leader>cr",      vim.lsp.buf.rename,                                      desc = "Rename symbol" },
+
+    { "<leader>d",       group = "Debug/Diagnostics" },
+    { "<leader>dd",      vim.diagnostic.open_float,                               desc = "Show line diagnostic in floating window" },
+    { "<leader>dh",      dapui_widgets.preview,                                   desc = "Show hover" },
+    { "<leader>dn",      vim.diagnostic.goto_next,                                desc = "Go to next diagnostic" },
+    { "<leader>dp",      vim.diagnostic.goto_prev,                                desc = "Go to previous diagnostic" },
+    { "<leader>dr",      dap.repl.open,                                           desc = "Open debugging REPL" },
+    { "<leader>dt",      dapui.toggle,                                            desc = "Toggle debugging UI" },
+
+    { "<leader>e",       group = "Editor" },
+    { "<leader>ec",      ":Telescope colorscheme<CR>",                            desc = "Pick colorscheme" },
+    { "<leader>ee",      ":e ~/.config/nvim/init.lua<CR>",                        desc = "Edit config" },
+    { "<leader>er",      reload_config,                                           desc = "Reload config" },
+
+    { "<leader>g",       group = "Git" },
+    { "<leader>gB",      ":GitBlameToggle<CR>",                                   desc = "Toggle git blame" },
+    { "<leader>gC",      builtin.git_bcommits,                                    desc = "Git buffer commits" },
+    { "<leader>gb",      builtin.git_branches,                                    desc = "Git branches" },
+    { "<leader>gc",      builtin.git_commits,                                     desc = "Git commits" },
+    { "<leader>gf",      ":!git pull<CR>",                                        desc = "Git pull" },
+    { "<leader>gg",      ":Neogit<CR>",                                           desc = "Open Neogit" },
+    { "<leader>gs",      builtin.git_status,                                      desc = "Git status" },
+
+    { "<leader>gi",      group = "Issues" },
+    { "<leader>gic",     ":Octo issue create<CR>",                                desc = "Create issue" },
+    { "<leader>gil",     ":Octo issue list<CR>",                                  desc = "Open Octo issue list" },
+
+    { "<leader>gp",      group = "Pull Requests" },
+    { "<leader>gpb",     ":Octo pr browser<CR>",                                  desc = "Open PR in browser" },
+    { "<leader>gpc",     ":Octo pr create<CR>",                                   desc = "Create Pull Request" },
+    { "<leader>gpl",     ":Octo pr list<CR>",                                     desc = "Open Octo PR list" },
+    { "<leader>gpu",     ":Octo pr url<CR>",                                      desc = "Copy PR URL" },
+
+    { "<leader>h",       "<C-w>h",                                                desc = "Move to left window" },
+    { "<leader>j",       "<C-w>j",                                                desc = "Move to bottom window" },
+    { "<leader>k",       "<C-w>k",                                                desc = "Move to top window" },
+    { "<leader>l",       "<C-w>l",                                                desc = "Move to right window" },
+
+    { "<leader>o",       group = "Overseer" },
+    { "<leader>or",      "<cmd>OverseerRun<cr>",                                  desc = "Overseer Run" },
+    { "<leader>ot",      "<cmd>OverseerToggle v<cr>",                             desc = "Overseer Toggle" },
+
+    { "<leader>p",       group = "Project" },
+    { "<leader>pT",      terminals.open_terminals_in_project,                     desc = "Open terminals in project" },
+
+    { "<leader>pt",      group = "Test" },
+    { "<leader>pta",     function() neotest.run.run({ suite = true }) end,        desc = "Test all" },
+    { "<leader>ptd",     function() neotest.run.run({ strategy = "dap" }) end,    desc = "Debug nearest test" },
+    { "<leader>ptf",     function() neotest.run.run(vim.fn.expand("%")) end,      desc = "Test file" },
+    { "<leader>ptl",     neotest.run.run_last,                                    desc = "Run last test" },
+    { "<leader>ptn",     ":Neotest run<CR>",                                      desc = "Test nearest" },
+    { "<leader>pts",     ":Neotest summary<CR>",                                  desc = "Toggle summary" },
+    { "<leader>ptt",     ":Neotest run<CR>",                                      desc = "Test nearest" },
+    { "<leader>ptw",     function() neotest.watch.toggle(vim.fn.expand("%")) end, desc = "Watch tests in file" },
+    { "<leader>pt[",     function() neotest.jump.prev({ status = "failed" }) end, desc = "Jump to previous failing test" },
+    { "<leader>pt]",     function() neotest.jump.prev({ status = "failed" }) end, desc = "Jump to next failing test" },
+
+    { "<leader>rg",      ":Telescope live_grep<CR>",                              desc = "Live grep" },
+    { "<leader>t",       ":Oil .<CR>",                                            desc = "Open oil browser at project root" },
+
+    { "<leader>u",       group = "Undo Tree" },
+    { "<leader>ut",      ":UndotreeToggle<CR>",                                   desc = "Toggle undo tree" },
+
+    { "K",               vim.lsp.buf.hover,                                       desc = "Show hover" },
+    { "[e",              ":cprev<CR>",                                            desc = "Previous Quickfix" },
+    { "]e",              ":cnext<CR>",                                            desc = "Next Quickfix" },
+
+    { "g",               group = "Goto" },
+    { "gD",              builtin.lsp_references,                                  desc = "Go to references" },
+    { "gd",              builtin.lsp_definitions,                                 desc = "Go to definition" },
+    { "gt",              builtin.lsp_type_definitions,                            desc = "Go to type definition" },
+
+    { "<Leader>c",       group = "Code",                                          mode = "v" },
+    { "<Leader>ca",      vim.lsp.buf.code_action,                                 desc = "Code actions",                           mode = "v" },
+    { "<Esc>",           "<C-\\><C-n>",                                           desc = "Exit terminal mode",                     mode = "t" },
 })
-
-wk.register({
-    ["<Leader>"] = {
-        c = {
-            name = "Code",
-            a = { vim.lsp.buf.code_action, "Code actions" },
-        }
-    }
-}, { mode = "v" })
-
-wk.register({
-    ["<Esc>"] = { "<C-\\><C-n>", "Exit terminal mode" }
-}, { mode = "t" })
 
 vim.cmd [[imap <silent><script><expr> <C-q> copilot#Accept('')]]
 vim.g.copilot_no_tab_map = 1

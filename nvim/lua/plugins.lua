@@ -22,10 +22,6 @@ require("lazy").setup({
     "pbrisbin/vim-colors-off",
     "github/copilot.vim",
     {
-        "glacambre/firenvim",
-        build = ":call firenvim#install(0)",
-    },
-    {
         "stevearc/overseer.nvim",
         opts = {}
     },
@@ -138,7 +134,7 @@ require("lazy").setup({
     },
     {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.8",
+        branch = "0.1.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
@@ -275,9 +271,14 @@ require("lazy").setup({
             "williamboman/mason-lspconfig.nvim"
         },
         config = function()
-            require("mason").setup()
+            require("mason").setup({
+                registries = {
+                    "github:mason-org/mason-registry",
+                    "github:Crashdummyy/mason-registry"
+                }
+            })
             require("mason-lspconfig").setup({
-                automatic_installation = true
+                --automatic_installation = true
             })
 
             local lspconfig = require("lspconfig")
@@ -286,6 +287,7 @@ require("lazy").setup({
                 function(server_name)
                     lspconfig[server_name].setup {
                         on_attach = function(client)
+                            print("Mason server attached: " .. server_name)
                             if client.server_capabilities.signatureHelpProvider then
                                 require('lsp-overloads').setup(client, {})
                             end
@@ -293,14 +295,14 @@ require("lazy").setup({
                     }
                 end,
 
-                ["omnisharp"] = function()
-                    lspconfig["omnisharp"].setup {
-                        on_attach = function(client)
-                            --client.server_capabilities.semanticTokensProvider = false
-                            require('lsp-overloads').setup(client, {})
-                        end
-                    }
-                end,
+                --["omnisharp"] = function()
+                --    lspconfig["omnisharp"].setup {
+                --        on_attach = function(client)
+                --            client.server_capabilities.semanticTokensProvider = false
+                --            require('lsp-overloads').setup(client, {})
+                --        end
+                --    }
+                --end,
 
                 ["lua_ls"] = function()
                     lspconfig["lua_ls"].setup {
@@ -326,15 +328,22 @@ require("lazy").setup({
         end
     },
     {
-        "iabdelkareem/csharp.nvim",
-        dependencies = {
-            "williamboman/mason.nvim",
-            "Tastyep/structlog.nvim",
-        },
-        config = function()
-            require("csharp").setup()
-        end
+        "seblj/roslyn.nvim",
+        ft = "cs",
+        opts = {
+            -- your configuration comes here; leave empty for default settings
+        }
     },
+    --{
+    --    "iabdelkareem/csharp.nvim",
+    --    dependencies = {
+    --        "williamboman/mason.nvim",
+    --        "Tastyep/structlog.nvim",
+    --    },
+    --    config = function()
+    --        require("csharp").setup()
+    --    end
+    --},
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
