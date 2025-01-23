@@ -14,6 +14,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    "romainl/vim-qf",
     "neovim/nvim-lspconfig",
     "Issafalcon/lsp-overloads.nvim",
     "f-person/git-blame.nvim",
@@ -287,7 +288,6 @@ require("lazy").setup({
                 function(server_name)
                     lspconfig[server_name].setup {
                         on_attach = function(client)
-                            print("Mason server attached: " .. server_name)
                             if client.server_capabilities.signatureHelpProvider then
                                 require('lsp-overloads').setup(client, {})
                             end
