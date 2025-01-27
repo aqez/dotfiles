@@ -21,6 +21,9 @@ require("lazy").setup({
     "rust-lang/rust.vim",
     "andrewradev/linediff.vim",
     "pbrisbin/vim-colors-off",
+    "tpope/vim-dadbod",
+    "kristijanhusak/vim-dadbod-ui",
+    "kristijanhusak/vim-dadbod-completion",
     "github/copilot.vim",
     {
         "stevearc/overseer.nvim",
@@ -377,6 +380,13 @@ require("lazy").setup({
                     { name = "buffer" },
                     { name = "path" },
                     { name = "conjure" },
+                }
+            })
+
+            cmp.setup.filetype({ "sql" }, {
+                sources = {
+                    { name = "vim-dadbod-completion" },
+                    { name = "buffer" }
                 }
             })
 

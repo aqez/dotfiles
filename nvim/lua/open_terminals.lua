@@ -37,7 +37,8 @@ local function open_terminals_in_project()
 
     for _, v in pairs(csproj_folders) do
         if #allowed_folders == 0 or vim.tbl_contains(allowed_folders, v) then
-            local cmd = string.format('tmux new-window -dS -c %s -n %s "dotnet watch run"', v, get_name_from_path(v))
+            local cmd = string.format('tmux new-window -dS -c %s -n %s "dotnet watch --non-interactive run"', v,
+                get_name_from_path(v))
             vim.fn.system(cmd)
         end
     end
