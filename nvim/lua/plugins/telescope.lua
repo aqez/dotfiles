@@ -4,10 +4,12 @@ return {
         branch = "0.1.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
+            "Snikimonkd/telescope-git-conflicts.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
             "nvim-telescope/telescope-fzy-native.nvim",
             "kkharji/sqlite.lua",
             "danielfalk/smart-open.nvim",
+            "polirritmico/telescope-lazy-plugins.nvim",
         },
         config = function()
             local telescope = require('telescope')
@@ -57,6 +59,7 @@ return {
 
                 { "<leader>e",       group = "Editor" },
                 { "<leader>ec",      ":Telescope colorscheme<CR>",      desc = "Pick colorscheme" },
+                { "<leader>ep",      ":Telescope lazy_plugins<CR>",     desc = "Lazy Plugins" },
 
                 { "<leader>gC",      builtin.git_bcommits,              desc = "Git buffer commits" },
                 { "<leader>gb",      builtin.git_branches,              desc = "Git branches" },
