@@ -30,6 +30,7 @@ return {
                 { "<leader>ptn", ":Neotest run<CR>",                                      desc = "Test nearest" },
                 { "<leader>pts", ":Neotest summary<CR>",                                  desc = "Toggle summary" },
                 { "<leader>ptt", ":Neotest run<CR>",                                      desc = "Test nearest" },
+                { "<leader>pto", ":Neotest output-panel<cr>",                             desc = "Show test output" },
                 { "<leader>ptw", function() neotest.watch.toggle(vim.fn.expand("%")) end, desc = "Watch tests in file" },
                 { "<leader>pt[", function() neotest.jump.prev({ status = "failed" }) end, desc = "Jump to previous failing test" },
                 { "<leader>pt]", function() neotest.jump.prev({ status = "failed" }) end, desc = "Jump to next failing test" },
