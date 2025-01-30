@@ -128,6 +128,15 @@ return {
         end
     },
     {
+        'mrded/nvim-lsp-notify',
+        requires = { 'rcarriga/nvim-notify' },
+        config = function()
+            require('lsp-notify').setup({
+                notify = require('notify'),
+            })
+        end
+    },
+    {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         config = function()
