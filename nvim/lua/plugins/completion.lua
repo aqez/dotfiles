@@ -1,6 +1,6 @@
 return {
     "kristijanhusak/vim-dadbod-completion",
-    "github/copilot.vim",
+    --"github/copilot.vim",
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
