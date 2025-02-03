@@ -17,6 +17,11 @@ return {
         lazy = false
     },
     {
+        'SCJangra/table-nvim',
+        ft = 'markdown',
+        opts = {},
+    },
+    {
         "ggandor/leap.nvim",
         dependencies = {
             "tpope/vim-repeat"
