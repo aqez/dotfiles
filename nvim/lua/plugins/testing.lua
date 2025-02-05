@@ -2,19 +2,21 @@ return {
     {
         "nvim-neotest/neotest",
         dependencies = {
-            "Issafalcon/neotest-dotnet",
             "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
             "antoinemadec/FixCursorHold.nvim",
             "nvim-treesitter/nvim-treesitter",
-            "rouge8/neotest-rust"
+            "rouge8/neotest-rust",
+            "Issafalcon/neotest-dotnet",
+            "nvim-neotest/neotest-go"
         },
         config = function()
             local neotest = require("neotest")
             neotest.setup({
                 adapters = {
                     require("neotest-dotnet"),
-                    require("neotest-rust")
+                    require("neotest-rust"),
+                    require("neotest-go"),
                 }
             })
 
