@@ -123,7 +123,8 @@ return {
 
             vim.notify.setup({
                 background_colour = "#000000",
-                timeout = 500,
+                timeout = 100,
+                render = "wrapped-compact"
             })
         end
     },
