@@ -24,9 +24,12 @@ local function toggle_light_dark(window, _)
 end
 
 config.color_scheme = 'DoomOne'
--- config.font = wezterm.font("0xProto Nerd Font Mono")
-config.font = wezterm.font("JetBrainsMono Nerd Font")
+--config.font = wezterm.font("0xProto Nerd Font Mono")
+--config.font = wezterm.font("JetBrainsMono Nerd Font")
+config.font = wezterm.font("Hack Nerd Font")
+--config.font = wezterm.font("Lekton Nerd Font")
 -- config.font = wezterm.font("Source Code Pro")
+--config.font = wezterm.font("MartianMono Nerd Font")
 config.font_size = 18.0
 config.enable_tab_bar = false
 config.window_padding = {

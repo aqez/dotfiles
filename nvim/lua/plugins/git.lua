@@ -42,14 +42,15 @@ return {
 
             wk.add({
                 { "<leader>gi",  group = "Issues" },
-                { "<leader>gic", ":Octo issue create<CR>", desc = "Create issue" },
-                { "<leader>gil", ":Octo issue list<CR>",   desc = "Open Octo issue list" },
+                { "<leader>gic", ":Octo issue create<CR>",  desc = "Create issue" },
+                { "<leader>gil", ":Octo issue list<CR>",    desc = "Open Octo issue list" },
+                { "<leader>gib", ":Octo issue browser<CR>", desc = "Open issue in browser" },
 
                 { "<leader>gp",  group = "Pull Requests" },
-                { "<leader>gpb", ":Octo pr browser<CR>",   desc = "Open PR in browser" },
-                { "<leader>gpc", ":Octo pr create<CR>",    desc = "Create Pull Request" },
-                { "<leader>gpl", ":Octo pr list<CR>",      desc = "Open Octo PR list" },
-                { "<leader>gpu", ":Octo pr url<CR>",       desc = "Copy PR URL" },
+                { "<leader>gpb", ":Octo pr browser<CR>",    desc = "Open PR in browser" },
+                { "<leader>gpc", ":Octo pr create<CR>",     desc = "Create Pull Request" },
+                { "<leader>gpl", ":Octo pr list<CR>",       desc = "Open Octo PR list" },
+                { "<leader>gpu", ":Octo pr url<CR>",        desc = "Copy PR URL" },
             })
         end
     },
