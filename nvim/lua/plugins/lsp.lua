@@ -1,6 +1,5 @@
 return {
     "neovim/nvim-lspconfig",
-    "Issafalcon/lsp-overloads.nvim",
     {
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
@@ -21,16 +20,6 @@ return {
             local lspconfig = require("lspconfig")
 
             require("mason-lspconfig").setup_handlers {
-                function(server_name)
-                    lspconfig[server_name].setup {
-                        on_attach = function(client)
-                            if client.server_capabilities.signatureHelpProvider then
-                                require('lsp-overloads').setup(client, {})
-                            end
-                        end
-                    }
-                end,
-
                 ["lua_ls"] = function()
                     lspconfig["lua_ls"].setup {
                         settings = {
@@ -40,9 +29,6 @@ return {
                                 }
                             }
                         },
-                        on_attach = function(client)
-                            require('lsp-overloads').setup(client, {})
-                        end
                     }
                 end,
 
