@@ -69,6 +69,14 @@ return {
         "seblj/roslyn.nvim",
         ft = "cs",
         opts = {
+            config = {
+                settings = {
+                    ["csharp|background_analysis"] = {
+                        dotnet_analyzer_diagnostics_scope = "none",
+                        dotnet_compiler_diagnostics_scope = "openFiles"
+                    }
+                }
+            }
             -- your configuration comes here; leave empty for default settings
         }
     },
