@@ -16,7 +16,7 @@
       org-hide-emphasis-markers t)
 
 (after! org
-  (setq org-agenda-files '("~/org/Agenda.org" "~/org/roam/")
+  (setq org-agenda-files '("~/org/Agenda.org" "~/org/roam/" "~/org/roam/daily")
         org-agenda-start-with-log-mode t
         org-log-done 'time
         org-log-into-drawer t))
