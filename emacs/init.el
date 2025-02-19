@@ -50,6 +50,7 @@
   (general-define-key
    :states '(normal)
    [backspace] 'evil-switch-to-windows-last-buffer)
+  (global-set-key (kbd "<escape>") 'keyboard-quit)
   (evil-mode 1))
 
 (use-package evil-collection
@@ -140,6 +141,9 @@
    :states '(normal)
    :keymaps 'override
    "K" 'lsp-ui-doc-glance)
+  (aqez/leader-key-def
+    "c" '(:ignore t :which-key "Code")
+    "ca" '(lsp-execute-code-action :which-key "Code Action"))
   (setq lsp-enable-symbol-highlighting t
 	lsp-enable-indentation t
 	lsp-prefer-flymake nil)
