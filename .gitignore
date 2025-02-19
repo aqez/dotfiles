@@ -5,3 +5,12 @@ lazygit/state.yml
 __pycache__/
 tmux/plugins/
 bin/nvim
+.cache/
+elpa/
+eln-cache/
+auto-save-list/
+recentf
+projectile-bookmarks.eld
+emacs/.local/
+emacs/.lsp-session-*
+emacs/transient/
