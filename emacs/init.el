@@ -5,6 +5,7 @@
 (tooltip-mode -1)
 (set-fringe-mode 10)
 (menu-bar-mode -1)
+
 ;; Built in UI tweaks
 (setq scroll-margin 5)
 (setq scroll-conservatively 10000)
@@ -33,6 +34,13 @@
 
 (require 'package)
 
+
+(use-package general)
+(general-create-definer aqez/leader-key-def
+  :keymaps '(normal visual emacs)
+  :prefix "SPC"
+  :global-prefix "C-SPC")
+
 (use-package evil
   :ensure t
   :init
@@ -45,6 +53,9 @@
 (use-package evil-collection
   :after (evil magit)
   :config
+  (aqez/leader-key-def
+    "g" '(:ignore t :which-key "Magit")
+    "gg" '(magit-status :which-key "Open Magit"))
   (evil-collection-init))
 
 (use-package magit
@@ -53,10 +64,18 @@
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 
 (use-package perspective
-  :bind (("C-x C-b" . persp-list-buffers)) ;; Replace buffer list with perspective-aware one
   :custom
   (persp-mode-prefix-key (kbd "C-c M-p"))
   :config
+  (aqez/leader-key-def
+    "TAB" '(:ignore t :which-key "Perspective")
+    "TAB TAB" '(persp-next :which-key "Next perpsective")
+    "TAB 1" '((lambda () (interactive) (persp-switch-by-number 1)) :which-key "Perspective 1")
+    "TAB 2" '((lambda () (interactive) (persp-switch-by-number 2)) :which-key "Perspective 2")
+    "TAB 3" '((lambda () (interactive) (persp-switch-by-number 3)) :which-key "Perspective 3")
+    "TAB 4" '((lambda () (interactive) (persp-switch-by-number 4)) :which-key "Perspective 4")
+    "TAB 5" '((lambda () (interactive) (persp-switch-by-number 5)) :which-key "Perspective 5")
+    "TAB 6" '((lambda () (interactive) (persp-switch-by-number 6)) :which-key "Perspective 6"))
   (persp-mode))
 
 (use-package company
@@ -74,8 +93,11 @@
   (setq projectile-project-search-path '("~/repos/"))
   (setq projectile-completion-system 'ivy)
   :config
-  (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  (aqez/leader-key-def
+    "SPC" '(projectile-find-file :which-key "find file")
+    "p" '(:ignore t :which-key "Projectile")
+    "pp" '(projectile-switch-project :which-key "Switch project"))
+  (projectile-mode +1))
   
 (use-package persp-projectile
   :after (perspective projectile)
@@ -100,15 +122,14 @@
   :after ivy
   :bind (("C-s" . swiper )))
 
-(use-package smooth-scrolling
-  :config
-  (smooth-scrolling-mode 1))
-
 (use-package lsp-mode
   :hook ((prog-mode . lsp))
   :commands lsp
   :config
-  (evil-define-key 'normal 'global (kbd "K") #'lsp-ui-doc-glance)
+  (general-define-key
+   :states '(normal)
+   :keymaps 'override
+   "H" 'lsp-ui-doc-glance)
   (setq lsp-enable-symbol-highlighting t
 	lsp-enable-indentation t
 	lsp-prefer-flymake nil)
@@ -148,14 +169,3 @@
   :config
   (load-theme 'vscode-dark-plus t))
 
-(use-package general)
-
-
-;; General keybindings
-(general-create-definer aqez/leader-key-def
-  :keymaps '(normal visual emacs)
-  :prefix "SPC"
-  :global-prefix "C-SPC")
-
-(aqez/leader-key-def
-  "SPC" '(find-file :which-key "find file"))

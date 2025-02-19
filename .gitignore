@@ -14,3 +14,4 @@ projectile-bookmarks.eld
 emacs/.local/
 emacs/.lsp-session-*
 emacs/transient/
+emacs/projects
