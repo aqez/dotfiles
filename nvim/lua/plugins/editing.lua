@@ -2,14 +2,10 @@ return {
     "romainl/vim-qf",
     {
         "mbbill/undotree",
-        config = function()
-            local wk = require("which-key")
-
-            wk.add({
-                { "<leader>u",  group = "Undo Tree" },
-                { "<leader>ut", ":UndotreeToggle<CR>", desc = "Toggle undo tree" },
-            })
-        end
+        keys = {
+            { "<leader>u",  group = "Undo Tree" },
+            { "<leader>ut", ":UndotreeToggle<CR>", desc = "Toggle undo tree" },
+        }
     },
     {
         "numToStr/Comment.nvim",
@@ -34,8 +30,6 @@ return {
         "kylechui/nvim-surround",
         version = "*",
         event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup {}
-        end
+        config = true
     },
 }

@@ -26,3 +26,6 @@
 (use-package swiper
   :after ivy
   :bind (("C-s" . swiper )))
+
+(setq make-backup-files nil)
+(setq auto-save-default nil)

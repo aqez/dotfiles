@@ -1,42 +1,15 @@
 return {
     "pbrisbin/vim-colors-off",
     "andrewradev/linediff.vim",
+    "Mofiqul/vscode.nvim",
     {
         "stevearc/overseer.nvim",
-        config = function()
-            require("overseer").setup()
-
-            local wk = require("which-key")
-
-            wk.add({
-                { "<leader>o",  group = "Overseer" },
-                { "<leader>or", ":OverseerRun<cr>",    desc = "Overseer Run" },
-                { "<leader>ot", ":OverseerToggle<cr>", desc = "Overseer Toggle" }
-            })
-        end
-    },
-    {
-        "Mofiqul/vscode.nvim",
-        config = function()
-            require('vscode').setup()
-            vim.cmd [[colorscheme vscode]]
-        end
-    },
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        config = function()
-            --vim.cmd [[colorscheme catppuccin-frappe]]
-        end
-    },
-    {
-        "shaunsingh/nord.nvim",
-        lazy = true,
-        config = function()
-            --vim.g.nord_disable_background = true
-            --vim.g.nord_borders = true
-            --require('nord').set();
-        end
+        keys = {
+            { "<leader>o",  group = "Overseer" },
+            { "<leader>or", ":OverseerRun<cr>",    desc = "Overseer Run" },
+            { "<leader>ot", ":OverseerToggle<cr>", desc = "Overseer Toggle" }
+        },
+        lazy = false,
     },
     {
         'NTBBloodbath/doom-one.nvim',
@@ -77,56 +50,39 @@ return {
     },
     {
         "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup {}
-        end
+        lazy = false,
+        opts = {}
     },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons", "Mofiqul/vscode.nvim" },
-        config = function()
-            require("lualine").setup({
-                --options = {
-                --    theme = "vscode"
-                --}
-            })
-        end
+        opts = {}
     },
     {
         "stevearc/oil.nvim",
-        config = function()
-            local oil = require('oil')
-            oil.setup({
-                columns = {
-                    "icon",
-                    "permissions",
-                    "size",
-                    "mtime"
-                },
-                keymaps = {
-                    ["q"] = "actions.close"
-                }
-            })
-
-            local wk = require("which-key")
-
-            wk.add({
-                { "<leader>t", ":Oil .<CR>", desc = "Open oil browser at project root" },
-                { "<leader>-", oil.open,     desc = "Open oil browser at file root" },
-            })
-        end
+        opts = {
+            columns = {
+                "icon",
+                "permissions",
+                "size",
+                "mtime"
+            },
+            keymaps = {
+                ["q"] = "actions.close"
+            }
+        },
+        keys = {
+            { "<leader>t", ":Oil .<CR>", desc = "Open oil browser at project root" },
+            { "<leader>-", ":Oil",       desc = "Open oil browser at file root" },
+        }
     },
     {
         "rcarriga/nvim-notify",
-        config = function()
-            vim.notify = require("notify")
-
-            vim.notify.setup({
-                background_colour = "#000000",
-                timeout = 100,
-                render = "wrapped-compact"
-            })
-        end
+        opts = {
+            background_colour = "#000000",
+            timeout = 100,
+            render = "wrapped-compact"
+        }
     },
     {
         "folke/noice.nvim",

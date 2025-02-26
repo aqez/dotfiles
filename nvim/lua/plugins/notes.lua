@@ -2,7 +2,7 @@ return {
     {
         "epwalsh/obsidian.nvim",
         version = "*",
-        --lazy = true,
+        lazy = false,
         ft = "markdown",
         dependencies = {
             "nvim-lua/plenary.nvim"
@@ -11,27 +11,32 @@ return {
             workspaces = {
                 { name = "notes", path = "~/vaults/notes" }
             },
-            notes_subdir = "notes",
+            --notes_subdir = "notes",
             daily_notes = {
-                "notes/dailies"
-            }
+                folder = "dailies"
+            },
+            mappings = {
+                --    ["gf"] = {
+                --        action = function()
+                --            return require("obsidian").util.gf_passthrough()
+                --        end
+                --    },
+                ["<cr>"] = {
+                    action = function()
+                        return require("obsidian").util.smart_action()
+                    end,
+                    opts = { buffer = true, expr = true }
+                }
+            },
+            completion = {
+                nvim_cmp = true,
+                min_chars = 2
+            },
         },
-        completion = {
-            nvim_cmp = true,
-            min_chars = 2
-        },
-        mappings = {
-            --    ["gf"] = {
-            --        action = function()
-            --            return require("obsidian").util.gf_passthrough()
-            --        end
-            --    },
-            ["<cr>"] = {
-                action = function()
-                    return require("obsidian").util.smart_action()
-                end,
-                opts = { buffer = true, expr = true }
-            }
+        keys = {
+            { "<leader>n",  group = "Notes" },
+            { "<leader>ns", ":ObsidianSearch", desc = "Search Notes" },
+            { "<leader>nn", ":ObsidianNew",    desc = "New Note" }
         }
     }
 }
