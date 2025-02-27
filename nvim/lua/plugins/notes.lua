@@ -34,9 +34,11 @@ return {
             },
         },
         keys = {
-            { "<leader>n",  group = "Notes" },
-            { "<leader>ns", ":ObsidianSearch", desc = "Search Notes" },
-            { "<leader>nn", ":ObsidianNew",    desc = "New Note" }
+            { "<leader>n",   group = "Notes" },
+            { "<leader>ns",  ":ObsidianSearch<cr>", desc = "Search Notes" },
+            { "<leader>nn",  ":ObsidianNew<cr>",    desc = "New Note" },
+            { "<leader>nd",  group = "Dailies" },
+            { "<leader>ndt", ":ObsidianToday<cr>",  desc = "Today" }
         }
     }
 }

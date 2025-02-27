@@ -9,6 +9,7 @@ return {
             { "<leader>or", ":OverseerRun<cr>",    desc = "Overseer Run" },
             { "<leader>ot", ":OverseerToggle<cr>", desc = "Overseer Toggle" }
         },
+        opts = {},
         lazy = false,
     },
     {
@@ -73,7 +74,7 @@ return {
         },
         keys = {
             { "<leader>t", ":Oil .<CR>", desc = "Open oil browser at project root" },
-            { "<leader>-", ":Oil",       desc = "Open oil browser at file root" },
+            { "<leader>-", ":Oil<CR>",   desc = "Open oil browser at file root" },
         }
     },
     {
