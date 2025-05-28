@@ -3,6 +3,14 @@ return {
     "andrewradev/linediff.vim",
     "Mofiqul/vscode.nvim",
     {
+        "NStefan002/screenkey.nvim",
+        lazy = false,
+        opts = {
+            group_mappings = true
+        },
+        version = "*", -- or branch = "main", to use the latest commit
+    },
+    {
         "stevearc/overseer.nvim",
         keys = {
             { "<leader>o",  group = "Overseer" },
