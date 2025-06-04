@@ -1,10 +1,10 @@
 return {
-    "neovim/nvim-lspconfig",
     {
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
         dependencies = {
-            "williamboman/mason-lspconfig.nvim"
+            "williamboman/mason-lspconfig.nvim",
+            "neovim/nvim-lspconfig",
         },
         config = function()
             require("mason").setup({
@@ -16,32 +16,6 @@ return {
             require("mason-lspconfig").setup({
                 --automatic_installation = true
             })
-
-            local lspconfig = require("lspconfig")
-
-            require("mason-lspconfig").setup_handlers {
-
-                function(server_name)
-                    lspconfig[server_name].setup({})
-                end,
-                ["lua_ls"] = function()
-                    lspconfig["lua_ls"].setup {
-                        settings = {
-                            Lua = {
-                                diagnostics = {
-                                    globals = { "vim" }
-                                }
-                            }
-                        },
-                    }
-                end,
-
-                ["clangd"] = function()
-                    lspconfig.clangd.setup {
-                        cmd = { "clangd", "--offset-encoding=utf-16" }
-                    }
-                end
-            }
 
             local wk = require("which-key")
 

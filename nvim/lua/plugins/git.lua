@@ -4,6 +4,7 @@ return {
         keys = {
             { "<leader>gB", ":GitBlameToggle<CR>", desc = "Toggle git blame" },
         },
+        lazy = false,
         opts = {}
     },
     {
