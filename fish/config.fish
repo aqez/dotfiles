@@ -10,6 +10,8 @@ if status is-interactive
 
     zoxide init fish | source
 
+    nvm use latest
+
     fish_config prompt choose arrow
 end
 
