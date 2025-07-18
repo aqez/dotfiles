@@ -23,7 +23,11 @@ local function toggle_light_dark(window, _)
     window:set_config_overrides(overrides)
 end
 
-config.color_scheme = 'DoomOne'
+--config.use_fancy_tab_bar = true
+config.show_tabs_in_tab_bar = true
+--config.show_new_tab_button_in_tab_bar = false
+
+config.color_scheme = dark
 --config.font = wezterm.font("0xProto Nerd Font Mono")
 --config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font = wezterm.font("Hack Nerd Font")
@@ -31,7 +35,7 @@ config.font = wezterm.font("Hack Nerd Font")
 -- config.font = wezterm.font("Source Code Pro")
 --config.font = wezterm.font("MartianMono Nerd Font")
 config.font_size = 18.0
-config.enable_tab_bar = false
+config.enable_tab_bar = true
 config.window_padding = {
     left = 0,
     right = 0,
@@ -53,7 +57,11 @@ config.colors = {
     visual_bell = '#777777',
 }
 
-config.leader = { key = '\\', mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { 
+    key = '\\', 
+    --mods = "CTRL",
+    timeout_milliseconds = 1000 
+}
 
 config.keys = {
     {
@@ -61,6 +69,9 @@ config.keys = {
         mods = "LEADER",
         action = wezterm.action.ReloadConfiguration
     },
+
+    -- Allow inserting an actual backslash
+    { key = "\\", mods = "LEADER", action = wezterm.action.SendString("\\") },
 
     -- Theme Cycler
     { key = "t",      mods = "LEADER", action = wezterm.action_callback(toggle_light_dark) },
@@ -71,6 +82,7 @@ config.keys = {
     -- Sessionizer
     { key = "f",      mods = "LEADER", action = wezterm.action_callback(sessionizer.toggle) },
     { key = "l",      mods = "LEADER", action = wezterm.action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+    { key = "Tab",    mods = "LEADER", action = wezterm.action.SwitchWorkspaceRelative(-1) },
 
     -- Tabs
     { key = "c",      mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
@@ -81,6 +93,7 @@ config.keys = {
     { key = "5",      mods = "LEADER", action = wezterm.action.ActivateTab(4) },
     { key = "6",      mods = "LEADER", action = wezterm.action.ActivateTab(5) },
     { key = "7",      mods = "LEADER", action = wezterm.action.ActivateTab(6) },
+    { key = "x",      mods = "LEADER", action = wezterm.action.CloseCurrentTab({ confirm = false }) },
 }
 
 return config
