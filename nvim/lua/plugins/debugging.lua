@@ -1,6 +1,9 @@
 return {
     {
         'mfussenegger/nvim-dap',
+        dependencies = {
+            "leoluz/nvim-dap-go"
+        },
         keys = function()
             local dap = require('dap')
             return {
@@ -34,6 +37,13 @@ return {
                 }
             }
 
+            require("dap-go").setup({
+                -- Custom options if needed, e.g., delve path from Mason
+                delve = {
+                    path = vim.fn.stdpath("data") .. "/mason/bin/dlv",  -- Points to Mason-installed Delve
+                },
+            })
+
             local wk = require('which-key')
             wk.add({
             })
@@ -49,10 +59,9 @@ return {
                 { "<leader>dh", dapui_widgets.preview, desc = "Show hover" },
                 { "<leader>dt", dapui.toggle,          desc = "Toggle debugging UI" },
             }
+        end,
+        config = function()
+            require("dapui").setup()
         end
-    },
-    {
-        "leoluz/nvim-dap-go",
-        dependencies = { "mfussenegger/nvim-dap" },
-    },
+    }
 }
