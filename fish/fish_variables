@@ -33,4 +33,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow\x1e\x2di
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/home/aqez/repos/dotfiles/bin\x1e/opt/mssql\x2dtools18/bin\x1e/usr/local/go/bin\x1e/opt/nvim\x1e/home/aqez/go/bin\x1e/home/aqez/\x2elocal/bin\x1e/home/aqez/\x2edotnet/tools
+SETUVAR fish_user_paths:/home/aqez/\x2eopencode/bin\x1e/home/aqez/repos/dotfiles/bin\x1e/opt/mssql\x2dtools18/bin\x1e/usr/local/go/bin\x1e/opt/nvim\x1e/home/aqez/go/bin\x1e/home/aqez/\x2elocal/bin\x1e/home/aqez/\x2edotnet/tools

@@ -17,3 +17,6 @@ end
 
 # opam configuration
 source /home/aqez/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+
+# opencode
+fish_add_path /home/aqez/.opencode/bin
