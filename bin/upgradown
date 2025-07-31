@@ -1,1 +1,1 @@
-sudo nala upgrade -y && sudo shutdown 0
+yay && sudo shutdown 0
