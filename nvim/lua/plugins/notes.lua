@@ -9,7 +9,7 @@ return {
         },
         opts = {
             workspaces = {
-                { name = "notes", path = "~/vaults/notes" }
+                { name = "notes", path = "~/repos/notes" }
             },
             --notes_subdir = "notes",
             daily_notes = {
