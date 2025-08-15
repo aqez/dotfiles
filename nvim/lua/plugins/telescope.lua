@@ -74,4 +74,26 @@ return {
             })
         end
     },
+    {
+        "coffebar/neovim-project",
+        opts = {
+            projects = {
+                "~/repos/*",
+            },
+            picker = {
+                type = "telescope",
+            },
+            last_session_on_startup = false,
+        },
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-telescope/telescope.nvim", tag = "0.1.4" },
+            { "Shatur/neovim-session-manager" },
+        },
+        lazy = false,
+        priority = 100,
+        keys = {
+            { "\\f", ":NeovimProjectDiscover<CR>",  desc = "Open project" },
+        }
+    },
 }
