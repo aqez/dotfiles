@@ -81,8 +81,8 @@ return {
             }
         },
         keys = {
-            { "<leader>t", ":Oil .<CR>", desc = "Open oil browser at project root" },
-            { "<leader>-", ":Oil<CR>",   desc = "Open oil browser at file root" },
+            { "<leader>t", function() require('oil').open('.') end, desc = "Open oil browser at project root" },
+            { "<leader>-", function() require('oil').open() end, desc = "Open oil browser at file root" },
         }
     },
     {
