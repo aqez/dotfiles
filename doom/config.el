@@ -7,9 +7,10 @@
       doom-theme 'doom-one
       inhibit-startup-screen t
       display-line-numbers-type 'relative)
-(let ((transparency 100))
-  (set-frame-parameter (selected-frame) 'alpha-background transparency)
-  (add-to-list 'default-frame-alist '(alpha-background . transparency)))
+
+;;(let ((transparency 100))
+;;  (set-frame-parameter (selected-frame) 'alpha-background transparency)
+;;  (add-to-list 'default-frame-alist '(alpha-background . transparency)))
 
 (setq org-directory "~/org/"
       org-roam-directory "~/org/roam"

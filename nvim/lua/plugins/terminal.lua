@@ -4,7 +4,7 @@ return {
         version = "*",
         config = true,
         keys = {
-            { "<leader>T", ":ToggleTerm<CR>" }
+            { "<leader>T", function() require('toggleterm').toggle() end, desc = "Toggle Terminal" }
         }
     }
 }

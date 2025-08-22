@@ -15,7 +15,7 @@ return {
         },
         keys = {
             { "<leader>g",  group = "Git" },
-            { "<leader>gg", ":Neogit<CR>",    desc = "Open Neogit" },
+            { "<leader>gg", function() require('neogit').open() end,    desc = "Open Neogit" },
             { "<leader>gf", ":!git pull<CR>", desc = "Git pull" },
         },
         opts = {}
@@ -30,7 +30,9 @@ return {
         opts = {
             default_to_projects_v2 = true
         },
+        lazy = false,
         keys = {
+            { "<leader>g", group = "Git" },
             { "<leader>gi",  group = "Issues" },
             { "<leader>gic", ":Octo issue create<CR>",  desc = "Create issue" },
             { "<leader>gil", ":Octo issue list<CR>",    desc = "Open Octo issue list" },
@@ -41,6 +43,10 @@ return {
             { "<leader>gpc", ":Octo pr create<CR>",     desc = "Create Pull Request" },
             { "<leader>gpl", ":Octo pr list<CR>",       desc = "Open Octo PR list" },
             { "<leader>gpu", ":Octo pr url<CR>",        desc = "Copy PR URL" },
+
+            { "<leader>gla", ":Octo label add<CR>", desc = "Add label" },
+
+            { "<leader>gcs", ":Octo cardv2 set<CR>", desc = "Octo card set" }
         }
     },
     {

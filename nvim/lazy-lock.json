@@ -39,7 +39,7 @@
   "overseer.nvim": { "branch": "master", "commit": "fe7b2f9ba263e150ab36474dfc810217b8cf7400" },
   "pipeline.nvim": { "branch": "main", "commit": "eb0ab14364e61261f76ca308f9f7214c0b6d8c10" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
-  "roslyn.nvim": { "branch": "main", "commit": "c2b90375f1cf3ed7ac0f441f994d08ac3666b8e0" },
+  "roslyn.nvim": { "branch": "main", "commit": "a199f21a8c644f0807b34e57ff30cf10e92e00a5" },
   "rust.vim": { "branch": "master", "commit": "889b9a7515db477f4cb6808bef1769e53493c578" },
   "screenkey.nvim": { "branch": "main", "commit": "16390931d847b1d5d77098daccac4e55654ac9e2" },
   "smart-open.nvim": { "branch": "main", "commit": "f079c3201a0a62b1582563bd5ce4256c253634d4" },

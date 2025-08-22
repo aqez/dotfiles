@@ -15,7 +15,7 @@ return {
         keys = {
             { "<leader>o",  group = "Overseer" },
             { "<leader>or", ":OverseerRun<cr>",    desc = "Overseer Run" },
-            { "<leader>ot", ":OverseerToggle<cr>", desc = "Overseer Toggle" }
+            { "<leader>ot", function() require('overseer').toggle() end, desc = "Overseer Toggle" }
         },
         opts = {},
         lazy = false,
