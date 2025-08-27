@@ -1,0 +1,12 @@
+[Unit]
+Description = Auto sync notes
+
+[Service]
+Type=oneshot
+ExecStart=/home/aqez/.config/bin/sync-notes.sh
+WorkingDirectory=/home/aqez/repos/notes
+
+
+[Install]
+WantedBy=default.target
+

@@ -15,3 +15,5 @@ emacs/.local/
 emacs/.lsp-session-*
 emacs/transient/
 emacs/projects
+default.target.wants/
+timer.target.wants/
