@@ -9,4 +9,5 @@ augroup csharp
     autocmd BufWritePre *.cs :silent! %s/^\(\s*{\)\n\_$/\1
     autocmd BufWritePre *.cs :silent! %s/^\_$\n\(\s*}\)/\1
     autocmd BufWritePre *.cs :silent lua vim.lsp.buf.format({ async = false })
+    autocmd BufEnter,CursorHold,InsertLeave *.cs lua vim.lsp.codelens.refresh({ bufnr = 0 })
 augroup END

@@ -38,7 +38,10 @@ return {
                     ["csharp|background_analysis"] = {
                         --dotnet_analyzer_diagnostics_scope = "none",
                         dotnet_compiler_diagnostics_scope = "openFiles"
-                    }
+                    },
+                    ["csharp|code_lens"] = {
+                        dotnet_enable_references_code_lens = true,
+                    },
                 }
             }
             -- your configuration comes here; leave empty for default settings
