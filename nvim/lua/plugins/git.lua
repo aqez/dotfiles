@@ -37,6 +37,7 @@ return {
             { "<leader>gic", ":Octo issue create<CR>",  desc = "Create issue" },
             { "<leader>gil", ":Octo issue list<CR>",    desc = "Open Octo issue list" },
             { "<leader>gib", ":Octo issue browser<CR>", desc = "Open issue in browser" },
+            { "<leader>gie", ":Octo issue edit ", desc = "Edit issue" },
 
             { "<leader>gp",  group = "Pull Requests" },
             { "<leader>gpb", ":Octo pr browser<CR>",    desc = "Open PR in browser" },
@@ -45,6 +46,7 @@ return {
             { "<leader>gpu", ":Octo pr url<CR>",        desc = "Copy PR URL" },
 
             { "<leader>gla", ":Octo label add<CR>", desc = "Add label" },
+            { "<leader>gaa", ":Octo assignee add ", desc = "Add assignee" },
 
             { "<leader>gcs", ":Octo cardv2 set<CR>", desc = "Octo card set" }
         }
