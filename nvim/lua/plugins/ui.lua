@@ -117,6 +117,9 @@ return {
             }
             -- add any options here
         },
+        keys = {
+            { "<leader>ls", function() require('noice').cmd('telescope') end, desc = "Search log" }
+        },
         dependencies = {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
