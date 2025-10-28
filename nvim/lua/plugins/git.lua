@@ -47,6 +47,7 @@ return {
 
             { "<leader>gla", ":Octo label add<CR>", desc = "Add label" },
             { "<leader>gaa", ":Octo assignee add ", desc = "Add assignee" },
+            { "<leader>gma", ":Octo milestone add<CR>", desc = "Add milestone" },
 
             { "<leader>gcs", ":Octo cardv2 set<CR>", desc = "Octo card set" }
         }
