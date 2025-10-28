@@ -40,7 +40,7 @@ return {
             require("dap-go").setup({
                 -- Custom options if needed, e.g., delve path from Mason
                 delve = {
-                    path = vim.fn.stdpath("data") .. "/mason/bin/dlv",  -- Points to Mason-installed Delve
+                    path = vim.fn.stdpath("data") .. "/mason/bin/dlv", -- Points to Mason-installed Delve
                 },
             })
 
@@ -54,10 +54,18 @@ return {
         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
         keys = function()
             local dapui = require("dapui")
-            local dapui_widgets = require("dap.ui.widgets")
+            local widgets = require("dap.ui.widgets")
             return {
-                { "<leader>dh", dapui_widgets.preview, desc = "Show hover" },
-                { "<leader>dt", dapui.toggle,          desc = "Toggle debugging UI" },
+                { "<leader>dH", widgets.preview, desc = "Show preview" },
+                { "<leader>dh", dapui.eval,      desc = "Show hover" },
+                { "<leader>dt", dapui.toggle,    desc = "Toggle debugging UI" },
+                {
+                    "<leader>ds",
+                    function()
+                        widgets.centered_float(widgets.scopes, { border = "rounded" })
+                    end,
+                    desc = "Show scopes"
+                }
             }
         end,
         config = function()
