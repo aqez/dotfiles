@@ -3,6 +3,6 @@ os:
   editAtLine: "nvim +{{line}} {{filename}}"
   openDirInEditor: "ranger {dir}"
 git:
-  paging:
-    colorArg: always
-    # pager: delta --dark --paging=never
+  pagers:
+    - colorArg: always
+      # pager: delta --dark --paging=never

@@ -6,6 +6,7 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.hidden = true
+vim.opt.colorcolumn = "80,120"
 
 vim.cmd [[tnoremap <Esc> <C-\><C-n>]]
 -- Typescript/react autocmds

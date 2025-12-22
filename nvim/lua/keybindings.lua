@@ -32,3 +32,30 @@ wk.add({
 
 vim.cmd [[imap <silent><script><expr> <C-q> copilot#Accept('')]]
 vim.g.copilot_no_tab_map = 1
+
+local function get_current_line()
+  return vim.api.nvim_get_current_line()
+end
+
+local function is_todo(line)
+  return line:match("^%s*%- %[[ xX]%] ")
+end
+
+local function todo_indent(line)
+  return line:match("^(%s*)") or ""
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        vim.keymap.set("i", "<c-cr>", function()
+            local line = get_current_line()
+
+            if is_todo(line) then
+                return "<Esc>o- [ ] <esc>A"
+            end
+
+            return "<CR>"
+        end, { expr = true, noremap = true })
+    end
+})

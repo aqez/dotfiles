@@ -1,9 +1,0 @@
-[Unit]
-Description=Run auto note sync every 10 minutes
-
-[Timer]
-OnCalendar=*:0/10
-Persistent=true
-
-[Install]
-WantedBy=timers.target
