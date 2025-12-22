@@ -1,6 +1,6 @@
 return {
     {
-        "epwalsh/obsidian.nvim",
+        "obsidian-nvim/obsidian.nvim",
         version = "*",
         lazy = false,
         ft = "markdown",
@@ -15,23 +15,16 @@ return {
             daily_notes = {
                 folder = "dailies"
             },
-            mappings = {
-                --    ["gf"] = {
-                --        action = function()
-                --            return require("obsidian").util.gf_passthrough()
-                --        end
-                --    },
-                ["<cr>"] = {
-                    action = function()
-                        return require("obsidian").util.smart_action()
-                    end,
-                    opts = { buffer = true, expr = true }
+            checkbox = {
+                order = { " ", "~", "x" }
+            },
+            ui = {
+                checkboxes = {
+                    [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+                    ["~"] = { char = "󰡖", hl_group = "ObsidianTilde" },
+                    ["x"] = { char = "", hl_group = "ObsidianDone" },
                 }
-            },
-            completion = {
-                nvim_cmp = true,
-                min_chars = 2
-            },
+            }
         },
         keys = {
             { "<leader>n",   group = "Notes" },
