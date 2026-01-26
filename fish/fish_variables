@@ -6,5 +6,4 @@ SETUVAR __fish_initialized:4300
 SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:\x7e/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_list\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e\x7e/\x2econfig/fish/functions/nvm\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e\x7e/\x2econfig/fish/completions/nvm\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/nvm\x2efish
 SETUVAR _fisher_upgraded_to_4_4:\x1d
-SETUVAR fish_key_bindings:fish_default_key_bindings
 SETUVAR fish_user_paths:/home/aqez/\x2eopencode/bin\x1e/home/aqez/repos/dotfiles/bin\x1e/opt/mssql\x2dtools18/bin\x1e/usr/local/go/bin\x1e/opt/nvim\x1e/home/aqez/go/bin\x1e/home/aqez/\x2elocal/bin\x1e/home/aqez/\x2edotnet/tools

@@ -16,7 +16,7 @@ return {
                 folder = "dailies"
             },
             checkbox = {
-                order = { " ", "x" }
+                order = { " ", "/", "x" }
             },
             ui = { enable = false }
         },

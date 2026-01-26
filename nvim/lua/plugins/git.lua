@@ -5,7 +5,9 @@ return {
             { "<leader>gB", ":GitBlameToggle<CR>", desc = "Toggle git blame" },
         },
         lazy = false,
-        opts = {}
+        opts = {
+            enabled = false
+        }
     },
     {
         'TimUntersberger/neogit',
