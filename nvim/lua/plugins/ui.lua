@@ -1,7 +1,12 @@
 return {
     "pbrisbin/vim-colors-off",
     "andrewradev/linediff.vim",
-    "Mofiqul/vscode.nvim",
+    {
+        "Mofiqul/vscode.nvim",
+        config = function()
+            vim.cmd [[colorscheme vscode]]
+        end
+    },
     {
         "NStefan002/screenkey.nvim",
         lazy = false,
@@ -54,7 +59,7 @@ return {
             vim.g.doom_one_plugin_indent_blankline = true
             vim.g.doom_one_plugin_vim_illuminate = true
             vim.g.doom_one_plugin_lspsaga = false
-            vim.cmd [[colorscheme doom-one]]
+            --vim.cmd [[colorscheme doom-one]]
         end
     },
     {
