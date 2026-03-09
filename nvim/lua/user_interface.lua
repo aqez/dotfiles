@@ -31,6 +31,9 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     }
 )
 
+if vim.g.neovide then
+    vim.o.guifont = "Hack Nerd Font Mono:h15"
+end
 --vim.g.neovide_transparency = 0.5
 --vim.g.neovide_transparency_point = 0.8
 

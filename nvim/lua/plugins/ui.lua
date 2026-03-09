@@ -1,6 +1,7 @@
 return {
     "pbrisbin/vim-colors-off",
     "andrewradev/linediff.vim",
+    "sindrets/diffview.nvim",
     {
         "Mofiqul/vscode.nvim",
         config = function()
