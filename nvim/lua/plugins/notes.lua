@@ -18,7 +18,10 @@ return {
             checkbox = {
                 order = { " ", "/", "x" }
             },
-            ui = { enable = false }
+            ui = { enable = false },
+            note_id_func = ( function(title)
+                return title:gsub(' ', '-'):gsub('\\[\\^A-Za-z0-9-\\]', ''):lower()
+            end),
         },
         keys = {
             { "<leader>n",   group = "Notes" },
