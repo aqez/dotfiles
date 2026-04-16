@@ -59,7 +59,7 @@ config.colors = {
 
 config.leader = {
     key = '\\',
-    --mods = "CTRL",
+    mods = "CTRL",
     timeout_milliseconds = 1000
 }
 
