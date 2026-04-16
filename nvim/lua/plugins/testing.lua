@@ -6,7 +6,6 @@ return {
             "nvim-lua/plenary.nvim",
             "antoinemadec/FixCursorHold.nvim",
             "nvim-treesitter/nvim-treesitter",
-            "rouge8/neotest-rust",
             "Nsidorenco/neotest-vstest",
             "nvim-neotest/neotest-go"
         },
@@ -20,7 +19,7 @@ return {
             { "<leader>ptn", ":Neotest run<CR>",                                                 desc = "Test nearest" },
             { "<leader>pts", function() require('neotest').summary.toggle() end,                 desc = "Toggle summary" },
             { "<leader>ptt", ":Neotest run<CR>",                                                 desc = "Test nearest" },
-            { "<leader>pto", function() require('neotest').output_panel.toggle() end,                  desc = "Show test output" },
+            { "<leader>pto", function() require('neotest').output_panel.toggle() end,            desc = "Show test output" },
             { "<leader>ptw", function() require('neotest').watch.toggle(vim.fn.expand("%")) end, desc = "Watch tests in file" },
             { "<leader>pt[", function() require('neotest').jump.prev({ status = "failed" }) end, desc = "Jump to previous failing test" },
             { "<leader>pt]", function() require('neotest').jump.prev({ status = "failed" }) end, desc = "Jump to next failing test" },
@@ -59,13 +58,14 @@ return {
                     -- ignore hidden directories
                     return search_path:match("/%.")
                 end,
-                timeout_ms = 30 * 5 * 1000 -- number of milliseconds to wait before timeout while communicating with adapter client
+                timeout_ms = 30 * 5 *
+                    1000 -- number of milliseconds to wait before timeout while communicating with adapter client
             }
             neotest.setup({
                 adapters = {
                     require("neotest-vstest"),
-                    require("neotest-rust"),
                     require("neotest-go"),
+                    require("rustaceanvim.neotest")
                 },
                 discovery = {
                     enabled = true,

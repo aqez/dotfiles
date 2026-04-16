@@ -23,9 +23,10 @@ local function toggle_light_dark(window, _)
     window:set_config_overrides(overrides)
 end
 
---config.use_fancy_tab_bar = true
-config.show_tabs_in_tab_bar = true
---config.show_new_tab_button_in_tab_bar = false
+config.enable_tab_bar = false
+config.use_fancy_tab_bar = false
+config.show_tabs_in_tab_bar = false
+config.show_new_tab_button_in_tab_bar = false
 
 config.color_scheme = dark
 --config.font = wezterm.font("0xProto Nerd Font Mono")
@@ -35,7 +36,6 @@ config.font = wezterm.font("Hack Nerd Font")
 -- config.font = wezterm.font("Source Code Pro")
 --config.font = wezterm.font("MartianMono Nerd Font")
 config.font_size = 18.0
-config.enable_tab_bar = true
 config.window_padding = {
     left = 0,
     right = 0,
@@ -57,10 +57,10 @@ config.colors = {
     visual_bell = '#777777',
 }
 
-config.leader = { 
-    key = '\\', 
+config.leader = {
+    key = '\\',
     --mods = "CTRL",
-    timeout_milliseconds = 1000 
+    timeout_milliseconds = 1000
 }
 
 config.keys = {
@@ -71,7 +71,7 @@ config.keys = {
     },
 
     -- Allow inserting an actual backslash
-    { key = "\\", mods = "LEADER", action = wezterm.action.SendString("\\") },
+    --{ key = "\\",     mods = "LEADER", action = wezterm.action.SendString("\\") },
 
     -- Theme Cycler
     { key = "t",      mods = "LEADER", action = wezterm.action_callback(toggle_light_dark) },
@@ -80,20 +80,20 @@ config.keys = {
     { key = "Escape", mods = "LEADER", action = wezterm.action.ShowDebugOverlay },
 
     -- Sessionizer
-    { key = "f",      mods = "LEADER", action = wezterm.action_callback(sessionizer.toggle) },
-    { key = "l",      mods = "LEADER", action = wezterm.action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
-    { key = "Tab",    mods = "LEADER", action = wezterm.action.SwitchWorkspaceRelative(-1) },
+    -- { key = "f",      mods = "LEADER", action = wezterm.action_callback(sessionizer.toggle) },
+    -- { key = "l",      mods = "LEADER", action = wezterm.action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+    -- { key = "Tab",    mods = "LEADER", action = wezterm.action.SwitchWorkspaceRelative(-1) },
 
     -- Tabs
-    { key = "c",      mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
-    { key = "1",      mods = "LEADER", action = wezterm.action.ActivateTab(0) },
-    { key = "2",      mods = "LEADER", action = wezterm.action.ActivateTab(1) },
-    { key = "3",      mods = "LEADER", action = wezterm.action.ActivateTab(2) },
-    { key = "4",      mods = "LEADER", action = wezterm.action.ActivateTab(3) },
-    { key = "5",      mods = "LEADER", action = wezterm.action.ActivateTab(4) },
-    { key = "6",      mods = "LEADER", action = wezterm.action.ActivateTab(5) },
-    { key = "7",      mods = "LEADER", action = wezterm.action.ActivateTab(6) },
-    { key = "x",      mods = "LEADER", action = wezterm.action.CloseCurrentTab({ confirm = false }) },
+    -- { key = "c",      mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
+    -- { key = "1",      mods = "LEADER", action = wezterm.action.ActivateTab(0) },
+    -- { key = "2",      mods = "LEADER", action = wezterm.action.ActivateTab(1) },
+    -- { key = "3",      mods = "LEADER", action = wezterm.action.ActivateTab(2) },
+    -- { key = "4",      mods = "LEADER", action = wezterm.action.ActivateTab(3) },
+    -- { key = "5",      mods = "LEADER", action = wezterm.action.ActivateTab(4) },
+    -- { key = "6",      mods = "LEADER", action = wezterm.action.ActivateTab(5) },
+    -- { key = "7",      mods = "LEADER", action = wezterm.action.ActivateTab(6) },
+    -- { key = "x",      mods = "LEADER", action = wezterm.action.CloseCurrentTab({ confirm = false }) },
 }
 
 return config
