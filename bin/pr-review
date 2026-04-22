@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ $# -ne 1 ]; then
+  echo "Usage: pr-review <pr-number>" >&2
+  exit 1
+fi
+
+pi "/skill:pr-review $1"
