@@ -91,7 +91,8 @@ return {
             -- add any options here
         },
         keys = {
-            { "<leader>Ls", function() require('noice').cmd('telescope') end, desc = "Search log" }
+            { "<leader>Ls", function() require('noice').cmd('telescope') end, desc = "Search log" },
+            { "<leader>Ll", function() require('noice').cmd('last') end, desc = "Last log entry popup" }
         },
         dependencies = {
             "MunifTanjim/nui.nvim",
