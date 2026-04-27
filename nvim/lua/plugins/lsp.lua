@@ -33,6 +33,7 @@ return {
         "seblj/roslyn.nvim",
         ft = "cs",
         opts = {
+            filewatching = "off",
             config = {
                 settings = {
                     ["csharp|background_analysis"] = {
