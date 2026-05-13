@@ -1,14 +1,3 @@
-local rust_group = vim.api.nvim_create_augroup("rust-keybinds", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "*.rs",
-    command = [[nnoremap <buffer> <C-b> :make build<CR>]],
-    group = rust_group
-})
+vim.keymap.set("n", "<C-b>", ":make build<CR>", { buffer = true, desc = "Cargo build" })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*.rs",
-    group = rust_group,
-    callback = function()
-        vim.lsp.buf.format({ async = false })
-    end
-})
+require("formatting").format_on_save("rust-format", { async = false })
