@@ -4,7 +4,6 @@ return {
         keys = {
             { "<leader>gB", ":GitBlameToggle<CR>", desc = "Toggle git blame" },
         },
-        lazy = false,
         opts = {
             enabled = false
         }
@@ -32,7 +31,6 @@ return {
         opts = {
             default_to_projects_v2 = true
         },
-        lazy = false,
         keys = {
             { "<leader>g", group = "Git" },
             { "<leader>gi",  group = "Issues" },

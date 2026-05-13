@@ -19,7 +19,7 @@ return {
     },
     {
         "NStefan002/screenkey.nvim",
-        lazy = false,
+        cmd = "Screenkey",
         opts = {
             group_mappings = true
         },
@@ -33,7 +33,6 @@ return {
             { "<leader>ot", function() require('overseer').toggle() end, desc = "Overseer Toggle" }
         },
         opts = {},
-        lazy = false,
     },
     {
         "folke/which-key.nvim",
@@ -114,90 +113,32 @@ return {
         lazy = false,
         commit = "da8bf82a534506989c7bc9189552b5fba958f0c6",
         config = function()
-            --local configs = require('nvim-treesitter.configs')
-            --configs.setup({
-            --    ensure_installed = {
-            --        "c_sharp",
-            --        "javascript",
-            --        "typescript",
-            --        "json",
-            --        "yaml",
-            --        "go",
-            --        "lua",
-            --        "rust",
-            --        "tsx",
-            --        "html"
-            --    },
-            --    highlight = {
-            --        enable = true,
-            --        --additional_vim_regex_highlighting = true,
-            --    },
-            --    indent = { enable = true },
-            --    rainbow = { enable = true }
-            --})
+            local filetypes = {
+                "c",
+                "cpp",
+                "cs",
+                "go",
+                "html",
+                "javascript",
+                "json",
+                "lua",
+                "rust",
+                "typescript",
+                "typescriptreact",
+                "yaml",
+            }
+
+            require("nvim-treesitter").setup()
+
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = filetypes,
+                callback = function()
+                    local ok = pcall(vim.treesitter.start)
+                    if ok then
+                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
+                end,
+            })
         end
     },
-    --{
-    --    "nvim-treesitter/nvim-treesitter-textobjects",
-    --    --dependencies = "nvim-treesitter/nvim-treesitter",
-    --    config = function()
-    --        require('nvim-treesitter.configs').setup {
-    --            textobjects = {
-    --                select = {
-    --                    enable = true,
-    --                    lookahead = true,
-    --                    keymaps = {
-    --                        ["af"] = "@function.outer",
-    --                        ["if"] = "@function.inner",
-    --                        ["ac"] = "@class.outer",
-    --                        ["ic"] = "@class.inner",
-    --                    },
-    --                },
-    --                swap = {
-    --                    enable = true,
-    --                    swap_next = {
-    --                        ["<leader>a"] = "@parameter.inner",
-    --                    },
-    --                    swap_previous = {
-    --                        ["<leader>A"] = "@parameter.inner",
-    --                    },
-    --                },
-    --                move = {
-    --                    enable = true,
-    --                    set_jumps = true,
-    --                    goto_next_start = {
-    --                        ["]f"] = "@function.inner",
-    --                        ["]m"] = "@function.outer",
-    --                        ["]]"] = "@class.outer",
-    --                    },
-    --                    goto_next_end = {
-    --                        ["]F"] = "@function.inner",
-    --                        ["]M"] = "@function.outer",
-    --                        ["]["] = "@class.outer",
-    --                    },
-    --                    goto_previous_start = {
-    --                        ["[f"] = "@function.inner",
-    --                        ["[m"] = "@function.outer",
-    --                        ["[["] = "@class.outer",
-    --                    },
-    --                    goto_previous_end = {
-    --                        ["[F"] = "@function.inner",
-    --                        ["[M"] = "@function.outer",
-    --                        ["[]"] = "@class.outer",
-    --                    },
-    --                    goto_next = {
-    --                        ["]a"] = "@parameter.inner",
-    --                        ["]A"] = "@parameter.outer",
-    --                        ["]d"] = "@conditional.outer",
-    --                    },
-    --                    goto_previous = {
-    --                        ["[a"] = "@parameter.inner",
-    --                        ["[A"] = "@parameter.outer",
-    --                        ["[d"] = "@conditional.outer",
-    --                    },
-    --                },
-    --            },
-    --        }
-    --    end
-    --},
 }

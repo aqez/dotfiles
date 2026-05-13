@@ -9,7 +9,6 @@ return {
             "Nsidorenco/neotest-vstest",
             "nvim-neotest/neotest-go"
         },
-        lazy = false,
         keys = {
             { "<leader>pt",  group = "Test" },
             { "<leader>pta", function() require('neotest').run.run({ suite = true }) end,        desc = "Test all" },
@@ -22,7 +21,7 @@ return {
             { "<leader>pto", function() require('neotest').output_panel.toggle() end,            desc = "Show test output" },
             { "<leader>ptw", function() require('neotest').watch.toggle(vim.fn.expand("%")) end, desc = "Watch tests in file" },
             { "<leader>pt[", function() require('neotest').jump.prev({ status = "failed" }) end, desc = "Jump to previous failing test" },
-            { "<leader>pt]", function() require('neotest').jump.prev({ status = "failed" }) end, desc = "Jump to next failing test" },
+            { "<leader>pt]", function() require('neotest').jump.next({ status = "failed" }) end, desc = "Jump to next failing test" },
         },
         config = function()
             local neotest = require("neotest")

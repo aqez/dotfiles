@@ -30,19 +30,12 @@ wk.add({
     { "]e",         ":cnext<CR>",                        desc = "Next Quickfix" },
 })
 
-vim.cmd [[imap <silent><script><expr> <C-q> copilot#Accept('')]]
-vim.g.copilot_no_tab_map = 1
-
 local function get_current_line()
   return vim.api.nvim_get_current_line()
 end
 
 local function is_todo(line)
   return line:match("^%s*%- %[[ xX]%] ")
-end
-
-local function todo_indent(line)
-  return line:match("^(%s*)") or ""
 end
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -56,6 +49,6 @@ vim.api.nvim_create_autocmd("FileType", {
             end
 
             return "<CR>"
-        end, { expr = true, noremap = true })
+        end, { buffer = true, expr = true, noremap = true })
     end
 })

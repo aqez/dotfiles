@@ -23,13 +23,11 @@ vim.opt.termguicolors = true
 vim.cmd "hi Normal guibg=None"
 vim.cmd "hi LineNr guibg=None"
 
-local _border = "single"
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
-        border = _border
-    }
-)
+local hover = vim.lsp.handlers.hover
+vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
+    config = vim.tbl_extend("force", config or {}, { border = "single" })
+    return hover(err, result, ctx, config)
+end
 
 if vim.g.neovide then
     vim.o.guifont = "Hack Nerd Font Mono:h15"

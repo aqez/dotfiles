@@ -1,11 +1,5 @@
 return {
     {
-        "zbirenbaum/copilot.lua",
-        config = function()
-            require("copilot").setup({})
-        end
-    },
-    {
         "nickjvandyke/opencode.nvim",
         version = "*", -- Latest stable release
         lazy = false,

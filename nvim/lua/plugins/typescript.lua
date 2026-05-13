@@ -1,10 +1,8 @@
 return {
     {
         "dmmulroy/tsc.nvim",
-        lazy = false,
-        opts = {
-            bin_path = "/home/aqez/repos/safe-clean-water/SafeCleanWater.ProjectsModule.WebClient/node_modules/.bin/tsc"
-        }
+        ft = { "typescript", "typescriptreact" },
+        opts = {}
     },
     {
         "pmizio/typescript-tools.nvim",
