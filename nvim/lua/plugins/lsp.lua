@@ -22,10 +22,10 @@ return {
             wk.add({
                 { "<leader>c",  group = "Code" },
                 { "<leader>cf", function() vim.lsp.buf.format({ async = true }) end, desc = "Format buffer" },
-                { "K",          vim.lsp.buf.hover,                                   desc = "Show hover" },
-                { "<Leader>ca", vim.lsp.buf.code_action,                             desc = "Code actions", mode = "v" },
-                { "<leader>ca", vim.lsp.buf.code_action,                             desc = "Code actions" },
-                { "<leader>cr", vim.lsp.buf.rename,                                  desc = "Rename symbol" },
+                { "K",          function() vim.lsp.buf.hover() end,                  desc = "Show hover" },
+                { "<leader>ca", function() vim.lsp.buf.code_action() end,            desc = "Code actions", mode = "v" },
+                { "<leader>ca", function() vim.lsp.buf.code_action() end,            desc = "Code actions" },
+                { "<leader>cr", function() vim.lsp.buf.rename() end,                 desc = "Rename symbol" },
             })
         end
     },

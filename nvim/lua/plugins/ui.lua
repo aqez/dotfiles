@@ -29,7 +29,7 @@ return {
         "stevearc/overseer.nvim",
         keys = {
             { "<leader>o",  group = "Overseer" },
-            { "<leader>or", ":OverseerRun<cr>",    desc = "Overseer Run" },
+            { "<leader>or", ":OverseerRun<cr>",                          desc = "Overseer Run" },
             { "<leader>ot", function() require('overseer').toggle() end, desc = "Overseer Toggle" }
         },
         opts = {},
@@ -63,7 +63,7 @@ return {
         },
         keys = {
             { "<leader>t", function() require('oil').open('.') end, desc = "Open oil browser at project root" },
-            { "<leader>-", function() require('oil').open() end, desc = "Open oil browser at file root" },
+            { "<leader>-", function() require('oil').open() end,    desc = "Open oil browser at file root" },
         }
     },
     {
@@ -88,19 +88,23 @@ return {
                     ["vim.lsp.util.stylize_markdown"] = true,
                     ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
                 },
+                hover = {
+                    enabled = true,
+                    silent = false
+                }
             },
             presets = {
                 bottom_search = false,        -- use a classic bottom cmdline for search
                 command_palette = true,       -- position the cmdline and popupmenu together
                 long_message_to_split = true, -- long messages will be sent to a split
                 inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = false,       -- add a border to hover docs and signature help
+                lsp_doc_border = true,        -- add a border to hover docs and signature help
             }
             -- add any options here
         },
         keys = {
             { "<leader>Ls", function() require('noice').cmd('telescope') end, desc = "Search log" },
-            { "<leader>Ll", function() require('noice').cmd('last') end, desc = "Last log entry popup" }
+            { "<leader>Ll", function() require('noice').cmd('last') end,      desc = "Last log entry popup" }
         },
         dependencies = {
             "MunifTanjim/nui.nvim",
