@@ -12,6 +12,8 @@ if status is-interactive
 
     nvm -s use latest
 
+    #fish_add_path /home/aqez/.npm-global/bin
+
     fish_config prompt choose arrow
 end
 
@@ -20,5 +22,7 @@ source /home/aqez/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
 # opencode
 fish_add_path /home/aqez/.opencode/bin
+
+# npm
 
 export MAKEFLAGS="-j 12"

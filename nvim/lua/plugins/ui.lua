@@ -1,7 +1,16 @@
 return {
     "pbrisbin/vim-colors-off",
     "andrewradev/linediff.vim",
-    "sindrets/diffview.nvim",
+    --"sindrets/diffview.nvim",
+    {
+        "esmuellert/codediff.nvim",
+        cmd = "CodeDiff",
+        opts = {
+            diff = {
+                ignore_trim_whitespace = true
+            }
+        }
+    },
     {
         "Mofiqul/vscode.nvim",
         config = function()
