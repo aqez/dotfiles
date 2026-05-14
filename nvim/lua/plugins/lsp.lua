@@ -34,6 +34,9 @@ return {
         ft = "cs",
         opts = {
             filewatching = "off",
+            extensions = {
+                razor = { enabled = false }
+            },
             config = {
                 settings = {
                     ["csharp|background_analysis"] = {
