@@ -11,7 +11,7 @@ return {
                 optional = true,
                 opts = {
                     input = {}, -- Enhances `ask()`
-                    picker = { -- Enhances `select()`
+                    picker = {  -- Enhances `select()`
                         actions = {
                             opencode_send = function(...) return require("opencode").snacks_picker_send(...) end,
                         },
@@ -38,13 +38,13 @@ return {
             local wk = require('which-key')
 
             wk.add({
-                { "<leader>a", group = "Artificial Intelligence" },
-                { "<leader>aa", function() oc.ask("@this: ", { submit = true }) end, desc = "Ask opencode...", mode = { "n", "x" } },
-                { "<leader>ax", oc.select, desc = "Execute opencode action", mode = { "n", "x" } },
-                { "<leader>at", oc.toggle, desc = "Toggle opencode", mode = { "n", "t" } },
-                { "<leader>ao", function() return oc.operator("@this ") end, desc = "Add range to opencode", mode = { "n", "x" } },
+                { "<leader>a",  group = "Artificial Intelligence" },
+                { "<leader>aa", function() oc.ask("@this: ", { submit = true }) end, desc = "Ask opencode...",         mode = { "n", "x" } },
+                { "<leader>ax", oc.select,                                           desc = "Execute opencode action", mode = { "n", "x" } },
+                { "<leader>at", oc.toggle,                                           desc = "Toggle opencode",         mode = { "n", "t" } },
+                { "<leader>ao", function() return oc.operator("@this ") end,         desc = "Add range to opencode",   mode = { "n", "x" } },
 
-                { "<leader>au", function() oc.command("session.half.page.up") end, desc = "Scrole opencode up" },
+                { "<leader>au", function() oc.command("session.half.page.up") end,   desc = "Scrole opencode up" },
                 { "<leader>ad", function() oc.command("session.half.page.down") end, desc = "Scrole opencode down" },
             })
         end,
