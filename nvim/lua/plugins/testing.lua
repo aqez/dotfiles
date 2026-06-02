@@ -1,6 +1,8 @@
 return {
     {
         "nvim-neotest/neotest",
+        -- dir = "~/repos/neotest-vstest",
+        --" -",
         dependencies = {
             "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
@@ -68,7 +70,7 @@ return {
                 },
                 discovery = {
                     enabled = true,
-                    concurrent = 1
+                    concurrent = 0
                 }
             })
         end,
