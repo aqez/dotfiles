@@ -6,4 +6,4 @@ if [ $# -ne 1 ]; then
   exit 1
 fi
 
-pi "/skill:pr-review --model github-copilot/gpt-5.5 $1"
+pi --model github-copilot/claude-opus-4.6 --name "PR Review $1" "/skill:pr-review $1"
