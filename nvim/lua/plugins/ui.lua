@@ -1,7 +1,6 @@
 return {
     "pbrisbin/vim-colors-off",
     "andrewradev/linediff.vim",
-    --"sindrets/diffview.nvim",
     {
         "esmuellert/codediff.nvim",
         cmd = "CodeDiff",
@@ -15,7 +14,14 @@ return {
         "Mofiqul/vscode.nvim",
         config = function()
             vim.cmd [[colorscheme vscode]]
-        end
+            end
+    },
+    {
+        "romus204/tree-sitter-manager.nvim",
+        dependencies = {}, 
+        config = function()
+            require("tree-sitter-manager").setup()
+        end,
     },
     {
         "NStefan002/screenkey.nvim",
@@ -46,7 +52,7 @@ return {
             vim.o.laststatus = 3
             require('lualine').setup({ globalstatus = true })
             vim.o.laststatus = 3
-        end
+            end
     },
     {
         "stevearc/oil.nvim",
@@ -95,10 +101,10 @@ return {
             },
             presets = {
                 bottom_search = false,        -- use a classic bottom cmdline for search
-                command_palette = true,       -- position the cmdline and popupmenu together
-                long_message_to_split = true, -- long messages will be sent to a split
-                inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = true,        -- add a border to hover docs and signature help
+                    command_palette = true,       -- position the cmdline and popupmenu together
+                    long_message_to_split = true, -- long messages will be sent to a split
+                    inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+                    lsp_doc_border = true,        -- add a border to hover docs and signature help
             }
             -- add any options here
         },
@@ -110,39 +116,5 @@ return {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
         },
-    },
-    {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
-        lazy = false,
-        commit = "da8bf82a534506989c7bc9189552b5fba958f0c6",
-        config = function()
-            local filetypes = {
-                "c",
-                "cpp",
-                "cs",
-                "go",
-                "html",
-                "javascript",
-                "json",
-                "lua",
-                "rust",
-                "typescript",
-                "typescriptreact",
-                "yaml",
-            }
-
-            require("nvim-treesitter").setup()
-
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = filetypes,
-                callback = function()
-                    local ok = pcall(vim.treesitter.start)
-                    if ok then
-                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                    end
-                end,
-            })
-        end
     },
 }
