@@ -1,4 +1,3 @@
-vim.cmd "syntax on"
 vim.opt.ruler = true
 vim.opt.backspace = "eol,start,indent"
 vim.opt.ignorecase = true

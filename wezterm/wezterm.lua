@@ -28,8 +28,8 @@ config.use_fancy_tab_bar = false
 config.show_tabs_in_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
 
---config.color_scheme = dark
-config.color_scheme = light
+config.color_scheme = dark
+--config.color_scheme = light
 --config.font = wezterm.font("0xProto Nerd Font Mono")
 --config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font = wezterm.font("Hack Nerd Font")
