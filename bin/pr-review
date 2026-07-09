@@ -6,5 +6,7 @@ if [ $# -ne 1 ]; then
   exit 1
 fi
 
+gh pr view "$1" --web
+
 #pi --model github-copilot/claude-opus-4.6 --name "PR Review $1" "/skill:pr-review $1"
 pi --model "local/llama-cpp" --name "PR Review $1" "/skill:pr-review $1"
